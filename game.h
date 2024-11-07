@@ -1,5 +1,6 @@
 #include <string>
 #include <SDL.h>
+#include <glew.h>
 #include <vector>
 #include "scene.h"
 
@@ -7,17 +8,21 @@
 class Game
 {
 public :
-	Game(std::string mTitle, std::vector<std::shared_ptr<Scene>> pScenes);
+	Game(std::string pTitle, std::vector<std::shared_ptr<Scene>> pScenes);
 
+	void Initialize();
 	void Loop();
 	void Render();
 	void Update();
-	void CheckForInputs();
+	void CheckInputs();
 	void Close();
 
 private :
-	SDL_Window* rWindow;
+	Window* rWindow;
+	std::shared_ptr<Renderer> rRenderer;
 	std::string mTitle;
+	std::vector<std::shared_ptr<Scene>> mScenes;
+	int mLoadedScene;
 	bool mIsRunning;
 };
 

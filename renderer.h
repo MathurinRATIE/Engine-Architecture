@@ -7,11 +7,11 @@ class Renderer
 private:
 	SDL_Renderer* mSdlRenderer;
 public:
-	Renderer();
+	Renderer(Window* rWindow);
 	Renderer(const Renderer&) = delete;
 	Renderer& operator= (const Renderer&) = delete;
 
-	bool Initialize(Window& rWindow);
+	bool Initialize(Window* rWindow);
 	void BeginDraw();
 	void EndDraw();
 	void Close();

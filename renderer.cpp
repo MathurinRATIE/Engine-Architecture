@@ -1,12 +1,13 @@
 #include "renderer.h"
 
-Renderer::Renderer() :mSdlRenderer(nullptr)
+Renderer::Renderer(Window* rWindow):mSdlRenderer(nullptr)
 {
+    Initialize(rWindow);
 }
 
-bool Renderer::Initialize(Window& rWindow)
+bool Renderer::Initialize(Window* rWindow)
 {
-    mSdlRenderer = SDL_CreateRenderer(rWindow.GetSdlWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    mSdlRenderer = SDL_CreateRenderer(rWindow->GetSdlWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!mSdlRenderer)
     {
         Log::Error(LogType::Video, "Failed to create Renderer");
@@ -29,4 +30,11 @@ void Renderer::EndDraw()
 void Renderer::Close()
 {
     SDL_DestroyRenderer(mSdlRenderer);
+}
+
+void Renderer::DrawRect(Rectangle& rRect)
+{
+    SDL_SetRenderDrawColor(mSdlRenderer, 255, 255, 255, 255);
+    SDL_Rect sdlRect = rRect.ToSdlRect();
+    SDL_RenderFillRect(mSdlRenderer, &sdlRect);
 }

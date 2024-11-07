@@ -79,13 +79,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\mamat\OneDrive\Documents\Projets\OpenGL\Engine Architecture\GL\SDL\include;C:\Users\mamat\OneDrive\Documents\Projets\OpenGL\Engine Architecture\glew-2.2.0-win32\glew-2.2.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mathurin.ratie\Documents\OpenGL\Engine-Architecture\GL\SDL\include;C:\Users\mathurin.ratie\Documents\OpenGL\Engine-Architecture\glew-2.2.0-win32\glew-2.2.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glu32.lib;glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\mamat\OneDrive\Documents\Projets\OpenGL\Engine Architecture\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;C:\Users\mamat\OneDrive\Documents\Projets\OpenGL\Engine Architecture\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;C:\Users\mamat\OneDrive\Documents\Projets\OpenGL\Engine Architecture\GL\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\mathurin.ratie\Documents\OpenGL\Engine-Architecture\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;C:\Users\mathurin.ratie\Documents\OpenGL\Engine-Architecture\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;C:\Users\mathurin.ratie\Documents\OpenGL\Engine-Architecture\GL\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

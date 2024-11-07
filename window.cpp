@@ -1,7 +1,17 @@
 #include "window.h"
 
-Window::Window(int pWidth, int pHeight) :mSdlWindow(nullptr), mDimensions({ pWidth, pHeight })
+Window::Window(int pWidth, int pHeight) :mSdlWindow(nullptr), mDimensions({ (float)pWidth, (float)pHeight })
 {
+}
+
+Vector2 Window::GetDimensions() const
+{
+    return mDimensions;
+}
+
+SDL_Window* Window::GetSdlWindow() const
+{
+    return mSdlWindow;
 }
 
 bool Window::Open()
@@ -18,4 +28,9 @@ bool Window::Open()
         return false;
     }
     return true;
+}
+
+void Window::Close()
+{
+    delete(this);
 }
