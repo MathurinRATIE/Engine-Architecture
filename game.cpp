@@ -21,7 +21,7 @@ Game::Game(std::string pTitle, std::vector<std::shared_ptr<Scene>> pScenes):mSce
     //Load first scene
     if (mScenes.size() > 0)
     {
-        mScenes[mLoadedScene]->Start();
+        mScenes[mLoadedScene]->Start(rRenderer);
     }
 
     Update();

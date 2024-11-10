@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <glew.h>
 #include "game.h"
+#include "pong.h"
 
 using namespace std;
 
@@ -9,7 +10,8 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Game testGame = Game("TestGame", {});
+	Game pong = Game("My Pong Game", { new Pong() });
+	pong.Initialize();
 
 	return 0;
 }
