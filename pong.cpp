@@ -15,15 +15,17 @@ void Pong::Update()
 	mDeltaTime = SDL_GetTicks() - mLastFrameTime;
 	mLastFrameTime = SDL_GetTicks();
 
-	int returnValue = mBall->Move(mDeltaTime);
+	int returnValue = mBall->Move(mDeltaTime, mIsBallLaunched);
 
 	if (returnValue == 1)
 	{
 		mScorePlayer1++;
+		mIsBallLaunched = false;
 	}
 	else if (returnValue == 2)
 	{
 		mScorePlayer2++;
+		mIsBallLaunched = false;
 	}
 }
 
@@ -49,6 +51,8 @@ void Pong::OnInput(SDL_Event event)
 			mPaddle2->MoveDown(mDeltaTime);
 		if (event.key.keysym.sym == SDLK_UP)
 			mPaddle2->MoveUp(mDeltaTime);
+		if (event.key.keysym.sym == SDLK_SPACE)
+			mIsBallLaunched = true;
 		break;
 	default:
 		break;

@@ -15,7 +15,6 @@ public :
 	static void Error(LogType category, const std::string& message);
 };
 
-
 enum class LogType
 {
 	Application = SDL_LOG_CATEGORY_APPLICATION,

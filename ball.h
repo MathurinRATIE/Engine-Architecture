@@ -7,7 +7,7 @@ class Ball
 public:
 	Ball();
 
-	int Move(float deltaTime);
+	int Move(float deltaTime, bool isLaunched);
 	void BounceX();
 	void BounceY();
 	Rectangle GetRect();

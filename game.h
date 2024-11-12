@@ -1,9 +1,10 @@
+#pragma once
 #include <string>
 #include <SDL.h>
 #include <glew.h>
 #include <vector>
 #include "scene.h"
-#pragma once
+#include "time.h"
 
 class Game
 {

@@ -7,29 +7,31 @@ Ball::Ball()
 	mSpeedY = mBaseSpeed;
 }
 
-int Ball::Move(float deltaTime)
+int Ball::Move(float deltaTime, bool isLaunched)
 {
-	mRectangle->position.x += mSpeedX * deltaTime;
-	mRectangle->position.y += mSpeedY * deltaTime;
+	if (isLaunched) {
+		mRectangle->position.x += mSpeedX * deltaTime;
+		mRectangle->position.y += mSpeedY * deltaTime;
 
-	if (mRectangle->position.y < mRectangle->dimensions.y || mRectangle->position.y > 600 - mRectangle->dimensions.y)
-		BounceY();
+		if (mRectangle->position.y < mRectangle->dimensions.y || mRectangle->position.y > 600 - mRectangle->dimensions.y)
+			BounceY();
 
-	if (mRectangle->position.x < mRectangle->dimensions.x)
-	{
-		BounceX();
-		mRectangle->position.x = 395;
-		mRectangle->position.y = 295;
-		
-		return 2;
-	}
-	if (mRectangle->position.x > 800 - mRectangle->dimensions.x)
-	{
-		BounceX();
-		mRectangle->position.x = 395;
-		mRectangle->position.y = 295;
+		if (mRectangle->position.x < mRectangle->dimensions.x)
+		{
+			BounceX();
+			mRectangle->position.x = 395;
+			mRectangle->position.y = 295;
 
-		return 1;
+			return 2;
+		}
+		if (mRectangle->position.x > 800 - mRectangle->dimensions.x)
+		{
+			BounceX();
+			mRectangle->position.x = 395;
+			mRectangle->position.y = 295;
+
+			return 1;
+		}
 	}
 
 	return 0;

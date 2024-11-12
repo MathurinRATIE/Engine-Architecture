@@ -19,6 +19,7 @@ private :
 	float mDeltaTime = 0.0f;
 	int mScorePlayer1 = 0;
 	int mScorePlayer2 = 0;
+	bool mIsBallLaunched = false;
 	Ball* mBall = new Ball();
 	Paddle* mPaddle1 = new Paddle(false);
 	Paddle* mPaddle2 = new Paddle(true);
