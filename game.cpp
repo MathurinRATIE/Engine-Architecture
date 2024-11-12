@@ -29,12 +29,18 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes):mScenes(pScenes), mL
 
 void Game::Initialize()
 {
-
+    if (rWindow->Open()) Loop();
 }
 
 void Game::Loop()
 {
-    mScenes[mLoadedScene]->Update();
+    while (mIsRunning)
+    {
+        Update();
+        CheckInputs();
+        mScenes[mLoadedScene]->Update();
+    }
+    Close();
 }
 
 void Game::Render()
@@ -48,40 +54,18 @@ void Game::Render()
 
 void Game::Update()
 {
-    while (mIsRunning)
-    {
-        CheckInputs();
-        Loop();
-    }
 
-    Close();
 }
 
 void Game::CheckInputs()
 {
     if (mIsRunning)
     {
-        SDL_Event event;
-
-        while (SDL_PollEvent(&event))
-        {
-            mScenes[mLoadedScene]->OnInput(event);
-            
-            switch (event.type)
-            {
-            case SDL_QUIT:
-                mIsRunning = false;
-                break;
-            default:
-                //Send input to scene
-                break;
-            }
-        }
+        mIsRunning = mScenes[mLoadedScene]->OnInput();
     }
 }
 
 void Game::Close()
 {
     delete(rWindow);
-    delete(this);
 }

@@ -15,7 +15,7 @@ void Pong::Update()
 	mDeltaTime = SDL_GetTicks() - mLastFrameTime;
 	mLastFrameTime = SDL_GetTicks();
 
-	int returnValue = mBall.Move(mDeltaTime);
+	int returnValue = mBall->Move(mDeltaTime);
 
 	if (returnValue == 1)
 	{
@@ -29,30 +29,40 @@ void Pong::Update()
 
 void Pong::Render()
 {
-	Rectangle ballRect = mBall.GetRect();
-	Rectangle paddle1Rect = mPaddle1.GetRect();
-	Rectangle paddle2Rect = mPaddle2.GetRect();
+	Rectangle ballRect = mBall->GetRect();
+	Rectangle paddle1Rect = mPaddle1->GetRect();
+	Rectangle paddle2Rect = mPaddle2->GetRect();
 	mRenderer->DrawRect(ballRect);
 	mRenderer->DrawRect(paddle1Rect);
 	mRenderer->DrawRect(paddle2Rect);
 }
 
-void Pong::OnInput(SDL_Event event)
+bool Pong::OnInput()
 {
-	switch (event.type) {
+	bool isRunning = true;
+	SDL_Event event;
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type) {
+		case SDL_QUIT:
+			isRunning = false;
+			break;
 		case SDL_KEYDOWN:
 			if (event.key.keysym.sym == SDLK_s)
-				mPaddle1.MoveDown(mDeltaTime);
+				mPaddle1->MoveDown(mDeltaTime);
 			if (event.key.keysym.sym == SDLK_z)
-				mPaddle1.MoveUp(mDeltaTime);
+				mPaddle1->MoveUp(mDeltaTime);
 			if (event.key.keysym.sym == SDLK_DOWN)
-				mPaddle2.MoveDown(mDeltaTime);
+				mPaddle2->MoveDown(mDeltaTime);
 			if (event.key.keysym.sym == SDLK_UP)
-				mPaddle2.MoveUp(mDeltaTime);
+				mPaddle2->MoveUp(mDeltaTime);
 			break;
 		default:
 			break;
+		}
 	}
+
+	return isRunning;
 }
 
 void Pong::Close()

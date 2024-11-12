@@ -3,8 +3,8 @@
 #include <glew.h>
 #include <vector>
 #include "scene.h"
-
 #pragma once
+
 class Game
 {
 public :
