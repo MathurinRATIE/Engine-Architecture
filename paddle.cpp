@@ -1,9 +1,5 @@
 #include "paddle.h"
 
-Paddle::Paddle()
-{
-}
-
 Paddle::Paddle(bool side)
 {
 	float yPos = 0.0f;
@@ -16,20 +12,20 @@ Paddle::Paddle(bool side)
 		yPos = -0.95f;
 	}
 
-	mRectangle = Rectangle(Vector2(0.0f, yPos), Vector2(0.02f, 0.15f));
+	mRectangle = new Rectangle(Vector2(0.0f, yPos), Vector2(0.02f, 0.15f));
 }
 
 void Paddle::MoveUp(float deltaTime)
 {
-	mRectangle.position.y += mSpeed * deltaTime;
+	mRectangle->position.y += mSpeed * deltaTime;
 }
 
 void Paddle::MoveDown(float deltaTime)
 {
-	mRectangle.position.y -= mSpeed * deltaTime;
+	mRectangle->position.y -= mSpeed * deltaTime;
 }
 
 Rectangle Paddle::GetRect()
 {
-	return mRectangle;
+	return *mRectangle;
 }

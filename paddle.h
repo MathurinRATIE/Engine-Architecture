@@ -4,7 +4,6 @@
 class Paddle
 {
 public:
-	Paddle();
 	Paddle(bool side);
 
 	void MoveUp(float deltaTime);
@@ -13,5 +12,5 @@ public:
 
 private:
 	const float mSpeed = 0.5f;
-	Rectangle mRectangle;
+	Rectangle* mRectangle;
 };

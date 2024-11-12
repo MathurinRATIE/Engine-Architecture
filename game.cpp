@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game(std::string pTitle, std::vector<std::shared_ptr<Scene>> pScenes):mScenes(pScenes), mLoadedScene(0), mIsRunning(true)
+Game::Game(std::string pTitle, std::vector<Scene*> pScenes):mScenes(pScenes), mLoadedScene(0), mIsRunning(true)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
@@ -16,7 +16,7 @@ Game::Game(std::string pTitle, std::vector<std::shared_ptr<Scene>> pScenes):mSce
     }
     //Create window
     rWindow = new Window(800, 600);
-    rRenderer = std::make_shared<Renderer>(rWindow);
+    rRenderer = new Renderer(rWindow);
 
     //Load first scene
     if (mScenes.size() > 0)

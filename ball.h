@@ -15,5 +15,5 @@ private:
 	const float mBaseSpeed = 0.5f;
 	float mSpeedX;
 	float mSpeedY;
-	Rectangle mRectangle;
+	Rectangle* mRectangle;
 };

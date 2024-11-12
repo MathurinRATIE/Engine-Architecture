@@ -7,7 +7,7 @@ class Pong : public Scene
 public :
 	Pong();
 
-	void Start(std::shared_ptr<Renderer> pRenderer) override;
+	void Start(Renderer* pRenderer) override;
 	void Update() override;
 	void Render() override;
 	void OnInput(SDL_Event event) override;

@@ -1,7 +1,7 @@
 #include "ball.h"
 Ball::Ball()
 {
-	mRectangle = Rectangle(Vector2(0, 0), Vector2(.05f, .05f));
+	mRectangle = new Rectangle(Vector2(0, 0), Vector2(.05f, .05f));
 
 	mSpeedX = mBaseSpeed;
 	mSpeedY = mBaseSpeed;
@@ -9,25 +9,25 @@ Ball::Ball()
 
 int Ball::Move(float deltaTime)
 {
-	mRectangle.position.x += mSpeedX * deltaTime;
-	mRectangle.position.y += mSpeedY * deltaTime;
+	mRectangle->position.x += mSpeedX * deltaTime;
+	mRectangle->position.y += mSpeedY * deltaTime;
 
-	if (mRectangle.position.y <= -1.0f + mRectangle.dimensions.y / 2 || mRectangle.position.y >= 1.0f - mRectangle.dimensions.y / 2)
+	if (mRectangle->position.y <= -1.0f + mRectangle->dimensions.y / 2 || mRectangle->position.y >= 1.0f - mRectangle->dimensions.y / 2)
 		BounceY();
 
-	if (mRectangle.position.x <= -1.0f + mRectangle.dimensions.x / 2)
+	if (mRectangle->position.x <= -1.0f + mRectangle->dimensions.x / 2)
 	{
 		BounceX();
-		mRectangle.position.x == mSpeedX;
-		mRectangle.position.y == mSpeedY;
+		mRectangle->position.x == mSpeedX;
+		mRectangle->position.y == mSpeedY;
 		
 		return 2;
 	}
-	if (mRectangle.position.x >= 1.0f - mRectangle.dimensions.x / 2)
+	if (mRectangle->position.x >= 1.0f - mRectangle->dimensions.x / 2)
 	{
 		BounceX();
-		mRectangle.position.x == mSpeedX;
-		mRectangle.position.y == mSpeedY;
+		mRectangle->position.x == mSpeedX;
+		mRectangle->position.y == mSpeedY;
 
 		return 1;
 	}
@@ -47,6 +47,6 @@ void Ball::BounceY()
 
 Rectangle Ball::GetRect()
 {
-	return mRectangle;
+	return *mRectangle;
 }
 

@@ -5,7 +5,7 @@ Pong::Pong() : Scene()
 
 };
 
-void Pong::Start(std::shared_ptr<Renderer> pRenderer)
+void Pong::Start(Renderer* pRenderer)
 {
 	mRenderer = pRenderer;
 }

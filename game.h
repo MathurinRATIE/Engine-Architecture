@@ -8,7 +8,7 @@
 class Game
 {
 public :
-	Game(std::string pTitle, std::vector<std::shared_ptr<Scene>> pScenes);
+	Game(std::string pTitle, std::vector<Scene*> pScenes);
 
 	void Initialize();
 	void Loop();
@@ -19,9 +19,9 @@ public :
 
 private :
 	Window* rWindow;
-	std::shared_ptr<Renderer> rRenderer;
+	Renderer* rRenderer;
 	std::string mTitle;
-	std::vector<std::shared_ptr<Scene>> mScenes;
+	std::vector<Scene*> mScenes;
 	int mLoadedScene;
 	bool mIsRunning;
 };
