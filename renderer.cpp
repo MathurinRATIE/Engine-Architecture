@@ -1,8 +1,7 @@
 #include "renderer.h"
 
-Renderer::Renderer(Window* rWindow):mSdlRenderer(nullptr)
+Renderer::Renderer():mSdlRenderer(nullptr)
 {
-    Initialize(rWindow);
 }
 
 bool Renderer::Initialize(Window* rWindow)

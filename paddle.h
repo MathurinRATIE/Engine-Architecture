@@ -12,6 +12,6 @@ public:
 	Rectangle GetRect();
 
 private:
-	const float mSpeed = 0.5f;
+	const float mSpeed = 1;
 	Rectangle* mRectangle;
 };

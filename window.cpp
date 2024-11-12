@@ -1,6 +1,6 @@
 #include "window.h"
 
-Window::Window(int pWidth, int pHeight) :mSdlWindow(nullptr), mDimensions({ (float)pWidth, (float)pHeight })
+Window::Window(int pWidth, int pHeight) :mSdlWindow(nullptr), mDimensions({ static_cast<float>(pWidth),  static_cast<float>(pHeight) })
 {
 }
 
@@ -32,5 +32,5 @@ bool Window::Open()
 
 void Window::Close()
 {
-    delete(this);
+    SDL_Quit();
 }

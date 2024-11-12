@@ -1,7 +1,7 @@
 #include "ball.h"
 Ball::Ball()
 {
-	mRectangle = new Rectangle(Vector2(0, 0), Vector2(.05f, .05f));
+	mRectangle = new Rectangle(Vector2(395, 295), Vector2(10, 10));
 
 	mSpeedX = mBaseSpeed;
 	mSpeedY = mBaseSpeed;
@@ -12,22 +12,22 @@ int Ball::Move(float deltaTime)
 	mRectangle->position.x += mSpeedX * deltaTime;
 	mRectangle->position.y += mSpeedY * deltaTime;
 
-	if (mRectangle->position.y <= -1.0f + mRectangle->dimensions.y / 2 || mRectangle->position.y >= 1.0f - mRectangle->dimensions.y / 2)
+	if (mRectangle->position.y < mRectangle->dimensions.y || mRectangle->position.y > 600 - mRectangle->dimensions.y)
 		BounceY();
 
-	if (mRectangle->position.x <= -1.0f + mRectangle->dimensions.x / 2)
+	if (mRectangle->position.x < mRectangle->dimensions.x)
 	{
 		BounceX();
-		mRectangle->position.x == mSpeedX;
-		mRectangle->position.y == mSpeedY;
+		mRectangle->position.x = 395;
+		mRectangle->position.y = 295;
 		
 		return 2;
 	}
-	if (mRectangle->position.x >= 1.0f - mRectangle->dimensions.x / 2)
+	if (mRectangle->position.x > 800 - mRectangle->dimensions.x)
 	{
 		BounceX();
-		mRectangle->position.x == mSpeedX;
-		mRectangle->position.y == mSpeedY;
+		mRectangle->position.x = 395;
+		mRectangle->position.y = 295;
 
 		return 1;
 	}

@@ -37,32 +37,22 @@ void Pong::Render()
 	mRenderer->DrawRect(paddle2Rect);
 }
 
-bool Pong::OnInput()
+void Pong::OnInput(SDL_Event event)
 {
-	bool isRunning = true;
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
-	{
-		switch (event.type) {
-		case SDL_QUIT:
-			isRunning = false;
-			break;
-		case SDL_KEYDOWN:
-			if (event.key.keysym.sym == SDLK_s)
-				mPaddle1->MoveDown(mDeltaTime);
-			if (event.key.keysym.sym == SDLK_z)
-				mPaddle1->MoveUp(mDeltaTime);
-			if (event.key.keysym.sym == SDLK_DOWN)
-				mPaddle2->MoveDown(mDeltaTime);
-			if (event.key.keysym.sym == SDLK_UP)
-				mPaddle2->MoveUp(mDeltaTime);
-			break;
-		default:
-			break;
-		}
+	switch (event.type) {
+	case SDL_KEYDOWN:
+		if (event.key.keysym.sym == SDLK_s)
+			mPaddle1->MoveDown(mDeltaTime);
+		if (event.key.keysym.sym == SDLK_z)
+			mPaddle1->MoveUp(mDeltaTime);
+		if (event.key.keysym.sym == SDLK_DOWN)
+			mPaddle2->MoveDown(mDeltaTime);
+		if (event.key.keysym.sym == SDLK_UP)
+			mPaddle2->MoveUp(mDeltaTime);
+		break;
+	default:
+		break;
 	}
-
-	return isRunning;
 }
 
 void Pong::Close()

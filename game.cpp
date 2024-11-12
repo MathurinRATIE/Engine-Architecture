@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game(std::string pTitle, std::vector<Scene*> pScenes):mScenes(pScenes), mLoadedScene(0), mIsRunning(true)
+Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), mLoadedScene(0), mIsRunning(true)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
@@ -14,31 +14,30 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes):mScenes(pScenes), mL
     if (glewInit() == GLEW_OK) {
         std::cout << "Glew initialized successfully\n";
     }
+
     //Create window
     rWindow = new Window(800, 600);
-    rRenderer = new Renderer(rWindow);
+    rRenderer = new Renderer();
 
     //Load first scene
     if (mScenes.size() > 0)
     {
         mScenes[mLoadedScene]->Start(rRenderer);
     }
-
-    Update();
 }
 
 void Game::Initialize()
 {
-    if (rWindow->Open()) Loop();
+    if (rWindow->Open() && rRenderer->Initialize(rWindow)) Loop();
 }
 
 void Game::Loop()
 {
     while (mIsRunning)
     {
-        Update();
         CheckInputs();
-        mScenes[mLoadedScene]->Update();
+        Update();
+        Render();
     }
     Close();
 }
@@ -54,18 +53,30 @@ void Game::Render()
 
 void Game::Update()
 {
-
+    mScenes[mLoadedScene]->Update();
 }
 
 void Game::CheckInputs()
 {
     if (mIsRunning)
     {
-        mIsRunning = mScenes[mLoadedScene]->OnInput();
+
+        SDL_Event event;
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type) {
+            case SDL_QUIT:
+                mIsRunning = false;
+                break;
+            default:
+                mScenes[mLoadedScene]->OnInput(event);
+                break;
+            }
+        }
     }
 }
 
 void Game::Close()
 {
-    delete(rWindow);
+    rWindow->Close();
 }

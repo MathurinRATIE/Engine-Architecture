@@ -10,8 +10,8 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Game pong = Game("My Pong Game", { new Pong() });
-	pong.Initialize();
+	Game* pong = new Game("My Pong Game", { new Pong() });
+	pong->Initialize();
 
 	return 0;
 }

@@ -9,13 +9,10 @@ class Game
 {
 public :
 	Game(std::string pTitle, std::vector<Scene*> pScenes);
+	Game(const Game&) = delete;
+	Game& operator=(const Game&) = delete;
 
 	void Initialize();
-	void Loop();
-	void Render();
-	void Update();
-	void CheckInputs();
-	void Close();
 
 private :
 	Window* rWindow;
@@ -24,5 +21,10 @@ private :
 	std::vector<Scene*> mScenes;
 	int mLoadedScene;
 	bool mIsRunning;
-};
 
+	void Loop();
+	void Render();
+	void Update();
+	void CheckInputs();
+	void Close();
+};

@@ -11,12 +11,12 @@ public :
 	void Start(Renderer* pRenderer) override;
 	void Update() override;
 	void Render() override;
-	bool OnInput() override;
+	void OnInput(SDL_Event event) override;
 	void Close() override;
 
 private :
 	float mLastFrameTime = 0.0f;
-	float mDeltaTime;
+	float mDeltaTime = 0.0f;
 	int mScorePlayer1 = 0;
 	int mScorePlayer2 = 0;
 	Ball* mBall = new Ball();

@@ -7,7 +7,7 @@ class Renderer
 private:
 	SDL_Renderer* mSdlRenderer;
 public:
-	Renderer(Window* rWindow);
+	Renderer();
 	Renderer(const Renderer&) = delete;
 	Renderer& operator= (const Renderer&) = delete;
 
