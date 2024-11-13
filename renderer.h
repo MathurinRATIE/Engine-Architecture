@@ -1,6 +1,7 @@
 #pragma once
 #include "rectangle.h"
 #include "window.h"
+#include "vector4.h"
 
 class Renderer
 {
@@ -16,5 +17,5 @@ public:
 	void EndDraw();
 	void Close();
 
-	void DrawRect(Rectangle& rRect);
+	void DrawRect(Rectangle& rRect, Color pColor);
 };

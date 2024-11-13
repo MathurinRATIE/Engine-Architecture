@@ -16,34 +16,39 @@ void Pong::Start(Renderer* pRenderer, Window* pWindow)
 	mPaddle2 = new Paddle(false, rWindow);
 }
 
-void Pong::Update(float deltaTime)
+void Pong::Update(float pDeltaTime)
 {
 	// Move paddle
 	if (mMovePaddleDown)
 	{
-		mPaddle1->MoveDown(deltaTime);
+		mPaddle1->MoveDown(pDeltaTime, 1.0f);
 	}
 	if (mMovePaddleUp)
 	{
-		mPaddle1->MoveUp(deltaTime);
+		mPaddle1->MoveUp(pDeltaTime, 1.0f);
 	}
 
 	// Move Ball
-	int returnValue = mBall->Move(deltaTime, mIsBallLaunched);
-	mPaddle2->FollowBall(mBall->GetRect().position.y);
+	int returnValue = mBall->Move(pDeltaTime, mIsBallLaunched);
+	mPaddle2->FollowBall(mBall->GetRect().position.y, pDeltaTime);
 
 	// Player loose
-	if (returnValue == 1)
+	if (returnValue != 0)
 	{
-		mScorePlayer1++;
+		if (returnValue == 1)
+		{
+			mScorePlayer1++;
+		}
+		else if (returnValue == 2)
+		{
+			mScorePlayer2++;
+		}
+
 		mIsBallLaunched = false;
 		std::cout << "Player : " << mScorePlayer1 << " / AI : " << mScorePlayer2 << std::endl;
-	}
-	else if (returnValue == 2)
-	{
-		mScorePlayer2++;
-		mIsBallLaunched = false;
-		std::cout << "Player : " << mScorePlayer1 << " / AI : " << mScorePlayer2 << std::endl;
+		mPaddle1->Reset();
+		mPaddle2->Reset();
+		mBall->Reset();
 	}
 
 	// Check paddle collisions
@@ -53,10 +58,12 @@ void Pong::Update(float deltaTime)
 	if (collideLeftPaddle)
 	{
 		mBall->BounceX(false);
+		mBall->SpeedUp();
 	}
 	else if (collideRightPaddle)
 	{
 		mBall->BounceX(true);
+		mBall->SpeedUp();
 	}
 }
 
@@ -65,34 +72,38 @@ void Pong::Render()
 	Rectangle ballRect = mBall->GetRect();
 	Rectangle paddle1Rect = mPaddle1->GetRect();
 	Rectangle paddle2Rect = mPaddle2->GetRect();
-	rRenderer->DrawRect(ballRect);
-	rRenderer->DrawRect(paddle1Rect);
-	rRenderer->DrawRect(paddle2Rect);
+
+	Color ballColor = { 140, 253, 132, 255 };
+	Color paddleColor = { 253, 168, 132, 255 };
+
+	rRenderer->DrawRect(ballRect, ballColor);
+	rRenderer->DrawRect(paddle1Rect, paddleColor);
+	rRenderer->DrawRect(paddle2Rect, paddleColor);
 }
 
-void Pong::OnInput(SDL_Event event)
+void Pong::OnInput(SDL_Event pEvent)
 {
-	switch (event.type) {
+	switch (pEvent.type) {
 	case SDL_KEYDOWN:
-		if (event.key.keysym.sym == SDLK_s)
+		if (pEvent.key.keysym.sym == SDLK_s)
 			mMovePaddleDown = true;
-		if (event.key.keysym.sym == SDLK_z)
+		if (pEvent.key.keysym.sym == SDLK_z)
 			mMovePaddleUp = true;
-		if (event.key.keysym.sym == SDLK_DOWN)
+		if (pEvent.key.keysym.sym == SDLK_DOWN)
 			mMovePaddleDown = true;
-		if (event.key.keysym.sym == SDLK_UP)
+		if (pEvent.key.keysym.sym == SDLK_UP)
 			mMovePaddleUp = true;
-		if (event.key.keysym.sym == SDLK_SPACE)
+		if (pEvent.key.keysym.sym == SDLK_SPACE)
 			mIsBallLaunched = true;
 		break;
 	case SDL_KEYUP :
-		if (event.key.keysym.sym == SDLK_s)
+		if (pEvent.key.keysym.sym == SDLK_s)
 			mMovePaddleDown = false;
-		if (event.key.keysym.sym == SDLK_z)
+		if (pEvent.key.keysym.sym == SDLK_z)
 			mMovePaddleUp = false;
-		if (event.key.keysym.sym == SDLK_DOWN)
+		if (pEvent.key.keysym.sym == SDLK_DOWN)
 			mMovePaddleDown = false;
-		if (event.key.keysym.sym == SDLK_UP)
+		if (pEvent.key.keysym.sym == SDLK_UP)
 			mMovePaddleUp = false;
 		break;
 	default:

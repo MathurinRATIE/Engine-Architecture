@@ -5,31 +5,31 @@ const Vector2 Vector2::ONE{1.0f, 1.0f};
 
 Vector2::Vector2() : x(0.0f), y(0.0f) {};
 
-Vector2::Vector2(float x, float y) : x(x), y(y) {};
+Vector2::Vector2(float pX, float pY) : x(pX), y(pY) {};
 
 void Vector2::normalize() 
 {
-    float length = GetMagnitude();
+    float length = Magnitude();
     if (length == 0)
     {
         return;
     }
 
-    (*this) /= GetMagnitude();
+    (*this) /= Magnitude();
 }
 
 Vector2 Vector2::normalized() 
 {
-    float length = GetMagnitude();
+    float length = Magnitude();
     if (length == 0)
     {
         return ZERO;
     }
 
-    return (*this) / GetMagnitude();
+    return (*this) / Magnitude();
 }
 
-float Vector2::GetMagnitude() const 
+float Vector2::Magnitude() const 
 {
     return std::sqrt(x * x + y * y);
 }

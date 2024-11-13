@@ -19,4 +19,3 @@ protected :
 	Renderer* rRenderer;
 	Window* rWindow;
 };
-

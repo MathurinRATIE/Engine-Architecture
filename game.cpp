@@ -53,9 +53,9 @@ void Game::Render()
     rRenderer->EndDraw();
 }
 
-void Game::Update(float deltaTime)
+void Game::Update(float pDeltaTime)
 {
-    mScenes[mLoadedScene]->Update(deltaTime);
+    mScenes[mLoadedScene]->Update(pDeltaTime);
 }
 
 void Game::CheckInputs()

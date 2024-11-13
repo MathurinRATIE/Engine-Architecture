@@ -1,16 +1,16 @@
 #include "ball.h"
-Ball::Ball(Window* window)
+Ball::Ball(Window* pWindow)
 {
-	rWindow = window;
+	rWindow = pWindow;
 
 	mRectangle = new Rectangle(Vector2(rWindow->GetDimensions() / 2 - Vector2(mWidth, mHeight)), Vector2(mWidth, mHeight));
 }
 
-int Ball::Move(float deltaTime, bool isLaunched)
+int Ball::Move(float pDeltaTime, bool pIsLaunched)
 {
-	if (isLaunched) {
-		mRectangle->position.x += mSpeedX * deltaTime;
-		mRectangle->position.y += mSpeedY * deltaTime;
+	if (pIsLaunched) {
+		mRectangle->position.x += mSpeedX * pDeltaTime;
+		mRectangle->position.y += mSpeedY * pDeltaTime;
 
 		if (mRectangle->position.y < 0)
 			BounceY(false);
@@ -38,9 +38,9 @@ int Ball::Move(float deltaTime, bool isLaunched)
 	return 0;
 }
 
-void Ball::BounceX(bool isBaseSpeedReversed)
+void Ball::BounceX(bool pIsBaseSpeedReversed)
 {
-	if (isBaseSpeedReversed) 
+	if (pIsBaseSpeedReversed) 
 	{
 		mSpeedX = -mBaseSpeed;
 	}
@@ -50,9 +50,9 @@ void Ball::BounceX(bool isBaseSpeedReversed)
 	}
 }
 
-void Ball::BounceY(bool isBaseSpeedReversed)
+void Ball::BounceY(bool pIsBaseSpeedReversed)
 {
-	if (isBaseSpeedReversed)
+	if (pIsBaseSpeedReversed)
 	{
 		mSpeedY = -mBaseSpeed;
 	}
@@ -62,8 +62,21 @@ void Ball::BounceY(bool isBaseSpeedReversed)
 	}
 }
 
+void Ball::SpeedUp()
+{
+	mBaseSpeed += 0.001f;
+	mSpeedX += 0.001f;
+	mSpeedY += 0.001f;
+}
+
+void Ball::Reset()
+{
+	mBaseSpeed = 0.5f;
+	mSpeedX = 0.5f;
+	mSpeedY = 0.5f;
+}
+
 Rectangle Ball::GetRect()
 {
 	return *mRectangle;
 }
-

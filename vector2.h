@@ -11,7 +11,7 @@ struct Vector2
 
 	Vector2 normalized();
 	void normalize();
-	float GetMagnitude() const;
+	float Magnitude() const;
 	float dot(const Vector2& otherVector) const;
 	float cross(const Vector2& otherVector) const;
 	std::string ToString() const;
@@ -34,4 +34,3 @@ struct Vector2
 	float x;
 	float y;
 };
-
