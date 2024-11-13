@@ -25,7 +25,7 @@ private :
 
 	void Loop();
 	void Render();
-	void Update();
+	void Update(float deltaTime);
 	void CheckInputs();
 	void Close();
 };

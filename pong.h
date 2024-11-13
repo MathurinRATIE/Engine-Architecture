@@ -8,20 +8,20 @@ class Pong : public Scene
 public :
 	Pong();
 
-	void Start(Renderer* pRenderer) override;
-	void Update() override;
+	void Start(Renderer* pRenderer, Window* rWindow) override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void OnInput(SDL_Event event) override;
 	void Close() override;
 
 private :
-	float mLastFrameTime = 0.0f;
-	float mDeltaTime = 0.0f;
 	int mScorePlayer1 = 0;
 	int mScorePlayer2 = 0;
 	bool mIsBallLaunched = false;
-	Ball* mBall = new Ball();
-	Paddle* mPaddle1 = new Paddle(false);
-	Paddle* mPaddle2 = new Paddle(true);
+	bool mMovePaddleDown = false;
+	bool mMovePaddleUp = false;
+	Ball* mBall;
+	Paddle* mPaddle1;
+	Paddle* mPaddle2;
 };
 

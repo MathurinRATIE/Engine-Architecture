@@ -9,13 +9,14 @@ class Scene
 public :
 	Scene();
 
-	virtual void Start(Renderer* pRenderer) = 0;
-	virtual void Update() = 0;
+	virtual void Start(Renderer* pRenderer, Window* pWindow) = 0;
+	virtual void Update(float deltaTime) = 0;
 	virtual void Render() = 0;
 	virtual void OnInput(SDL_Event event) = 0;
 	virtual void Close() = 0;
 
 protected :
-	Renderer* mRenderer;
+	Renderer* rRenderer;
+	Window* rWindow;
 };
 

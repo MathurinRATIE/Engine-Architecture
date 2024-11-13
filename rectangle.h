@@ -9,6 +9,8 @@ struct Rectangle
     Vector2 position;
     Vector2 dimensions;
 
+    bool CheckCollisions(Rectangle otherRectangle);
+
     SDL_Rect ToSdlRect() const
     {
         return SDL_Rect{

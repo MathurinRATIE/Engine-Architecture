@@ -1,20 +1,24 @@
 #pragma once
 #include "rectangle.h"
 #include "vector2.h"
+#include "window.h"
 
 class Ball
 {
 public:
-	Ball();
+	Ball(Window* window);
 
 	int Move(float deltaTime, bool isLaunched);
-	void BounceX();
-	void BounceY();
+	void BounceX(bool isBaseSpeedReversed);
+	void BounceY(bool isBaseSpeedReversed);
 	Rectangle GetRect();
 
 private:
+	const float mWidth = 10;
+	const float mHeight = 10;
 	const float mBaseSpeed = 0.5f;
-	float mSpeedX;
-	float mSpeedY;
+	float mSpeedX = mBaseSpeed;
+	float mSpeedY = mBaseSpeed;
 	Rectangle* mRectangle;
+	Window* rWindow;
 };

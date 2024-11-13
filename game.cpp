@@ -22,7 +22,7 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), m
     //Load first scene
     if (mScenes.size() > 0)
     {
-        mScenes[mLoadedScene]->Start(rRenderer);
+        mScenes[mLoadedScene]->Start(rRenderer, rWindow);
     }
 }
 
@@ -35,9 +35,9 @@ void Game::Loop()
 {
     while (mIsRunning)
     {
-        Time::ComputeDeltaTime();
+        float deltaTime = Time::ComputeDeltaTime();
         CheckInputs();
-        Update();
+        Update(deltaTime);
         Render();
         Time::DelayTime();
     }
@@ -53,9 +53,9 @@ void Game::Render()
     rRenderer->EndDraw();
 }
 
-void Game::Update()
+void Game::Update(float deltaTime)
 {
-    mScenes[mLoadedScene]->Update();
+    mScenes[mLoadedScene]->Update(deltaTime);
 }
 
 void Game::CheckInputs()
@@ -70,10 +70,15 @@ void Game::CheckInputs()
             case SDL_QUIT:
                 mIsRunning = false;
                 break;
+            case SDL_KEYDOWN:
+                if (event.key.keysym.sym == SDLK_ESCAPE)
+                mIsRunning = false;
+                break;
             default:
-                mScenes[mLoadedScene]->OnInput(event);
                 break;
             }
+
+            mScenes[mLoadedScene]->OnInput(event);
         }
     }
 }

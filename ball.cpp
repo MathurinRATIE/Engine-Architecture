@@ -1,10 +1,9 @@
 #include "ball.h"
-Ball::Ball()
+Ball::Ball(Window* window)
 {
-	mRectangle = new Rectangle(Vector2(395, 295), Vector2(10, 10));
+	rWindow = window;
 
-	mSpeedX = mBaseSpeed;
-	mSpeedY = mBaseSpeed;
+	mRectangle = new Rectangle(Vector2(rWindow->GetDimensions() / 2 - Vector2(mWidth, mHeight)), Vector2(mWidth, mHeight));
 }
 
 int Ball::Move(float deltaTime, bool isLaunched)
@@ -13,22 +12,24 @@ int Ball::Move(float deltaTime, bool isLaunched)
 		mRectangle->position.x += mSpeedX * deltaTime;
 		mRectangle->position.y += mSpeedY * deltaTime;
 
-		if (mRectangle->position.y < mRectangle->dimensions.y || mRectangle->position.y > 600 - mRectangle->dimensions.y)
-			BounceY();
+		if (mRectangle->position.y < 0)
+			BounceY(false);
+		if (mRectangle->position.y > rWindow->GetDimensions().y - mRectangle->dimensions.y)
+			BounceY(true);
 
-		if (mRectangle->position.x < mRectangle->dimensions.x)
+		if (mRectangle->position.x < 0)
 		{
-			BounceX();
-			mRectangle->position.x = 395;
-			mRectangle->position.y = 295;
+			BounceX(false);
+			mRectangle->position.x = (rWindow->GetDimensions().x - mWidth) / 2;
+			mRectangle->position.y = (rWindow->GetDimensions().y - mHeight) / 2;
 
 			return 2;
 		}
-		if (mRectangle->position.x > 800 - mRectangle->dimensions.x)
+		if (mRectangle->position.x > rWindow->GetDimensions().x - mRectangle->dimensions.x)
 		{
-			BounceX();
-			mRectangle->position.x = 395;
-			mRectangle->position.y = 295;
+			BounceX(true);
+			mRectangle->position.x = (rWindow->GetDimensions().x - mWidth) / 2;
+			mRectangle->position.y = (rWindow->GetDimensions().y - mHeight) / 2;
 
 			return 1;
 		}
@@ -37,14 +38,28 @@ int Ball::Move(float deltaTime, bool isLaunched)
 	return 0;
 }
 
-void Ball::BounceX()
+void Ball::BounceX(bool isBaseSpeedReversed)
 {
-	mSpeedX = -mSpeedX;
+	if (isBaseSpeedReversed) 
+	{
+		mSpeedX = -mBaseSpeed;
+	}
+	else
+	{
+		mSpeedX = mBaseSpeed;
+	}
 }
 
-void Ball::BounceY()
+void Ball::BounceY(bool isBaseSpeedReversed)
 {
-	mSpeedY = -mSpeedY;
+	if (isBaseSpeedReversed)
+	{
+		mSpeedY = -mBaseSpeed;
+	}
+	else
+	{
+		mSpeedY = mBaseSpeed;
+	}
 }
 
 Rectangle Ball::GetRect()
