@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="actor.h" />
     <ClInclude Include="ball.h" />
+    <ClInclude Include="collider.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="log.h" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="actor.cpp" />
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="collider.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="log.cpp" />
