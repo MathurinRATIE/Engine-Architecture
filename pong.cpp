@@ -4,10 +4,11 @@ Pong::Pong() : Scene()
 {
 };
 
-void Pong::Start(Renderer* pRenderer, Window* pWindow)
+void Pong::Start(Renderer* pRenderer, Window* pWindow, std::vector<Actor*> pActors)
 {
 	rRenderer = pRenderer;
 	rWindow = pWindow;
+	rActors = pActors;
 
 	std::cout << "Player : " << mScorePlayer1 << " / AI : " << mScorePlayer2 << std::endl;
 
@@ -52,7 +53,7 @@ void Pong::Update(float pDeltaTime)
 	}
 
 	// Check paddle collisions
-	bool collideLeftPaddle = mBall->GetRect().CheckCollisions(mPaddle1->GetRect());
+	/*bool collideLeftPaddle = mBall->GetRect().CheckCollisions(mPaddle1->GetRect());
 	bool collideRightPaddle = mBall->GetRect().CheckCollisions(mPaddle2->GetRect());
 
 	if (collideLeftPaddle)
@@ -64,7 +65,7 @@ void Pong::Update(float pDeltaTime)
 	{
 		mBall->BounceX(true);
 		mBall->SpeedUp();
-	}
+	}*/
 }
 
 void Pong::Render()

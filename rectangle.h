@@ -4,12 +4,11 @@
 
 struct Rectangle
 {
+    Rectangle();
     Rectangle(Vector2 newPosition, Vector2 newDimensions);
 
     Vector2 position;
     Vector2 dimensions;
-
-    bool CheckCollisions(Rectangle otherRectangle);
 
     SDL_Rect ToSdlRect() const
     {
