@@ -1,35 +1,35 @@
 #include "ball.h"
 Ball::Ball(Window* pWindow)
 {
-	rWindow = pWindow;
+	mWindow = pWindow;
 
-	mRectangle = new Rectangle(Vector2(rWindow->GetDimensions() / 2 - Vector2(mWidth, mHeight)), Vector2(mWidth, mHeight));
+	mRectangle = new Rectangle(Vector2(mWindow->GetDimensions() / 2 - Vector2(mWidth, mHeight)), Vector2(mWidth, mHeight));
 }
 
 int Ball::Move(float pDeltaTime, bool pIsLaunched)
 {
 	if (pIsLaunched) {
-		mRectangle->position.x += mSpeedX * pDeltaTime;
-		mRectangle->position.y += mSpeedY * pDeltaTime;
+		mRectangle->mPosition.x += mSpeedX * pDeltaTime;
+		mRectangle->mPosition.y += mSpeedY * pDeltaTime;
 
-		if (mRectangle->position.y < 0)
+		if (mRectangle->mPosition.y < 0)
 			BounceY(false);
-		if (mRectangle->position.y > rWindow->GetDimensions().y - mRectangle->dimensions.y)
+		if (mRectangle->mPosition.y > mWindow->GetDimensions().y - mRectangle->mDimensions.y)
 			BounceY(true);
 
-		if (mRectangle->position.x < 0)
+		if (mRectangle->mPosition.x < 0)
 		{
 			BounceX(false);
-			mRectangle->position.x = (rWindow->GetDimensions().x - mWidth) / 2;
-			mRectangle->position.y = (rWindow->GetDimensions().y - mHeight) / 2;
+			mRectangle->mPosition.x = (mWindow->GetDimensions().x - mWidth) / 2;
+			mRectangle->mPosition.y = (mWindow->GetDimensions().y - mHeight) / 2;
 
 			return 2;
 		}
-		if (mRectangle->position.x > rWindow->GetDimensions().x - mRectangle->dimensions.x)
+		if (mRectangle->mPosition.x > mWindow->GetDimensions().x - mRectangle->mDimensions.x)
 		{
 			BounceX(true);
-			mRectangle->position.x = (rWindow->GetDimensions().x - mWidth) / 2;
-			mRectangle->position.y = (rWindow->GetDimensions().y - mHeight) / 2;
+			mRectangle->mPosition.x = (mWindow->GetDimensions().x - mWidth) / 2;
+			mRectangle->mPosition.y = (mWindow->GetDimensions().y - mHeight) / 2;
 
 			return 1;
 		}

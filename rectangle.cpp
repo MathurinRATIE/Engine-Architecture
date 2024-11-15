@@ -2,12 +2,12 @@
 
 Rectangle::Rectangle()
 {
-	position = Vector2(0, 0);
-	dimensions = Vector2(1, 1);
+	mPosition = Vector2(0, 0);
+	mDimensions = Vector2(1, 1);
 }
 
 Rectangle::Rectangle(Vector2 pPosition, Vector2 pDimensions)
 {
-	position = pPosition;
-	dimensions = pDimensions;
+	mPosition = pPosition;
+	mDimensions = pDimensions;
 }

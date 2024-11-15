@@ -21,5 +21,5 @@ private:
 	bool mAiMoveDown = false;
 	float mSpeedMultiplier = 0.0f;
 	Rectangle* mRectangle;
-	Window* rWindow;
+	Window* mWindow;
 };

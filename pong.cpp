@@ -4,20 +4,19 @@ Pong::Pong() : Scene()
 {
 };
 
-void Pong::Start(Renderer* pRenderer, Window* pWindow, std::vector<Actor*> pActors)
+void Pong::Start(Renderer* pRenderer, Window* pWindow)
 {
-	rRenderer = pRenderer;
-	rWindow = pWindow;
-	rActors = pActors;
+	mRenderer = pRenderer;
+	mWindow = pWindow;
 
 	std::cout << "Player : " << mScorePlayer1 << " / AI : " << mScorePlayer2 << std::endl;
 
-	mBall = new Ball(rWindow);
-	mPaddle1 = new Paddle(true, rWindow);
-	mPaddle2 = new Paddle(false, rWindow);
+	mBall = new Ball(mWindow);
+	mPaddle1 = new Paddle(true, mWindow);
+	mPaddle2 = new Paddle(false, mWindow);
 }
 
-void Pong::Update(float pDeltaTime)
+void Pong::Update(unsigned int pDeltaTime)
 {
 	// Move paddle
 	if (mMovePaddleDown)
@@ -31,7 +30,7 @@ void Pong::Update(float pDeltaTime)
 
 	// Move Ball
 	int returnValue = mBall->Move(pDeltaTime, mIsBallLaunched);
-	mPaddle2->FollowBall(mBall->GetRect().position.y, pDeltaTime);
+	mPaddle2->FollowBall(mBall->GetRect().mPosition.y, pDeltaTime);
 
 	// Player loose
 	if (returnValue != 0)
@@ -77,9 +76,9 @@ void Pong::Render()
 	Color ballColor = { 140, 253, 132, 255 };
 	Color paddleColor = { 253, 168, 132, 255 };
 
-	rRenderer->DrawRect(ballRect, ballColor);
-	rRenderer->DrawRect(paddle1Rect, paddleColor);
-	rRenderer->DrawRect(paddle2Rect, paddleColor);
+	mRenderer->DrawRect(ballRect, ballColor);
+	mRenderer->DrawRect(paddle1Rect, paddleColor);
+	mRenderer->DrawRect(paddle2Rect, paddleColor);
 }
 
 void Pong::OnInput(SDL_Event pEvent)

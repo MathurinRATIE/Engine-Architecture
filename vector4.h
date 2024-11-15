@@ -14,17 +14,17 @@ struct Vector4
 	float Magnitude() const;
 	std::string ToString() const;
 
-	void operator+=(const Vector4& right);
-	void operator-=(const Vector4& right);
-	void operator*=(const float value);
-	void operator/=(const float value);
+	void operator+=(const Vector4& pRight);
+	void operator-=(const Vector4& pRight);
+	void operator*=(const float pValue);
+	void operator/=(const float pValue);
 
-	friend Vector4 operator+(const Vector4& left, const Vector4& right);
-	friend Vector4 operator-(const Vector4& left, const Vector4& right);
-	friend Vector4 operator*(const Vector4& left, const float value);
-	friend Vector4 operator*(const float value, const Vector4& right);
-	friend Vector4 operator/(const Vector4& left, const float value);
-	friend Vector4 operator/(const float value, const Vector4& right);
+	friend Vector4 operator+(const Vector4& pLeft, const Vector4& pRight);
+	friend Vector4 operator-(const Vector4& pLeft, const Vector4& pRight);
+	friend Vector4 operator*(const Vector4& pLeft, const float pValue);
+	friend Vector4 operator*(const float pValue, const Vector4& pRight);
+	friend Vector4 operator/(const Vector4& pLeft, const float pValue);
+	friend Vector4 operator/(const float pValue, const Vector4& pRight);
 
 	const static Vector4 ZERO;
 	const static Vector4 ONE;

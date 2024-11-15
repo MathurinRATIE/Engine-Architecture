@@ -1,23 +1,44 @@
+#include "actor.h"
+#include "scene.h"
 #include "collider2D.h"
 
-Collider2D::Collider2D(Rectangle rect) : Component()
+Collider2D::Collider2D(Rectangle rect, Actor* pOwner, int pUpdateOrder = 100, bool pIsActive = true) : Component(pOwner, pUpdateOrder, pIsActive)
 {
     mHitBox = rect;
+}
+
+void Collider2D::Update(float pDeltaTime)
+{
+	for (Actor* actor : mOwner->GetScene()->GetActors())
+	{
+		if (actor != mOwner)
+		{
+			for (Component* component : actor->GetComponents())
+			{
+				Collider2D* collider = dynamic_cast<Collider2D*>(component);
+
+				if (collider != nullptr)
+				{
+					bool isCollisionning = CheckCollisions(collider->GetHitBox());
+				}
+			}
+		}
+	}
 }
 
 bool Collider2D::CheckCollisions(Rectangle pBox)
 {
 	// This
-	float selfXMin = mHitBox.position.x;
-	float selfXMax = mHitBox.position.x + mHitBox.dimensions.x;
-	float selfYMin = mHitBox.position.y;
-	float selfYMax = mHitBox.position.y + mHitBox.dimensions.y;
+	float selfXMin = mHitBox.mPosition.x;
+	float selfXMax = mHitBox.mPosition.x + mHitBox.mDimensions.x;
+	float selfYMin = mHitBox.mPosition.y;
+	float selfYMax = mHitBox.mPosition.y + mHitBox.mDimensions.y;
 
 	// Other
-	float otherXMin = pBox.position.x;
-	float otherXMax = pBox.position.x + pBox.dimensions.x;
-	float otherYMin = pBox.position.y;
-	float otherYMax = pBox.position.y + pBox.dimensions.y;
+	float otherXMin = pBox.mPosition.x;
+	float otherXMax = pBox.mPosition.x + pBox.mDimensions.x;
+	float otherYMin = pBox.mPosition.y;
+	float otherYMax = pBox.mPosition.y + pBox.mDimensions.y;
 
 	if (!((selfXMin > otherXMax ||
 		selfXMax < otherXMin) ||
@@ -28,4 +49,9 @@ bool Collider2D::CheckCollisions(Rectangle pBox)
 	}
 
 	return false;
+}
+
+Rectangle Collider2D::GetHitBox()
+{
+	return mHitBox;
 }

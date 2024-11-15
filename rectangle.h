@@ -7,15 +7,15 @@ struct Rectangle
     Rectangle();
     Rectangle(Vector2 newPosition, Vector2 newDimensions);
 
-    Vector2 position;
-    Vector2 dimensions;
+    Vector2 mPosition;
+    Vector2 mDimensions;
 
     SDL_Rect ToSdlRect() const
     {
         return SDL_Rect{
-            static_cast<int>(position.x),
-            static_cast<int>(position.y),
-            static_cast<int>(dimensions.x),
-            static_cast<int>(dimensions.y) };
+            static_cast<int>(mPosition.x),
+            static_cast<int>(mPosition.y),
+            static_cast<int>(mDimensions.x),
+            static_cast<int>(mDimensions.y) };
     }
 };

@@ -7,7 +7,7 @@
 struct Vector2
 {
 	Vector2();
-	Vector2(float x, float y);
+	Vector2(float pX, float pY);
 
 	Vector2 normalized();
 	void normalize();

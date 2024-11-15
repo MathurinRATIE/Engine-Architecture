@@ -2,7 +2,7 @@
 
 Paddle::Paddle(bool pSide, Window* pWindow)
 {
-	rWindow = pWindow;
+	mWindow = pWindow;
 
 	float xPos = 0;
 	if (pSide)
@@ -11,43 +11,43 @@ Paddle::Paddle(bool pSide, Window* pWindow)
 	}
 	else
 	{
-		xPos = rWindow->GetDimensions().x - mWidth * 2;
+		xPos = mWindow->GetDimensions().x - mWidth * 2;
 	}
 
-	mRectangle = new Rectangle(Vector2(xPos, (rWindow->GetDimensions().y - mHeight) / 2), Vector2(mWidth, mHeight));
+	mRectangle = new Rectangle(Vector2(xPos, (mWindow->GetDimensions().y - mHeight) / 2), Vector2(mWidth, mHeight));
 }
 
 void Paddle::MoveUp(float pDeltaTime, float mMultiplier)
 {
-	mRectangle->position.y -= mSpeed * mMultiplier * pDeltaTime;
+	mRectangle->mPosition.y -= mSpeed * mMultiplier * pDeltaTime;
 
-	if (mRectangle->position.y < 0)
+	if (mRectangle->mPosition.y < 0)
 	{
-		mRectangle->position.y = 0;
+		mRectangle->mPosition.y = 0;
 	}
 }
 
 void Paddle::MoveDown(float pDeltaTime, float mMultiplier)
 {
-	mRectangle->position.y += mSpeed * mMultiplier * pDeltaTime;
+	mRectangle->mPosition.y += mSpeed * mMultiplier * pDeltaTime;
 
-	if (mRectangle->position.y > rWindow->GetDimensions().y - mHeight)
+	if (mRectangle->mPosition.y > mWindow->GetDimensions().y - mHeight)
 	{
-		mRectangle->position.y = rWindow->GetDimensions().y - mHeight;
+		mRectangle->mPosition.y = mWindow->GetDimensions().y - mHeight;
 	}
 }
 
 void Paddle::FollowBall(float pBallYCoord, float pDeltaTime)
 {
 	// Check next movement
-	if (mRectangle->position.y > pBallYCoord)
+	if (mRectangle->mPosition.y > pBallYCoord)
 	{
 		mAiMoveDown = false;
 		MoveUp(pDeltaTime, 0.5f);
 
 		mSpeedMultiplier = -1.0f;
 	}
-	else if (mRectangle->position.y + mHeight < pBallYCoord)
+	else if (mRectangle->mPosition.y + mHeight < pBallYCoord)
 	{
 		mAiMoveDown = true;
 		MoveDown(pDeltaTime, 0.5f);
@@ -58,7 +58,7 @@ void Paddle::FollowBall(float pBallYCoord, float pDeltaTime)
 	{
 		if (mSpeedMultiplier != 0)
 		{
-			mRectangle->position.y += mSpeed * mSpeedMultiplier * pDeltaTime;
+			mRectangle->mPosition.y += mSpeed * mSpeedMultiplier * pDeltaTime;
 
 			mSpeedMultiplier /= 1.05f;
 			if (abs(mSpeedMultiplier) < 0.1f)
@@ -69,19 +69,19 @@ void Paddle::FollowBall(float pBallYCoord, float pDeltaTime)
 	}
 
 	// Don't exit screen
-	if (mRectangle->position.y < 0)
+	if (mRectangle->mPosition.y < 0)
 	{
-		mRectangle->position.y = 0;
+		mRectangle->mPosition.y = 0;
 	}
-	else if (mRectangle->position.y > rWindow->GetDimensions().y - mHeight)
+	else if (mRectangle->mPosition.y > mWindow->GetDimensions().y - mHeight)
 	{
-		mRectangle->position.y = rWindow->GetDimensions().y - mHeight;
+		mRectangle->mPosition.y = mWindow->GetDimensions().y - mHeight;
 	}
 }
 
 void Paddle::Reset()
 {
-	mRectangle->position.y = (rWindow->GetDimensions().y - mHeight) / 2;
+	mRectangle->mPosition.y = (mWindow->GetDimensions().y - mHeight) / 2;
 	mSpeedMultiplier = 0;
 }
 

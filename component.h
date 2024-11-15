@@ -3,13 +3,13 @@
 class Component
 {
 public :
-	Component(Actor* pOwner, int pUpdateOrder = 100, bool pIsActive = true) : mOwner(pOwner), mUpdateOrder(pUpdateOrder), mIsActive(pIsActive) {};
+	Component(Actor* pOwner, int pUpdateOrder = 100, bool pIsActive = true);
 	virtual ~Component();
 	Component(const Component&) = delete;
 
 	virtual void OnStart();
-	virtual void Update(float deltaTime);
-	virtual void OnEnd();
+	virtual void Update(unsigned int deltaTime);
+	virtual void OnEnd();       
 
 	int GetUpdateOrder();
 

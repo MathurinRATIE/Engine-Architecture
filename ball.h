@@ -22,5 +22,5 @@ private:
 	float mSpeedX = mBaseSpeed;
 	float mSpeedY = mBaseSpeed;
 	Rectangle* mRectangle;
-	Window* rWindow;
+	Window* mWindow;
 };

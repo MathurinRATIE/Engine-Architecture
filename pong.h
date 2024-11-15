@@ -8,8 +8,8 @@ class Pong : public Scene
 public :
 	Pong();
 
-	void Start(Renderer* pRenderer, Window* rWindow, std::vector<Actor*> pActors) override;
-	void Update(float deltaTime) override;
+	void Start(Renderer* pRenderer, Window* rWindow) override;
+	void Update(unsigned int deltaTime) override;
 	void Render() override;
 	void OnInput(SDL_Event event) override;
 	void Close() override;

@@ -11,14 +11,18 @@ class Scene
 public :
 	Scene();
 
-	virtual void Start(Renderer* pRenderer, Window* pWindow, std::vector<Actor*> pActors) = 0;
-	virtual void Update(float pDeltaTime) = 0;
+	virtual void Start(Renderer* pRenderer, Window* pWindow) = 0;
+	virtual void Update(unsigned int pDeltaTime) = 0;
 	virtual void Render() = 0;
 	virtual void OnInput(SDL_Event pEvent) = 0;
 	virtual void Close() = 0;
 
+	void AddActor(Actor* pActor);
+	void RemoveActor(Actor* pActor);
+	std::vector<Actor*> GetActors();
+
 protected :
-	Renderer* rRenderer;
-	Window* rWindow;
-	std::vector<Actor*> rActors;
+	Renderer* mRenderer;
+	Window* mWindow;
+	std::vector<Actor*> mActors;
 };

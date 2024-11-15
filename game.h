@@ -16,8 +16,8 @@ public :
 	void Initialize();
 
 private :
-	Window* rWindow;
-	Renderer* rRenderer;
+	Window* mWindow;
+	Renderer* mRenderer;
 	std::string mTitle;
 	std::vector<Scene*> mScenes;
 	int mLoadedScene;
@@ -25,7 +25,7 @@ private :
 
 	void Loop();
 	void Render();
-	void Update(float deltaTime);
+	void Update(unsigned int deltaTime);
 	void CheckInputs();
 	void Close();
 };

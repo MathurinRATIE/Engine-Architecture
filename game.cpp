@@ -16,26 +16,26 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), m
     }
 
     //Create window
-    rWindow = new Window(800, 600);
-    rRenderer = new Renderer();
+    mWindow = new Window(800, 600);
+    mRenderer = new Renderer();
 
     //Load first scene
     if (mScenes.size() > 0)
     {
-        mScenes[mLoadedScene]->Start(rRenderer, rWindow);
+        mScenes[mLoadedScene]->Start(mRenderer, mWindow);
     }
 }
 
 void Game::Initialize()
 {
-    if (rWindow->Open() && rRenderer->Initialize(rWindow)) Loop();
+    if (mWindow->Open() && mRenderer->Initialize(mWindow)) Loop();
 }
 
 void Game::Loop()
 {
     while (mIsRunning)
     {
-        float deltaTime = Time::ComputeDeltaTime();
+        unsigned int deltaTime = Time::ComputeDeltaTime();
         CheckInputs();
         Update(deltaTime);
         Render();
@@ -46,14 +46,14 @@ void Game::Loop()
 
 void Game::Render()
 {
-    rRenderer->BeginDraw();
+    mRenderer->BeginDraw();
 
     mScenes[mLoadedScene]->Render();
 
-    rRenderer->EndDraw();
+    mRenderer->EndDraw();
 }
 
-void Game::Update(float pDeltaTime)
+void Game::Update(unsigned int pDeltaTime)
 {
     mScenes[mLoadedScene]->Update(pDeltaTime);
 }
@@ -85,5 +85,5 @@ void Game::CheckInputs()
 
 void Game::Close()
 {
-    rWindow->Close();
+    mWindow->Close();
 }
