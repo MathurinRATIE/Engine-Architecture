@@ -4,8 +4,18 @@
 class Transform2D
 {
 public :
-	Vector2 mPosition = Vector2::ZERO;
-	Vector2 mScale = Vector2::ONE;
-	float mRotation = 0.0f;
-};
+	Transform2D(Vector2 pPosition = Vector2::ZERO, Vector2 pScale = Vector2::ONE, float pRotation = 0.0f) : mPosition(pPosition), mScale(pScale), mRotation(pRotation) {};
 
+	Vector2 GetPosition();
+	Vector2 GetScale();
+	float GetRotation();
+
+	void SetPosition(Vector2 pPosition);
+	void SetScale(Vector2 pScale);
+	void SetRotation(float pRotation);
+
+private :
+	Vector2 mPosition;
+	Vector2 mScale;
+	float mRotation;
+};

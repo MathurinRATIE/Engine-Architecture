@@ -1,31 +1,29 @@
 #pragma once
+#include "actorState.h"
 #include <vector>
-
-enum ActorState;
 
 class Actor
 {
 public :
-	Actor();
+	Actor(Scene* pScene, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
 
 	void Start();
-	void AttachScene(Scene* scene);
-	void AddComponent(Component* component);
-	void RemoveComponent(Component* component);
-	void SetActive();
 	void Update();
 	void Destroy();
 
+	void SetActive(bool pIsActive);
+
+	Scene* GetScene();
+	ActorState GetState();
+	Transform2D GetTransform();
+
+	void AttachScene(Scene* pScene);
+	void AddComponent(Component* pComponent);
+	void RemoveComponent(Component* pComponent);
+
 protected :
 	Scene* mSceneOwner;
-	ActorState state;
-	Transform2D transform;
-	std::vector<Component> components;
-};
-
-enum class ActorState
-{
-	Active,
-	Paused,
-	Dead
+	ActorState mState;
+	Transform2D mTransform;
+	std::vector<Component*> mComponents;
 };
