@@ -1,10 +1,14 @@
 #include "scene.h"
 #include "component.h"
-#include "transform2D.h"
 #include "actor.h"
 
 Actor::Actor(Scene* pScene, std::vector<Component*> pComponents, ActorState pState, Transform2D pTransform)
 {
+	mSceneOwner = pScene;
+	mComponents = pComponents;
+	mState = pState;
+	mTransform = pTransform;
+
 	mSceneOwner->AddActor(this);
 }
 
@@ -71,6 +75,7 @@ void Actor::RemoveComponent(Component* pComponent)
 	if (iterator != mComponents.end())
 	{
 		mComponents.erase(iterator);
+		delete(pComponent);
 	}
 }
 
@@ -85,12 +90,12 @@ Scene* Actor::GetScene()
 
 ActorState Actor::GetState()
 {
-	return ActorState();
+	return mState;
 }
 
 Transform2D Actor::GetTransform()
 {
-	return Transform2D();
+	return mTransform;
 }
 
 std::vector<Component*> Actor::GetComponents()

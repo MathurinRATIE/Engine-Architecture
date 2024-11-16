@@ -1,5 +1,12 @@
 #include "transform2D.h"
 
+Transform2D::Transform2D()
+{
+    mPosition = Vector2::ZERO;
+    mScale = Vector2::ONE;
+    mRotation = 0.0f;
+}
+
 Vector2 Transform2D::GetPosition()
 {
     return mPosition;

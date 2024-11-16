@@ -16,6 +16,12 @@ void Scene::RemoveActor(Actor* pActor)
 	if (iterator != mActors.end())
 	{
 		mActors.erase(iterator);
+
+		for (Component* component : pActor->GetComponents())
+		{
+			pActor->RemoveComponent(component);
+		}
+		delete(pActor);
 	}
 }
 

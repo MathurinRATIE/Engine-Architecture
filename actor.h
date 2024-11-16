@@ -1,6 +1,10 @@
 #pragma once
 #include "actorState.h"
+#include "transform2D.h"
 #include <vector>
+
+class Scene;
+class Component;
 
 class Actor
 {

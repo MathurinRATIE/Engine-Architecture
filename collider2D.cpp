@@ -2,12 +2,12 @@
 #include "scene.h"
 #include "collider2D.h"
 
-Collider2D::Collider2D(Rectangle rect, Actor* pOwner, int pUpdateOrder = 100, bool pIsActive = true) : Component(pOwner, pUpdateOrder, pIsActive)
+Collider2D::Collider2D(Rectangle rect, Actor* pOwner, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {
     mHitBox = rect;
 }
 
-void Collider2D::Update(float pDeltaTime)
+void Collider2D::Update(unsigned int pDeltaTime)
 {
 	for (Actor* actor : mOwner->GetScene()->GetActors())
 	{

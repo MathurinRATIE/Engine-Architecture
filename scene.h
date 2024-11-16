@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "renderer.h"
+#include "component.h"
 #include "actor.h"
 
 #pragma once
