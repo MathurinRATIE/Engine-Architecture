@@ -1,8 +1,10 @@
 #pragma once
+#include "playerActor.h"
 #include "scene.h"
 
 class MainScene : public Scene
 {
+public :
 	MainScene() : Scene() {};
 
 	void Start(Renderer* pRenderer, Window* pWindow) override;
@@ -10,4 +12,7 @@ class MainScene : public Scene
 	void Render() override;
 	void OnInput(SDL_Event pEvent) override;
 	void Close() override;
+
+private :
+	Player* mPlayer;
 };

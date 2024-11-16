@@ -5,8 +5,6 @@
 
 class Renderer
 {
-private:
-	SDL_Renderer* mSdlRenderer;
 public:
 	Renderer();
 	Renderer(const Renderer&) = delete;
@@ -18,4 +16,7 @@ public:
 	void Close();
 
 	void DrawRect(Rectangle& rRect, Color pColor);
+
+private:
+	SDL_Renderer* mSdlRenderer;
 };

@@ -2,9 +2,9 @@
 
 enum Direction
 {
-	Top,
+	Up,
 	Right,
-	Bootom,
+	Down,
 	Left,
 	None
 };

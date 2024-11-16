@@ -1,4 +1,4 @@
-#include "movements.h"
+#include "movementsComponent.h"
 
 Movements::Movements(Vector2* pPosition, Actor* pOwner, float pSpeedX, float pSpeedY, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {
@@ -23,10 +23,10 @@ void Movements::Update(unsigned int pDeltaTime)
 
 	switch (mDirectionY)
 	{
-	case Top:
+	case Up:
 		mPosition->y += mSpeedY;
 		break;
-	case Bootom:
+	case Down:
 		mPosition->y -= mSpeedY;
 		break;
 	}

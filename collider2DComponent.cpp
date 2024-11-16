@@ -1,6 +1,6 @@
 #include "actor.h"
 #include "scene.h"
-#include "collider2D.h"
+#include "collider2DComponent.h"
 
 Collider2D::Collider2D(Rectangle rect, Actor* pOwner, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {

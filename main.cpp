@@ -3,6 +3,7 @@
 #include <glew.h>
 #include "game.h"
 #include "pong.h"
+#include "mainScene.h"
 
 using namespace std;
 
@@ -10,8 +11,11 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Game* pong = new Game("My Pong Game", { new Pong() });
-	pong->Initialize();
+	/*Game* pong = new Game("My Pong Game", {new Pong()});
+	pong->Initialize();*/
+
+	Game* actorComponentScene = new Game("Actor/Component", { new MainScene() });
+	actorComponentScene->Initialize();
 
 	return 0;
 }
