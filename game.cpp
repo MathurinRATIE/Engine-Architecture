@@ -18,17 +18,20 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), m
     //Create window
     mWindow = new Window(800, 600);
     mRenderer = new Renderer();
+}
+
+void Game::Initialize()
+{
+    bool windowOppenedSuccessfully = mWindow->Open();
+    bool rendererInitializedSuccessfully = mRenderer->Initialize(mWindow);
 
     //Load first scene
     if (mScenes.size() > 0)
     {
         mScenes[mLoadedScene]->Start(mRenderer, mWindow);
     }
-}
 
-void Game::Initialize()
-{
-    if (mWindow->Open() && mRenderer->Initialize(mWindow)) Loop();
+    if (windowOppenedSuccessfully && rendererInitializedSuccessfully) Loop();
 }
 
 void Game::Loop()

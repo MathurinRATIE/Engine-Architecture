@@ -1,5 +1,6 @@
 #pragma once
 #include "actorState.h"
+#include "window.h"
 #include "transform2D.h"
 #include <vector>
 
@@ -9,7 +10,7 @@ class Component;
 class Actor
 {
 public :
-	Actor(Scene* pScene, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
+	Actor(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
 	virtual ~Actor();
 	Actor(const Actor&) = delete;
 	Actor& operator=(const Actor&) = delete;
@@ -32,6 +33,7 @@ public :
 
 protected :
 	Scene* mSceneOwner;
+	Window* mWindow;
 	ActorState mState;
 	Transform2D mTransform;
 	std::vector<Component*> mComponents;

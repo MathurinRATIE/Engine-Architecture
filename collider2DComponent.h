@@ -5,7 +5,7 @@
 class Collider2D : public Component
 {
 public :
-	Collider2D(Rectangle rect, Actor* pOwner, int pUpdateOrder = 100, bool pIsActive = true);
+	Collider2D(Rectangle* pRect, Actor* pOwner, bool* isColliding = nullptr, int pUpdateOrder = 100, bool pIsActive = true);
 
 	void Update(unsigned int pDeltaTime) override;
 
@@ -13,5 +13,6 @@ public :
 	Rectangle GetHitBox();
 
 protected :
-	Rectangle mHitBox;
+	Rectangle* mHitBox;
+	bool* mIsColliding;
 };

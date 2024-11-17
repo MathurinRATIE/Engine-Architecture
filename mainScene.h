@@ -1,5 +1,6 @@
 #pragma once
 #include "playerActor.h"
+#include "wallActor.h"
 #include "scene.h"
 
 class MainScene : public Scene
@@ -15,4 +16,5 @@ public :
 
 private :
 	Player* mPlayer;
+	Wall* mWall;
 };

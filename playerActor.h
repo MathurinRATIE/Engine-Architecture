@@ -9,7 +9,7 @@
 class Player : public Actor
 {
 public :
-	Player(Scene* pScene, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
+	Player(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
 
 	void UpdateActor(unsigned int pDeltaTime) override;
 
@@ -19,7 +19,7 @@ public :
 	Rectangle GetRect();
 
 private :
-	Direction mDirectionX;
-	Direction mDirectionY;
 	Rectangle* mRect;
+	Movements* mMovements;
+	bool* mIsColliding;
 };

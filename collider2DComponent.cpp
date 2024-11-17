@@ -2,24 +2,30 @@
 #include "scene.h"
 #include "collider2DComponent.h"
 
-Collider2D::Collider2D(Rectangle rect, Actor* pOwner, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
+Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, bool* pIsColliding, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {
-    mHitBox = rect;
+    mHitBox = pRect;
+	mIsColliding = pIsColliding;
 }
 
 void Collider2D::Update(unsigned int pDeltaTime)
 {
-	for (Actor* actor : mOwner->GetScene()->GetActors())
+	if (mIsColliding != nullptr)
 	{
-		if (actor != mOwner)
+		for (Actor* actor : mOwner->GetScene()->GetActors())
 		{
-			for (Component* component : actor->GetComponents())
+			if (actor != mOwner)
 			{
-				Collider2D* collider = dynamic_cast<Collider2D*>(component);
-
-				if (collider != nullptr)
+				for (Component* component : actor->GetComponents())
 				{
-					bool isCollisionning = CheckCollisions(collider->GetHitBox());
+					Collider2D* collider = dynamic_cast<Collider2D*>(component);
+
+					if (collider != nullptr)
+					{
+						*mIsColliding = CheckCollisions(collider->GetHitBox());
+
+						std::cout << *mIsColliding << std::endl;
+					}
 				}
 			}
 		}
@@ -29,10 +35,10 @@ void Collider2D::Update(unsigned int pDeltaTime)
 bool Collider2D::CheckCollisions(Rectangle pBox)
 {
 	// This
-	float selfXMin = mHitBox.mPosition.x;
-	float selfXMax = mHitBox.mPosition.x + mHitBox.mDimensions.x;
-	float selfYMin = mHitBox.mPosition.y;
-	float selfYMax = mHitBox.mPosition.y + mHitBox.mDimensions.y;
+	float selfXMin = mHitBox->mPosition.x;
+	float selfXMax = mHitBox->mPosition.x + mHitBox->mDimensions.x;
+	float selfYMin = mHitBox->mPosition.y;
+	float selfYMax = mHitBox->mPosition.y + mHitBox->mDimensions.y;
 
 	// Other
 	float otherXMin = pBox.mPosition.x;
@@ -47,11 +53,15 @@ bool Collider2D::CheckCollisions(Rectangle pBox)
 	{
 		return true;
 	}
+	else
+	{
+
+	}
 
 	return false;
 }
 
 Rectangle Collider2D::GetHitBox()
 {
-	return mHitBox;
+	return *mHitBox;
 }

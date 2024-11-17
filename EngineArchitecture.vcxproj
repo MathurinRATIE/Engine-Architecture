@@ -156,6 +156,7 @@
     <ClInclude Include="vector2.h" />
     <ClInclude Include="vector3.h" />
     <ClInclude Include="vector4.h" />
+    <ClInclude Include="wallActor.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,7 @@
     <ClCompile Include="vector2.cpp" />
     <ClCompile Include="vector3.cpp" />
     <ClCompile Include="vector4.cpp" />
+    <ClCompile Include="wallActor.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

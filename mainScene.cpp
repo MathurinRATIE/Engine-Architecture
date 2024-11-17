@@ -3,9 +3,16 @@
 
 void MainScene::Start(Renderer* pRenderer, Window* pWindow)
 {
-	mPlayer = new Player(this, {});
+	mRenderer = pRenderer;
+	mWindow = pWindow;
+
+	mPlayer = new Player(this, pWindow, {});
 	Actor* playerActor = dynamic_cast<Actor*>(mPlayer);
 	AddActor(playerActor);
+
+	mWall = new Wall(this, pWindow, {});
+	Actor* wallActor = dynamic_cast<Actor*>(mWall);
+	AddActor(wallActor);
 }
 
 void MainScene::Update(unsigned int pDeltaTime)
@@ -18,10 +25,13 @@ void MainScene::Update(unsigned int pDeltaTime)
 
 void MainScene::Render()
 {
-	Rectangle rect = mPlayer->GetRect();
-	Color color = { 253, 168, 132, 255 };
+	Rectangle playerRect = mPlayer->GetRect();
+	Color playerColor = Color(253, 168, 132, 255);
+	mRenderer->DrawRect(playerRect, playerColor);
 
-	mRenderer->DrawRect(rect, color);
+	Rectangle wallRect = mWall->GetRect();
+	Color wallColor = Color(82, 148, 255, 255);
+	mRenderer->DrawRect(wallRect, wallColor);
 }
 
 void MainScene::OnInput(SDL_Event pEvent)
@@ -35,7 +45,7 @@ void MainScene::OnInput(SDL_Event pEvent)
 		}
 		if (pEvent.key.keysym.sym == SDLK_s)
 		{
-			mPlayer->SetDirectionX(Direction::Down);
+			mPlayer->SetDirectionY(Direction::Down);
 		}
 		if (pEvent.key.keysym.sym == SDLK_q)
 		{
