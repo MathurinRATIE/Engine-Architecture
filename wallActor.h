@@ -9,11 +9,11 @@
 class Wall : public Actor
 {
 public:
-	Wall(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
+	Wall(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), ActorState pState = ActorState::Active);
 
 	void UpdateActor(unsigned int pDeltaTime) override;
 
-	Rectangle GetRect();
+	Rectangle GetRect() override;
 
 private:
 	Rectangle* mRect;

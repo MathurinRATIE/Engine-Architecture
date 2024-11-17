@@ -22,6 +22,7 @@ public :
 
 	void SetActive(bool pIsActive);
 
+	virtual Rectangle GetRect();
 	Scene* GetScene();
 	ActorState GetState();
 	Transform2D GetTransform();

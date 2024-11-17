@@ -1,8 +1,9 @@
 #include "movementsComponent.h"
 
-Movements::Movements(Vector2* pPosition, Actor* pOwner, bool* pIsColliding, float pSpeedX, float pSpeedY, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
+Movements::Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, bool* pIsColliding, float pSpeedX, float pSpeedY, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {
 	mPosition = pPosition;
+	mWindow = pWindow;
 	mSpeedX = pSpeedX;
 	mSpeedY = pSpeedY;
 	mIsColliding = pIsColliding;
@@ -32,6 +33,23 @@ void Movements::Update(unsigned int pDeltaTime)
 		case Down:
 			mPosition->y += mSpeedY;
 			break;
+		}
+
+		if (mPosition->x < 0)
+		{
+			mPosition->x = 0;
+		}
+		else if (mPosition->x > mWindow->GetDimensions().x - mOwner->GetTransform().GetScale().x)
+		{
+			mPosition->x = mWindow->GetDimensions().x - mOwner->GetTransform().GetScale().x;
+		}
+		if (mPosition->y < 0)
+		{
+			mPosition->y = 0;
+		}
+		else if (mPosition->y > mWindow->GetDimensions().y - mOwner->GetTransform().GetScale().y)
+		{
+			mPosition->y = mWindow->GetDimensions().y - mOwner->GetTransform().GetScale().y;
 		}
 
 		mLastDirectionX = mDirectionX;
@@ -99,4 +117,9 @@ Direction Movements::GetDirectionX()
 Direction Movements::GetDirectionY()
 {
 	return mDirectionY;
+}
+
+Vector2* Movements::GetPosition()
+{
+	return mPosition;
 }

@@ -6,11 +6,11 @@ void MainScene::Start(Renderer* pRenderer, Window* pWindow)
 	mRenderer = pRenderer;
 	mWindow = pWindow;
 
-	mPlayer = new Player(this, pWindow, {});
+	mPlayer = new Player(this, pWindow, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2 }, {15, 15}));
 	Actor* playerActor = dynamic_cast<Actor*>(mPlayer);
 	AddActor(playerActor);
 
-	mWall = new Wall(this, pWindow, {});
+	mWall = new Wall(this, pWindow, {}, Transform2D({ mWindow->GetDimensions().x / 2 + 100, mWindow->GetDimensions().y / 2 - 150 }, { 15, 15 }));
 	Actor* wallActor = dynamic_cast<Actor*>(mWall);
 	AddActor(wallActor);
 }

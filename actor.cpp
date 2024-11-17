@@ -84,6 +84,11 @@ void Actor::SetActive(bool pIsActive)
 {
 }
 
+Rectangle Actor::GetRect()
+{
+	return Rectangle(mTransform.GetPosition(), mTransform.GetScale());
+}
+
 Scene* Actor::GetScene()
 {
 	return mSceneOwner;

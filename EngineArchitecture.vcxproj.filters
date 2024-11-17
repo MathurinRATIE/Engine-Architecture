@@ -51,9 +51,6 @@
     <ClInclude Include="actor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="collider2D.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="component.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -75,7 +72,19 @@
     <ClInclude Include="direction.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="movements.h">
+    <ClInclude Include="collider2DComponent.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="movementsComponent.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="wallActor.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="spaceInvaders.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="spaceShipActor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -113,9 +122,6 @@
     <ClCompile Include="time.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="collider2D.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="component.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -140,7 +146,19 @@
     <ClCompile Include="playerActor.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="movements.cpp">
+    <ClCompile Include="collider2DComponent.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="movementsComponent.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="wallActor.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="spaceInvaders.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="spaceShipActor.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

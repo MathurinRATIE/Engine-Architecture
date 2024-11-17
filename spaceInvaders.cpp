@@ -1,0 +1,64 @@
+#include "spaceInvaders.h"
+
+void SpaceInvaders::Start(Renderer* pRenderer, Window* pWindow)
+{
+	mRenderer = pRenderer;
+	mWindow = pWindow;
+
+	mPlayer = new Player(this, mWindow, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, {15, 15}), 3.0f);
+	Actor* playerActor = dynamic_cast<Actor*>(mPlayer);
+	AddActor(playerActor);
+
+	/*SpaceShip* spaceShip = new SpaceShip(this, mWindow, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
+	Actor* spaceShipActor = dynamic_cast<Actor*>(spaceShip);
+	AddActor(spaceShipActor);*/
+
+}
+
+void SpaceInvaders::Update(unsigned int pDeltaTime)
+{
+	for (Actor* actor : mActors)
+	{
+		actor->Update(pDeltaTime);
+	}
+}
+
+void SpaceInvaders::Render()
+{
+	Color color = Color(253, 168, 132, 255);
+
+	for (Actor* actor : mActors)
+	{
+		Rectangle rect = actor->GetRect();
+		mRenderer->DrawRect(rect, color);
+	}
+}
+
+void SpaceInvaders::OnInput(SDL_Event pEvent)
+{
+	switch (pEvent.type)
+	{
+	case SDL_KEYDOWN:
+		if (pEvent.key.keysym.sym == SDLK_q)
+		{
+			mPlayer->SetDirectionX(Direction::Left);
+		}
+		if (pEvent.key.keysym.sym == SDLK_d)
+		{
+			mPlayer->SetDirectionX(Direction::Right);
+		}
+		break;
+	case SDL_KEYUP:
+		if (pEvent.key.keysym.sym == SDLK_q || pEvent.key.keysym.sym == SDLK_d)
+		{
+			mPlayer->SetDirectionX(Direction::None);
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+void SpaceInvaders::Close()
+{
+}

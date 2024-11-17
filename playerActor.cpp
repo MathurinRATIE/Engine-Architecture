@@ -1,8 +1,10 @@
 #include "playerActor.h"
 
-Player::Player(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, ActorState pState, Transform2D pTransform) : Actor(pScene, pWindow, pComponents, pState, pTransform)
+Player::Player(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
 {
-	mRect = new Rectangle(Vector2(mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2), Vector2(15, 15));
+	mWindow = pWindow;
+	mTransform = pTransform;
+	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
 	mIsColliding = new bool();
 	*mIsColliding = false;
 
@@ -10,7 +12,7 @@ Player::Player(Scene* pScene, Window* pWindow, std::vector<Component*> pComponen
 	Component* colliderComponent = dynamic_cast<Component*>(collider);
 	AddComponent(colliderComponent);
 
-	mMovements = new Movements(&mRect->mPosition, this, mIsColliding, 1.0f, 1.0f);
+	mMovements = new Movements(&mRect->mPosition, this, pWindow, mIsColliding, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
 	AddComponent(movementsComponent);
 }
