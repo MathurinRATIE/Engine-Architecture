@@ -30,7 +30,7 @@ void MainScene::Render()
 	mRenderer->DrawRect(playerRect, playerColor);
 
 	Rectangle wallRect = mWall->GetRect();
-	Color wallColor = Color(82, 148, 255, 255);
+	Color wallColor = Color(82, 255, 100, 255);
 	mRenderer->DrawRect(wallRect, wallColor);
 }
 

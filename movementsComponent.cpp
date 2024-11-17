@@ -32,13 +32,14 @@ void Movements::Update(unsigned int pDeltaTime)
 		case Down:
 			mPosition->y += mSpeedY;
 			break;
-		default:
-			break;
 		}
+
+		mLastDirectionX = mDirectionX;
+		mLastDirectionY = mDirectionY;
 	}
 	else  // Reverse movement if colliding other Collider2D
 	{
-		switch (mDirectionX)
+		switch (mLastDirectionX)
 		{
 		case Right:
 			mPosition->x -= mSpeedX;
@@ -48,15 +49,13 @@ void Movements::Update(unsigned int pDeltaTime)
 			break;
 		}
 
-		switch (mDirectionY)
+		switch (mLastDirectionY)
 		{
 		case Up:
 			mPosition->y += mSpeedY;
 			break;
 		case Down:
 			mPosition->y -= mSpeedY;
-			break;
-		default:
 			break;
 		}
 	}

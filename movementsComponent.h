@@ -26,6 +26,8 @@ protected :
 	float mSpeedY;
 	Direction mDirectionX;
 	Direction mDirectionY;
+	Direction mLastDirectionX;
+	Direction mLastDirectionY;
 	Vector2* mPosition;
 	bool* mIsColliding;
 };

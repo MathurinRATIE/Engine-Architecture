@@ -23,8 +23,6 @@ void Collider2D::Update(unsigned int pDeltaTime)
 					if (collider != nullptr)
 					{
 						*mIsColliding = CheckCollisions(collider->GetHitBox());
-
-						std::cout << *mIsColliding << std::endl;
 					}
 				}
 			}
