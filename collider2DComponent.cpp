@@ -2,15 +2,17 @@
 #include "scene.h"
 #include "collider2DComponent.h"
 
-Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, bool* pIsColliding, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
+Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor** pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {
+	mOwner = pOwner;
     mHitBox = pRect;
-	mIsColliding = pIsColliding;
+	mCollidingActor = pCollidingActor;
 }
 
 void Collider2D::Update(unsigned int pDeltaTime)
 {
-	if (mIsColliding != nullptr)
+	*mCollidingActor == nullptr;
+	if (mCollidingActor != nullptr)
 	{
 		for (Actor* actor : mOwner->GetScene()->GetActors())
 		{
@@ -22,7 +24,10 @@ void Collider2D::Update(unsigned int pDeltaTime)
 
 					if (collider != nullptr)
 					{
-						*mIsColliding = CheckCollisions(collider->GetHitBox());
+						if (CheckCollisions(collider->GetHitBox()))
+						{
+							*mCollidingActor = actor;
+						}
 					}
 				}
 			}
@@ -50,10 +55,6 @@ bool Collider2D::CheckCollisions(Rectangle pBox)
 			selfYMax < otherYMin)))
 	{
 		return true;
-	}
-	else
-	{
-
 	}
 
 	return false;

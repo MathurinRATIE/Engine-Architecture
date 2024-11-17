@@ -10,12 +10,12 @@ Actor::Actor(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents
 	mState = pState;
 	mTransform = pTransform;
 
-	mSceneOwner->AddActor(this);
+	mSceneOwner->AddPendingActor(this);
 }
 
 Actor::~Actor()
 {
-	mSceneOwner->RemoveActor(this);
+	mSceneOwner->AddPendingRemoveActor(this);
 
 	while (!mComponents.empty())
 	{

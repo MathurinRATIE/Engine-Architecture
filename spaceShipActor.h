@@ -1,6 +1,7 @@
 #pragma once
 #include "scene.h"
 #include "direction.h"
+#include "bulletActor.h"
 #include "collider2DComponent.h"
 #include "movementsComponent.h"
 
@@ -16,5 +17,6 @@ public:
 private:
 	Rectangle* mRect;
 	Movements* mMovements;
-	bool* mIsColliding;
+	Actor** mCollidingActor;
+	unsigned int timeSinceLastShot = 0;
 };

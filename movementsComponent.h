@@ -7,7 +7,7 @@
 class Movements : public Component
 {
 public :
-	Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, bool* pIsColliding = nullptr, float pSpeedX = 1.0f, float pSpeedY = 1.0f, int pUpdateOrder = 100, bool pIsActive = true);
+	Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor** pCollidingActor = nullptr, float pSpeedX = 1.0f, float pSpeedY = 1.0f, int pUpdateOrder = 100, bool pIsActive = true);
 
 	void Update(unsigned int pDeltaTime) override;
 
@@ -25,7 +25,7 @@ public :
 protected :
 	float mSpeedX;
 	float mSpeedY;
-	bool* mIsColliding;
+	Actor** mCollidingActor;
 	Direction mDirectionX;
 	Direction mDirectionY;
 	Direction mLastDirectionX;

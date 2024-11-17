@@ -87,6 +87,12 @@
     <ClInclude Include="spaceShipActor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletActor.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="log.cpp">
@@ -159,6 +165,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="spaceShipActor.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletActor.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,6 @@
 #pragma once
 #include "actorState.h"
+#include "rectangle.h"
 #include "window.h"
 #include "transform2D.h"
 #include <vector>

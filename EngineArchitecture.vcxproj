@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="actor.h" />
     <ClInclude Include="ball.h" />
+    <ClInclude Include="bulletActor.h" />
     <ClInclude Include="collider2DComponent.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="direction.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="pong.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="spaceInvaders.h" />
     <ClInclude Include="spaceShipActor.h" />
@@ -164,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="actor.cpp" />
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="bulletActor.cpp" />
     <ClCompile Include="collider2DComponent.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="game.cpp" />

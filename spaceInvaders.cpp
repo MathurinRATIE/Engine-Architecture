@@ -6,13 +6,7 @@ void SpaceInvaders::Start(Renderer* pRenderer, Window* pWindow)
 	mWindow = pWindow;
 
 	mPlayer = new Player(this, mWindow, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, {15, 15}), 3.0f);
-	Actor* playerActor = dynamic_cast<Actor*>(mPlayer);
-	AddActor(playerActor);
-
-	/*SpaceShip* spaceShip = new SpaceShip(this, mWindow, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
-	Actor* spaceShipActor = dynamic_cast<Actor*>(spaceShip);
-	AddActor(spaceShipActor);*/
-
+	SpaceShip* spaceShip = new SpaceShip(this, mWindow, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
 }
 
 void SpaceInvaders::Update(unsigned int pDeltaTime)
@@ -21,6 +15,9 @@ void SpaceInvaders::Update(unsigned int pDeltaTime)
 	{
 		actor->Update(pDeltaTime);
 	}
+
+	AddPendingActors();
+	RemovePendingActors();
 }
 
 void SpaceInvaders::Render()

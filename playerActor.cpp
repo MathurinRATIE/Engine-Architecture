@@ -5,21 +5,28 @@ Player::Player(Scene* pScene, Window* pWindow, std::vector<Component*> pComponen
 	mWindow = pWindow;
 	mTransform = pTransform;
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
-	mIsColliding = new bool();
-	*mIsColliding = false;
+	Actor* collidingActor = nullptr;
+	mCollidingActor = &collidingActor;
 
-	Collider2D* collider = new Collider2D(mRect, this, mIsColliding);
+	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
 	Component* colliderComponent = dynamic_cast<Component*>(collider);
 	AddComponent(colliderComponent);
 
-	mMovements = new Movements(&mRect->mPosition, this, pWindow, mIsColliding, mSpeedX, mSpeedY);
+	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
 	AddComponent(movementsComponent);
 }
 
 void Player::UpdateActor(unsigned int pDeltaTime)
 {
+	timeSinceLastShot += pDeltaTime;
 
+	if (timeSinceLastShot >= 1000)
+	{
+		timeSinceLastShot -= 1000;
+
+		Bullet* bullet = new Bullet(mSceneOwner, mWindow, {}, this, Direction::Up, Transform2D({ mRect->mPosition.x + 5, mRect->mPosition.y - 20 }, { 5, 20 }));
+	}
 }
 
 void Player::SetDirectionX(Direction pDirectionX)

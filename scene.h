@@ -18,7 +18,11 @@ public :
 	virtual void OnInput(SDL_Event pEvent) = 0;
 	virtual void Close() = 0;
 
+	void AddPendingActors();
+	void RemovePendingActors();
 	void AddActor(Actor* pActor);
+	void AddPendingActor(Actor* pActor);
+	void AddPendingRemoveActor(Actor* pActor);
 	void RemoveActor(Actor* pActor);
 	std::vector<Actor*> GetActors();
 
@@ -26,4 +30,6 @@ protected :
 	Renderer* mRenderer;
 	Window* mWindow;
 	std::vector<Actor*> mActors;
+	std::vector<Actor*> mPendingActors;
+	std::vector<Actor*> mPendingRemoveActors;
 };

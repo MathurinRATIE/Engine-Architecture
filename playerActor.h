@@ -2,6 +2,7 @@
 #include "scene.h"
 #include "direction.h"
 #include "transform2D.h"
+#include "bulletActor.h"
 #include "collider2DComponent.h"
 #include "movementsComponent.h"
 #include "actor.h"
@@ -21,5 +22,6 @@ public :
 private :
 	Rectangle* mRect;
 	Movements* mMovements;
-	bool* mIsColliding;
+	Actor** mCollidingActor;
+	unsigned int timeSinceLastShot = 0;
 };
