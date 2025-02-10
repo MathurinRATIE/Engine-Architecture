@@ -32,12 +32,12 @@ void Bullet::UpdateActor(unsigned int pDeltaTime)
     }
     else if (*mCollidingActor != nullptr && *mCollidingActor != mOwnerActor)
     {
-        Player* player = dynamic_cast<Player*>(*mCollidingActor);
+        /*Player* player = dynamic_cast<Player*>(*mCollidingActor);
 
         if (player)
         {
             mSceneOwner->AddPendingRemoveActor(*mCollidingActor);
-        }
+        }*/
     }
 
     *mCollidingActor = nullptr;
