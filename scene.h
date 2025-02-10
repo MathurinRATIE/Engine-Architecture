@@ -5,6 +5,7 @@
 #include "renderer.h"
 #include "component.h"
 #include "actor.h"
+#include "assets.h"
 
 #pragma once
 class Scene
@@ -18,6 +19,8 @@ public :
 	virtual void OnInput(SDL_Event pEvent) = 0;
 	virtual void Close() = 0;
 
+	void UpdateAllActors(unsigned int pDeltaTime);
+
 	void AddPendingActors();
 	void RemovePendingActors();
 	void AddActor(Actor* pActor);
@@ -25,6 +28,7 @@ public :
 	void AddPendingRemoveActor(Actor* pActor);
 	void RemoveActor(Actor* pActor);
 	std::vector<Actor*> GetActors();
+	void Unload();
 
 protected :
 	Renderer* mRenderer;

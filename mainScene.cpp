@@ -12,10 +12,7 @@ void MainScene::Start(Renderer* pRenderer, Window* pWindow)
 
 void MainScene::Update(unsigned int pDeltaTime)
 {
-	for (Actor* actor : mActors)
-	{
-		actor->Update(pDeltaTime);
-	}
+	UpdateAllActors(pDeltaTime);
 }
 
 void MainScene::Render()

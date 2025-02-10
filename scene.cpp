@@ -4,6 +4,17 @@ Scene::Scene()
 {
 }
 
+void Scene::UpdateAllActors(unsigned int pDeltaTime)
+{
+	for (Actor* actor : mActors)
+	{
+		actor->Update(pDeltaTime);
+	}
+
+	AddPendingActors();
+	RemovePendingActors();
+}
+
 void Scene::AddPendingActors()
 {
 	for (Actor* actor : mPendingActors)
@@ -58,4 +69,14 @@ void Scene::RemoveActor(Actor* pActor)
 std::vector<Actor*> Scene::GetActors()
 {
 	return mActors;
+}
+
+void Scene::Unload()
+{
+	while (!mActors.empty())
+	{
+		delete mActors.back();
+	}
+
+	Assets::Clear();
 }
