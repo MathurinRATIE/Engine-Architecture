@@ -28,6 +28,7 @@ public :
 	void AddPendingRemoveActor(Actor* pActor);
 	void RemoveActor(Actor* pActor);
 	std::vector<Actor*> GetActors();
+	Renderer* GetRenderer();
 	void Unload();
 
 protected :

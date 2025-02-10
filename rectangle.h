@@ -10,6 +10,11 @@ struct Rectangle
     Vector2 mPosition;
     Vector2 mDimensions;
 
+    const static Rectangle NullRect;
+
+    bool operator==(const Rectangle& right);
+    bool operator!=(const Rectangle& right);
+
     SDL_Rect ToSdlRect() const
     {
         return SDL_Rect{

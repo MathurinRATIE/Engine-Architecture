@@ -71,6 +71,11 @@ std::vector<Actor*> Scene::GetActors()
 	return mActors;
 }
 
+Renderer* Scene::GetRenderer()
+{
+	return mRenderer;
+}
+
 void Scene::Unload()
 {
 	while (!mActors.empty())

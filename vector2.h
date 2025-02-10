@@ -16,6 +16,9 @@ struct Vector2
 	float cross(const Vector2& otherVector) const;
 	std::string ToString() const;
 
+	bool operator==(const Vector2& right);
+	bool operator!=(const Vector2& right);
+
 	void operator+=(const Vector2& right);
 	void operator-=(const Vector2& right);
 	void operator*=(const float value);

@@ -10,6 +10,7 @@ public :
 
 	int GetWidth();
 	int GetHeight();
+	SDL_Texture* GetSdlTexture();
 
 protected :
 	std::string mFileName;

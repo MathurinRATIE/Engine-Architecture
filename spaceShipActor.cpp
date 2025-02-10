@@ -1,6 +1,6 @@
 #include "spaceShipActor.h"
 
-SpaceShip::SpaceShip(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
+SpaceShip::SpaceShip(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
 {
 	mWindow = pWindow;
 	mTransform = pTransform;
@@ -15,6 +15,10 @@ SpaceShip::SpaceShip(Scene* pScene, Window* pWindow, std::vector<Component*> pCo
 	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
 	AddComponent(movementsComponent);
+
+	Texture* pokeballTexture = new Texture();
+	pokeballTexture->Load(*pRenderer, "Imports/pokeball.png");
+	SpriteComponent* sprite = new SpriteComponent(this, *pokeballTexture);
 
 	mMovements->SetDirectionX(startingDirection);
 }

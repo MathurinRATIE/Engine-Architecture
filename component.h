@@ -14,6 +14,7 @@ public :
 	virtual void OnEnd();       
 
 	int GetUpdateOrder();
+	Actor* GetOwner();
 
 protected :
 	bool mIsActive;

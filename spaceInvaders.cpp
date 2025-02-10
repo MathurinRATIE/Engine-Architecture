@@ -6,7 +6,7 @@ void SpaceInvaders::Start(Renderer* pRenderer, Window* pWindow)
 	mWindow = pWindow;
 
 	mPlayer = new Player(this, mWindow, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, {15, 15}), 3.0f);
-	SpaceShip* spaceShip = new SpaceShip(this, mWindow, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
+	SpaceShip* spaceShip = new SpaceShip(this, mWindow, mRenderer, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
 }
 
 void SpaceInvaders::Update(unsigned int pDeltaTime)

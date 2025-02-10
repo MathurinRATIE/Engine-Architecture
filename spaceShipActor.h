@@ -4,11 +4,12 @@
 #include "bulletActor.h"
 #include "collider2DComponent.h"
 #include "movementsComponent.h"
+#include "spriteComponent.h"
 
 class SpaceShip : public Actor
 {
 public:
-	SpaceShip(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), Direction startingDirection = Direction::Right, float mSpeedX = 1.0f, float mSpeedY = 1.0f, ActorState pState = ActorState::Active);
+	SpaceShip(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), Direction startingDirection = Direction::Right, float mSpeedX = 1.0f, float mSpeedY = 1.0f, ActorState pState = ActorState::Active);
 
 	void UpdateActor(unsigned int pDeltaTime) override;
 

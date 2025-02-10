@@ -49,6 +49,16 @@ std::string Vector2::ToString() const
     return "( " + std::to_string(x) + " , " + std::to_string(y) + " )";
 }
 
+bool Vector2::operator==(const Vector2& right)
+{
+    return x == right.x && y == right.y;
+}
+
+bool Vector2::operator!=(const Vector2& right)
+{
+    return x != right.x || y != right.y;
+}
+
 void Vector2::operator+=(const Vector2& right)
 {
     x += right.x;

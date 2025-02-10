@@ -1,9 +1,11 @@
 #pragma once
 #include "texture.h"
 #include "actor.h"
+#include "scene.h"
 #include "component.h"
+#include "renderer.h"
 
-class SpriteComponent
+class SpriteComponent : public Component
 {
 public :
 	SpriteComponent(Actor* pOwner, Texture& pTexture, int pDrawOrder = 100);
@@ -18,6 +20,7 @@ public :
 	int GetDrawOrder() const;
 	int GetTexWidth() const;
 	int GetTexHeight() const;
+	Texture GetTexture() const;
 
 protected :
 	Texture mTexture;

@@ -52,3 +52,8 @@ int Texture::GetHeight()
 {
 	return mHeight;
 }
+
+SDL_Texture* Texture::GetSdlTexture()
+{
+	return mSDLTexture;
+}
