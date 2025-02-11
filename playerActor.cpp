@@ -1,6 +1,6 @@
 #include "playerActor.h"
 
-Player::Player(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
+Player::Player(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
 {
 	mWindow = pWindow;
 	mTransform = pTransform;
@@ -11,6 +11,10 @@ Player::Player(Scene* pScene, Window* pWindow, std::vector<Component*> pComponen
 	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
 	Component* colliderComponent = dynamic_cast<Component*>(collider);
 	AddComponent(colliderComponent);
+
+	Texture* pokeballTexture = new Texture();
+	pokeballTexture->Load(*pRenderer, "Imports/pokeball.png");
+	SpriteComponent* sprite = new SpriteComponent(this, *pokeballTexture);
 
 	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);

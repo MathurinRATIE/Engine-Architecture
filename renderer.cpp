@@ -62,19 +62,27 @@ void Renderer::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle,
 {
     SDL_Rect destinationRect;
     Transform2D transform = pActor->GetTransform();
-    destinationRect.w = static_cast<int>(pTexture.GetWidth() * transform.GetScale().x);
+    /*destinationRect.w = static_cast<int>(pTexture.GetWidth() * transform.GetScale().x);
     destinationRect.h = static_cast<int>(pTexture.GetWidth() * transform.GetScale().y);
     destinationRect.x = static_cast<int>(transform.GetPosition().x * pOrigin.x);
-    destinationRect.y = static_cast<int>(transform.GetPosition().y * pOrigin.y);
+    destinationRect.y = static_cast<int>(transform.GetPosition().y * pOrigin.y);*/
+    destinationRect.w = static_cast<int>(pTexture.GetWidth() * transform.GetScale().x / 800);
+    destinationRect.h = static_cast<int>(pTexture.GetHeight() * transform.GetScale().y / 800);
+    destinationRect.x = static_cast<int>(transform.GetPosition().x);
+    destinationRect.y = static_cast<int>(transform.GetPosition().y);
+    /*destinationRect.w = 800;
+    destinationRect.h = 800;
+    destinationRect.x = 0;
+    destinationRect.y = 0;*/
 
     SDL_Rect* sourceSDL = nullptr;
     if (pRectangle != Rectangle::NullRect)
     {
         sourceSDL = new SDL_Rect{
-            Maths::Round(pRectangle.mPosition.x),
-            Maths::Round(pRectangle.mPosition.y),
-            Maths::Round(pRectangle.mDimensions.x),
-            Maths::Round(pRectangle.mDimensions.y)
+            Maths::Round(0),
+            Maths::Round(0),
+            Maths::Round(pTexture.GetWidth()),
+            Maths::Round(pTexture.GetHeight())
         };
     }
 

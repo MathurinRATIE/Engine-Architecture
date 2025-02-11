@@ -36,3 +36,13 @@ void Transform2D::SetRotation(float pRotation)
 {
     mRotation = pRotation;
 }
+
+bool Transform2D::operator!=(Transform2D right)
+{
+    return mPosition != right.mPosition || mScale != right.mScale || mRotation != right.mRotation;
+}
+
+bool Transform2D::operator==(Transform2D right)
+{
+    return mPosition == right.mPosition && mScale == right.mScale && mRotation == right.mRotation;
+}

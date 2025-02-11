@@ -1,14 +1,18 @@
 #include "assets.h"
 #include <sstream>
 #include "log.h"
+#include "texture.h"
+#include "renderer.h"
 
-Texture Assets::LoadTexture(Renderer& pRenderer, const std::string& pFileName, const std::string& pName)
+std::map<std::string, Texture> Assets::mTextures = {};
+
+Texture Assets::LoadTexture(Renderer& pRenderer, std::string& pFileName, std::string& pName)
 {
     mTextures[pName] = LoadTextureFromFile(pRenderer, pFileName);
     return mTextures[pName];
 }
 
-Texture& Assets::GetTextureFromName(const std::string& pName)
+Texture& Assets::GetTextureFromName(std::string& pName)
 {
     if (mTextures.find(pName) == mTextures.end())
     {
@@ -28,7 +32,7 @@ void Assets::Clear()
     mTextures.clear();
 }
 
-Texture Assets::LoadTextureFromFile(Renderer& pRenderer, const std::string& pFileName)
+Texture Assets::LoadTextureFromFile(Renderer& pRenderer, std::string& pFileName)
 {
     Texture texture;
     texture.Load(pRenderer, pFileName);

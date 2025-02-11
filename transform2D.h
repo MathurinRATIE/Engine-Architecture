@@ -15,6 +15,9 @@ public :
 	void SetScale(Vector2 pScale);
 	void SetRotation(float pRotation);
 
+	bool operator!=(Transform2D right);
+	bool operator==(Transform2D right);
+
 private :
 	Vector2 mPosition;
 	Vector2 mScale;

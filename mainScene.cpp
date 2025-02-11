@@ -6,7 +6,7 @@ void MainScene::Start(Renderer* pRenderer, Window* pWindow)
 	mRenderer = pRenderer;
 	mWindow = pWindow;
 
-	mPlayer = new Player(this, pWindow, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2 }, {15, 15}));
+	mPlayer = new Player(this, pWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2 }, {15, 15}));
 	mWall = new Wall(this, pWindow, {}, Transform2D({ mWindow->GetDimensions().x / 2 + 100, mWindow->GetDimensions().y / 2 - 150 }, { 15, 15 }));
 }
 
