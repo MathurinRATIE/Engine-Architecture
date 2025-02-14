@@ -156,7 +156,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="spaceInvaders.h" />
-    <ClInclude Include="spaceShipActor.h" />
+    <ClInclude Include="invader.h" />
     <ClInclude Include="spriteComponent.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="time.h" />
@@ -186,7 +186,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="spaceInvaders.cpp" />
-    <ClCompile Include="spaceShipActor.cpp" />
+    <ClCompile Include="invader.cpp" />
     <ClCompile Include="spriteComponent.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="time.cpp" />
@@ -198,7 +198,10 @@
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Imports\Bullet.png" />
+    <Image Include="Imports\Invader.png" />
     <Image Include="Imports\pokeball.png" />
+    <Image Include="Imports\SpaceShip.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

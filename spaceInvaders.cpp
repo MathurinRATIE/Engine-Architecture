@@ -6,7 +6,7 @@ void SpaceInvaders::Start(Renderer* pRenderer, Window* pWindow)
 	mWindow = pWindow;
 
 	mPlayer = new Player(this, mWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, {30, 30}), 3.0f);
-	SpaceShip* spaceShip = new SpaceShip(this, mWindow, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
+	Invader* spaceShip = new Invader(this, mWindow, mRenderer, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
 }
 
 void SpaceInvaders::Update(unsigned int pDeltaTime)
@@ -23,15 +23,6 @@ void SpaceInvaders::Update(unsigned int pDeltaTime)
 void SpaceInvaders::Render()
 {
 	Color color = Color(253, 168, 132, 255);
-
-	for (Actor* actor : mActors)
-	{
-		if (actor->GetTransform() != mPlayer->GetTransform())
-		{
-			Rectangle rect = actor->GetRect();
-			mRenderer->DrawRect(rect, color);
-		}
-	}
 
 	mRenderer->DrawSprites();
 }

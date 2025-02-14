@@ -1,6 +1,6 @@
 #include "bulletActor.h"
 
-Bullet::Bullet(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY, Transform2D pTransform, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
+Bullet::Bullet(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY, Transform2D pTransform, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
 {
     mSceneOwner = pScene;
     mWindow = pWindow;
@@ -17,7 +17,22 @@ Bullet::Bullet(Scene* pScene, Window* pWindow, std::vector<Component*> pComponen
     Component* colliderComponent = dynamic_cast<Component*>(collider);
     AddComponent(colliderComponent);
 
-    mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor);
+    Texture* bulletTexture = new Texture();
+    bulletTexture->Load(*pRenderer, "Imports/Bullet.png");
+    SpriteComponent* sprite = new SpriteComponent(this, *bulletTexture);
+    AddComponent(sprite);
+
+    float ySpeed = 0;
+    switch (pDirectionY)
+    {
+    case Up:
+        ySpeed = -1.0f;
+        break;
+    case Down:
+        ySpeed = 1.0f;
+        break;
+    }
+    mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, 0, ySpeed);
     Component* movementsComponent = dynamic_cast<Component*>(mMovements);
     AddComponent(movementsComponent);
 

@@ -7,7 +7,7 @@
 class Bullet : public Actor
 {
 public :
-	Bullet(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY = Direction::Down, Transform2D pTransform = Transform2D(), ActorState pState = ActorState::Active);
+	Bullet(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY = Direction::Down, Transform2D pTransform = Transform2D(), ActorState pState = ActorState::Active);
 
 	Rectangle GetRect() override;
 

@@ -77,6 +77,10 @@ void Movements::Update(unsigned int pDeltaTime)
 			break;
 		}
 	}
+
+	Transform2D transform = mOwner->GetTransform();
+	transform.SetPosition(*mPosition);
+	mOwner->SetTransform(transform);
 }
 
 void Movements::SetSpeedX(float pSpeedX)

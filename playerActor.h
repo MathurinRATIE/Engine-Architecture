@@ -21,8 +21,10 @@ public :
 	Rectangle GetRect() override;
 
 private :
+	Scene* mScene;
 	Rectangle* mRect;
 	Movements* mMovements;
+	Renderer* mRenderer;
 	Actor** mCollidingActor;
 	unsigned int timeSinceLastShot = 0;
 };

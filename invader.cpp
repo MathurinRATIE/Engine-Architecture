@@ -1,9 +1,10 @@
-#include "spaceShipActor.h"
+#include "invader.h"
 
-SpaceShip::SpaceShip(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
+Invader::Invader(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
 {
 	mWindow = pWindow;
 	mTransform = pTransform;
+	mRenderer = pRenderer;
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
 	Actor* collidingActor = nullptr;
 	mCollidingActor = &collidingActor;
@@ -12,6 +13,11 @@ SpaceShip::SpaceShip(Scene* pScene, Window* pWindow, std::vector<Component*> pCo
 	Component* colliderComponent = dynamic_cast<Component*>(collider);
 	AddComponent(colliderComponent);
 
+	Texture* invaderTexture = new Texture();
+	invaderTexture->Load(*mRenderer, "Imports/Invader.png");
+	SpriteComponent* sprite = new SpriteComponent(this, *invaderTexture);
+	AddComponent(sprite);
+
 	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
 	AddComponent(movementsComponent);
@@ -19,7 +25,7 @@ SpaceShip::SpaceShip(Scene* pScene, Window* pWindow, std::vector<Component*> pCo
 	mMovements->SetDirectionX(startingDirection);
 }
 
-void SpaceShip::UpdateActor(unsigned int pDeltaTime)
+void Invader::UpdateActor(unsigned int pDeltaTime)
 {
 	if (mRect->mPosition.x <= 0)
 	{
@@ -36,11 +42,11 @@ void SpaceShip::UpdateActor(unsigned int pDeltaTime)
 	{
 		timeSinceLastShot -= 1000;
 
-		Bullet* bullet = new Bullet(mSceneOwner, mWindow, {}, this, Direction::Down, Transform2D({ mRect->mPosition.x + 5, mRect->mPosition.y + mRect->mDimensions.y }, { 5, 20 }));
+		Bullet* bullet = new Bullet(mSceneOwner, mWindow, mRenderer, {}, this, Direction::Down, Transform2D({ mRect->mPosition.x + 5, mRect->mPosition.y + mRect->mDimensions.y + 1 }, { 5, 20 }));
 	}
 }
 
-Rectangle SpaceShip::GetRect()
+Rectangle Invader::GetRect()
 {
 	return *mRect;
 }

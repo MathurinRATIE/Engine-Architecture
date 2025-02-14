@@ -84,7 +84,7 @@
     <ClInclude Include="spaceInvaders.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="spaceShipActor.h">
+    <ClInclude Include="invader.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -176,7 +176,7 @@
     <ClCompile Include="spaceInvaders.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="spaceShipActor.cpp">
+    <ClCompile Include="invader.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="bulletActor.cpp">
@@ -194,6 +194,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Imports\pokeball.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Imports\Bullet.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Imports\Invader.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Imports\SpaceShip.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>

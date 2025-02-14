@@ -1,7 +1,7 @@
 #pragma once
 #include "scene.h"
 #include "playerActor.h"
-#include "spaceShipActor.h"
+#include "invader.h"
 #include "transform2D.h"
 
 class SpaceInvaders : public Scene

@@ -32,6 +32,7 @@ public :
 	void AttachScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
 	void RemoveComponent(Component* pComponent);
+	void SetTransform(Transform2D pTransform);
 
 protected :
 	Scene* mSceneOwner;

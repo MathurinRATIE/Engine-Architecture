@@ -2,8 +2,10 @@
 
 Player::Player(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
 {
+	mScene = pScene;
 	mWindow = pWindow;
 	mTransform = pTransform;
+	mRenderer = pRenderer;
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
 	Actor* collidingActor = nullptr;
 	mCollidingActor = &collidingActor;
@@ -12,9 +14,10 @@ Player::Player(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<
 	Component* colliderComponent = dynamic_cast<Component*>(collider);
 	AddComponent(colliderComponent);
 
-	Texture* pokeballTexture = new Texture();
-	pokeballTexture->Load(*pRenderer, "Imports/pokeball.png");
-	SpriteComponent* sprite = new SpriteComponent(this, *pokeballTexture);
+	Texture* spaceShipTexture = new Texture();
+	spaceShipTexture->Load(*mRenderer, "Imports/SpaceShip.png");
+	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture);
+	AddComponent(sprite);
 
 	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
@@ -29,7 +32,8 @@ void Player::UpdateActor(unsigned int pDeltaTime)
 	{
 		timeSinceLastShot -= 1000;
 
-		Bullet* bullet = new Bullet(mSceneOwner, mWindow, {}, this, Direction::Up, Transform2D({ mRect->mPosition.x + 5, mRect->mPosition.y - 20 }, { 5, 20 }));
+		Bullet* bullet = new Bullet(mSceneOwner, mWindow, mRenderer, {}, this, Direction::Up, Transform2D({ mRect->mPosition.x + 5, mRect->mPosition.y - 19 }, { 5, 20 }));
+		mScene->AddPendingActor(bullet);
 	}
 }
 

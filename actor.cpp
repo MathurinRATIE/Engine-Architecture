@@ -80,6 +80,11 @@ void Actor::RemoveComponent(Component* pComponent)
 	}
 }
 
+void Actor::SetTransform(Transform2D pTransform)
+{
+	mTransform = pTransform;
+}
+
 void Actor::SetActive(bool pIsActive)
 {
 }
