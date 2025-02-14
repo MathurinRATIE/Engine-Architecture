@@ -38,7 +38,7 @@ void Renderer::Close()
     SDL_DestroyRenderer(mSdlRenderer);
 }
 
-void Renderer::DrawRect(Rectangle& pRect, Color pColor)
+void Renderer::DrawRect(Rectangle pRect, Color pColor)
 {
     SDL_SetRenderDrawColor(mSdlRenderer, pColor.x, pColor.y, pColor.z, pColor.w);
     SDL_Rect sdlRect = pRect.ToSdlRect();

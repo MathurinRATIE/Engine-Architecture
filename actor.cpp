@@ -1,6 +1,7 @@
 #include "scene.h"
 #include "component.h"
 #include "actor.h"
+#include "spriteComponent.h"
 
 Actor::Actor(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, ActorState pState, Transform2D pTransform)
 {
@@ -16,11 +17,6 @@ Actor::Actor(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents
 Actor::~Actor()
 {
 	mSceneOwner->AddPendingRemoveActor(this);
-
-	while (!mComponents.empty())
-	{
-		delete mComponents.back();
-	}
 }
 
 void Actor::Start()
@@ -76,7 +72,6 @@ void Actor::RemoveComponent(Component* pComponent)
 	if (iterator != mComponents.end())
 	{
 		mComponents.erase(iterator);
-		delete(pComponent);
 	}
 }
 
@@ -85,8 +80,21 @@ void Actor::SetTransform(Transform2D pTransform)
 	mTransform = pTransform;
 }
 
+void Actor::SetSprite(SpriteComponent* pSprite)
+{
+	mSprite = pSprite;
+}
+
 void Actor::SetActive(bool pIsActive)
 {
+	if (pIsActive)
+	{
+		mState = ActorState::Active;
+	}
+	else
+	{
+		mState = ActorState::Paused;
+	}
 }
 
 Rectangle Actor::GetRect()
@@ -112,4 +120,9 @@ Transform2D Actor::GetTransform()
 std::vector<Component*> Actor::GetComponents()
 {
 	return mComponents;
+}
+
+SpriteComponent* Actor::GetSpriteComponent()
+{
+	return mSprite;
 }

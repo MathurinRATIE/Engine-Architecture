@@ -2,12 +2,12 @@
 
 Invader::Invader(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
 {
+	mScene = pScene;
 	mWindow = pWindow;
 	mTransform = pTransform;
 	mRenderer = pRenderer;
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
-	Actor* collidingActor = nullptr;
-	mCollidingActor = &collidingActor;
+	mCollidingActor = nullptr;
 
 	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
 	Component* colliderComponent = dynamic_cast<Component*>(collider);
@@ -16,7 +16,7 @@ Invader::Invader(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vecto
 	Texture* invaderTexture = new Texture();
 	invaderTexture->Load(*mRenderer, "Imports/Invader.png");
 	SpriteComponent* sprite = new SpriteComponent(this, *invaderTexture);
-	AddComponent(sprite);
+	SetSprite(sprite);
 
 	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);

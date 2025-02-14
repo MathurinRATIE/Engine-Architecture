@@ -10,8 +10,7 @@ Bullet::Bullet(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<
     mState = pState;
     mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
     mDirectionY = pDirectionY;
-    Actor* collidingActor = nullptr;
-    mCollidingActor = &collidingActor;
+    mCollidingActor = nullptr;
 
     Collider2D* collider = new Collider2D(mRect, this, mCollidingActor, 99);
     Component* colliderComponent = dynamic_cast<Component*>(collider);
@@ -20,44 +19,32 @@ Bullet::Bullet(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<
     Texture* bulletTexture = new Texture();
     bulletTexture->Load(*pRenderer, "Imports/Bullet.png");
     SpriteComponent* sprite = new SpriteComponent(this, *bulletTexture);
-    AddComponent(sprite);
+    SetSprite(sprite);
 
-    float ySpeed = 0;
-    switch (pDirectionY)
-    {
-    case Up:
-        ySpeed = -1.0f;
-        break;
-    case Down:
-        ySpeed = 1.0f;
-        break;
-    }
-    mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, 0, ySpeed);
+    mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, 1.0f, 5.0f, 100, true, Direction::None, pDirectionY);
     Component* movementsComponent = dynamic_cast<Component*>(mMovements);
     AddComponent(movementsComponent);
-
-    mMovements->SetDirectionY(pDirectionY);
 }
 
 void Bullet::UpdateActor(unsigned int pDeltaTime)
 {
-    if (mDirectionY == Direction::Up && *mCollidingActor != nullptr && *mCollidingActor != mOwnerActor)
+    if (mDirectionY == Direction::Up && mCollidingActor != nullptr && mCollidingActor != mOwnerActor)
     {
-        mSceneOwner->AddPendingRemoveActor(*mCollidingActor);
+        mSceneOwner->AddPendingRemoveActor(mCollidingActor);
     }
-    else if (*mCollidingActor != nullptr && *mCollidingActor != mOwnerActor)
+    else if (mCollidingActor != nullptr && mCollidingActor != mOwnerActor)
     {
-        /*Player* player = dynamic_cast<Player*>(*mCollidingActor);
+        Player* player = dynamic_cast<Player*>(mCollidingActor);
 
         if (player)
         {
-            mSceneOwner->AddPendingRemoveActor(*mCollidingActor);
-        }*/
+            mSceneOwner->AddPendingRemoveActor(mCollidingActor);
+        }
     }
 
-    *mCollidingActor = nullptr;
+    mCollidingActor = nullptr;
 
-    if (mRect->mPosition.y <= -mRect->mDimensions.y || mRect->mPosition.x >= mWindow->GetDimensions().x)
+    if (mRect->mPosition.y <= 0 || mRect->mPosition.y >= mWindow->GetDimensions().x)
     {
         mSceneOwner->AddPendingRemoveActor(this);
     }

@@ -19,6 +19,6 @@ private:
 	Rectangle* mRect;
 	Movements* mMovements;
 	Renderer* mRenderer;
-	Actor** mCollidingActor;
+	Actor* mCollidingActor;
 	unsigned int timeSinceLastShot = 0;
 };

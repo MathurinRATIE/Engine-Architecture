@@ -2,7 +2,7 @@
 #include "scene.h"
 #include "collider2DComponent.h"
 
-Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor** pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
+Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor* pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {
 	mOwner = pOwner;
     mHitBox = pRect;
@@ -11,23 +11,19 @@ Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor** pCollidingActor,
 
 void Collider2D::Update(unsigned int pDeltaTime)
 {
-	*mCollidingActor == nullptr;
-	if (mCollidingActor != nullptr)
+	for (Actor* actor : mOwner->GetScene()->GetActors())
 	{
-		for (Actor* actor : mOwner->GetScene()->GetActors())
+		if (actor != mOwner)
 		{
-			if (actor != mOwner)
+			for (Component* component : actor->GetComponents())
 			{
-				for (Component* component : actor->GetComponents())
-				{
-					Collider2D* collider = dynamic_cast<Collider2D*>(component);
+				Collider2D* collider = dynamic_cast<Collider2D*>(component);
 
-					if (collider != nullptr)
+				if (collider != nullptr)
+				{
+					if (CheckCollisions(collider->GetHitBox()))
 					{
-						if (CheckCollisions(collider->GetHitBox()))
-						{
-							*mCollidingActor = actor;
-						}
+						mCollidingActor = actor;
 					}
 				}
 			}

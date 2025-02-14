@@ -7,6 +7,7 @@
 
 class Scene;
 class Component;
+class SpriteComponent;
 
 class Actor
 {
@@ -28,16 +29,19 @@ public :
 	ActorState GetState();
 	Transform2D GetTransform();
 	std::vector<Component*> GetComponents();
+	SpriteComponent* GetSpriteComponent();
 
 	void AttachScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
 	void RemoveComponent(Component* pComponent);
 	void SetTransform(Transform2D pTransform);
+	void SetSprite(SpriteComponent* pSprite);
 
 protected :
 	Scene* mSceneOwner;
 	Window* mWindow;
 	ActorState mState;
 	Transform2D mTransform;
+	SpriteComponent* mSprite;
 	std::vector<Component*> mComponents;
 };

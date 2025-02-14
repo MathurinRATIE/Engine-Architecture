@@ -7,8 +7,7 @@ Player::Player(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<
 	mTransform = pTransform;
 	mRenderer = pRenderer;
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
-	Actor* collidingActor = nullptr;
-	mCollidingActor = &collidingActor;
+	mCollidingActor = nullptr;
 
 	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
 	Component* colliderComponent = dynamic_cast<Component*>(collider);
@@ -17,7 +16,7 @@ Player::Player(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<
 	Texture* spaceShipTexture = new Texture();
 	spaceShipTexture->Load(*mRenderer, "Imports/SpaceShip.png");
 	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture);
-	AddComponent(sprite);
+	SetSprite(sprite);
 
 	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
 	Component* movementsComponent = dynamic_cast<Component*>(mMovements);

@@ -1,19 +1,21 @@
 #include "movementsComponent.h"
 
-Movements::Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor** pCollidingActor, float pSpeedX, float pSpeedY, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
+Movements::Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor* pCollidingActor, float pSpeedX, float pSpeedY, int pUpdateOrder, bool pIsActive, Direction pDirectionX, Direction pDirectionY) : Component(pOwner, pUpdateOrder, pIsActive)
 {
 	mPosition = pPosition;
 	mWindow = pWindow;
 	mSpeedX = pSpeedX;
 	mSpeedY = pSpeedY;
 	mCollidingActor = pCollidingActor;
-	mDirectionX = Direction::None;
-	mDirectionY = Direction::None;
+	mDirectionX = pDirectionX;
+	mDirectionY = pDirectionY;
+	mLastDirectionX = Direction::None;
+	mLastDirectionY = Direction::None;
 }
 
 void Movements::Update(unsigned int pDeltaTime)
 {
-	if (mCollidingActor == nullptr || *mCollidingActor == nullptr)
+	if (mCollidingActor == nullptr)
 	{
 		switch (mDirectionX)
 		{

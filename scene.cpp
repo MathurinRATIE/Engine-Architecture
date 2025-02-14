@@ -58,10 +58,14 @@ void Scene::RemoveActor(Actor* pActor)
 	{
 		mActors.erase(iterator);
 
-		for (Component* component : pActor->GetComponents())
+		std::vector<Component*> components = pActor->GetComponents();
+		while (!components.empty())
 		{
-			pActor->RemoveComponent(component);
+			pActor->RemoveComponent(components.back());
+			components.pop_back();
 		}
+
+		mRenderer->RemoveSprite(pActor->GetSpriteComponent());
 		delete(pActor);
 	}
 }
@@ -80,7 +84,7 @@ void Scene::Unload()
 {
 	while (!mActors.empty())
 	{
-		delete mActors.back();
+		RemoveActor(mActors.back());
 	}
 
 	Assets::Clear();

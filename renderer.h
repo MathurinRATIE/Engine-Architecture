@@ -28,7 +28,7 @@ public:
 	void EndDraw();
 	void Close();
 
-	void DrawRect(Rectangle& rRect, Color pColor);
+	void DrawRect(Rectangle rRect, Color pColor);
 	SDL_Renderer* GetRenderer();
 
 	void DrawSprites();

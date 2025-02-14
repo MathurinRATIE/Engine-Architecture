@@ -17,7 +17,7 @@ private :
 	Rectangle* mRect;
 	Movements* mMovements;
 	Actor* mOwnerActor;
-	Actor** mCollidingActor;
+	Actor* mCollidingActor;
 	Direction mDirectionY;
 };
 
