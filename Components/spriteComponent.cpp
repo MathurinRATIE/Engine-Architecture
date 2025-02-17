@@ -1,8 +1,9 @@
 #include "spriteComponent.h"
 
-SpriteComponent::SpriteComponent(Actor* pOwner, Texture& pTexture, int pDrawOrder) :
+SpriteComponent::SpriteComponent(Actor* pOwner, Texture& pTexture, Renderer::Flip pFlip, int pDrawOrder) :
 	Component(pOwner),
 	mTexture(pTexture),
+	mFlip(pFlip),
 	mDrawOrder(pDrawOrder),
 	mTexWidth(pTexture.GetWidth()),
 	mTexHeight(pTexture.GetHeight())
@@ -24,7 +25,12 @@ void SpriteComponent::SetTexture(const Texture& pTexture)
 void SpriteComponent::Draw(Renderer& pRenderer)
 {
 	Vector2 origin{ mTexWidth / 2.0f, mTexHeight / 2.0f };
-	pRenderer.DrawSprite(mOwner, mTexture, Rectangle(), origin, Renderer::Flip::None);
+	pRenderer.DrawSprite(mOwner, mTexture, Rectangle(), origin, mFlip);
+}
+
+void SpriteComponent::SetFlip(Renderer::Flip pFlip)
+{
+	mFlip = pFlip;
 }
 
 int SpriteComponent::GetDrawOrder() const
@@ -45,4 +51,9 @@ int SpriteComponent::GetTexHeight() const
 Texture SpriteComponent::GetTexture() const
 {
 	return mTexture;
+}
+
+Renderer::Flip SpriteComponent::GetFlip() const
+{
+	return mFlip;
 }

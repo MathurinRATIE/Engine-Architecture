@@ -138,6 +138,9 @@
     <ClCompile Include="Actors\platformerPlayerActor.cpp">
       <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="Components\moveComponent.cpp">
+      <Filter>Fichiers sources\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Imports\pokeball.png">
@@ -255,6 +258,9 @@
     </ClInclude>
     <ClInclude Include="Actors\platformerPlayerActor.h">
       <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\moveComponent.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

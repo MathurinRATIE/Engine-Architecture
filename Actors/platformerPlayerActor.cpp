@@ -1,7 +1,8 @@
 #include "platformerPlayerActor.h"
 
-PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, ActorState pState) : Actor(pScene, pWindow, pComponents)
+PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pComponents)
 {
+	mSpeed = Vector2(pSpeed, 0.0f);
 	mSceneOwner = pScene;
 	mWindow = pWindow;
 	mTransform = pTransform;
@@ -10,31 +11,46 @@ PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Ren
 	mCollidingActor = nullptr;
 
 	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
-	Component* colliderComponent = dynamic_cast<Component*>(collider);
-	AddComponent(colliderComponent);
+	AddComponent(collider);
 
 	mAnimations["walk"] = LoadTexturesFromFolder("JackSparrow\\Walk");
 	mAnimations["idle"] = LoadTexturesFromFolder("JackSparrow\\Idle");
 	mAnimations["run"] = LoadTexturesFromFolder("JackSparrow\\Run");
 	mAnimations["jump"] = LoadTexturesFromFolder("JackSparrow\\Jump");
 
-	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations["idle"], 1);
+	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations["idle"], 1, Renderer::Flip::Horizontal);
 	mAnimatedSprite = animatedSprite;
 	AddComponent(animatedSprite);
 	SetSprite(animatedSprite);
 
-	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, 0.0f);
-	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
-	AddComponent(movementsComponent);
+	mMoveComponent = new MoveComponent(this);
+	AddComponent(mMoveComponent);
 }
 
 void PlatformerPlayerActor::UpdateActor()
 {
 }
 
-void PlatformerPlayerActor::SetDirection(Direction pDirection)
+void PlatformerPlayerActor::SetSpeed(Vector2 pSpeed)
 {
-	mMovements->SetDirectionX(pDirection);
+	mMoveComponent->SetSpeed(pSpeed);
+
+	if (!Maths::NearZero(pSpeed.SqrLength()))
+	{
+		mAnimatedSprite->SetAnimationTextures(mAnimations["walk"]);
+		if (pSpeed.x > 0)
+		{
+			mSprite->SetFlip(Renderer::Flip::Horizontal);
+		}
+		else
+		{
+			mSprite->SetFlip(Renderer::Flip::None);
+		}
+	}
+	else
+	{
+		mAnimatedSprite->SetAnimationTextures(mAnimations["idle"]);
+	}
 }
 
 std::vector<Texture*> PlatformerPlayerActor::LoadTexturesFromFolder(std::string pFolder)
@@ -61,4 +77,9 @@ std::vector<Texture*> PlatformerPlayerActor::LoadTexturesFromFolder(std::string 
 Rectangle PlatformerPlayerActor::GetRect()
 {
 	return *mRect;
+}
+
+Vector2 PlatformerPlayerActor::GetBaseSpeed()
+{
+	return mSpeed;
 }

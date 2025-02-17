@@ -54,7 +54,7 @@ void Renderer::DrawSprites()
 {
     for (SpriteComponent* sprite : mSprites)
     {
-        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), sprite->GetOwner()->GetTransform().GetPosition(), Renderer::Flip::None);
+        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), sprite->GetOwner()->GetTransform().GetPosition(), sprite->GetFlip());
     }
 }
 
@@ -66,10 +66,10 @@ void Renderer::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle,
     destinationRect.h = static_cast<int>(pTexture.GetWidth() * transform.GetScale().y);
     destinationRect.x = static_cast<int>(transform.GetPosition().x * pOrigin.x);
     destinationRect.y = static_cast<int>(transform.GetPosition().y * pOrigin.y);*/
-    destinationRect.w = static_cast<int>(pTexture.GetWidth() * transform.GetScale().x / 800);
-    destinationRect.h = static_cast<int>(pTexture.GetHeight() * transform.GetScale().y / 800);
-    destinationRect.x = static_cast<int>(transform.GetPosition().x);
-    destinationRect.y = static_cast<int>(transform.GetPosition().y);
+    destinationRect.w = static_cast<int>(pTexture.GetWidth());
+    destinationRect.h = static_cast<int>(pTexture.GetHeight());
+    destinationRect.x = static_cast<int>(transform.GetPosition().x - pTexture.GetWidth() / 2);
+    destinationRect.y = static_cast<int>(transform.GetPosition().y - pTexture.GetHeight() / 2);
     /*destinationRect.w = 800;
     destinationRect.h = 800;
     destinationRect.x = 0;
@@ -92,7 +92,7 @@ void Renderer::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle,
         &destinationRect,
         -Maths::ToDeg(transform.GetRotation()),
         nullptr,
-        SDL_FLIP_NONE);
+        static_cast<SDL_RendererFlip>(pFlip));
 
     delete sourceSDL;
 }

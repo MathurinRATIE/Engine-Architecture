@@ -1,6 +1,6 @@
 #include "movementsComponent.h"
 
-Movements::Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor* pCollidingActor, float pSpeedX, float pSpeedY, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
+MovementComponent::MovementComponent(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor* pCollidingActor, float pSpeedX, float pSpeedY, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
 {
 	mPosition = pPosition;
 	mWindow = pWindow;
@@ -13,7 +13,7 @@ Movements::Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor* 
 	mLastDirectionY = Direction::None;
 }
 
-void Movements::Update()
+void MovementComponent::Update()
 {
 	if (mCollidingActor == nullptr)
 	{
@@ -85,47 +85,47 @@ void Movements::Update()
 	mOwner->SetTransform(transform);
 }
 
-void Movements::SetSpeedX(float pSpeedX)
+void MovementComponent::SetSpeedX(float pSpeedX)
 {
 	mSpeedX = pSpeedX;
 }
 
-void Movements::SetSpeedY(float pSpeedY)
+void MovementComponent::SetSpeedY(float pSpeedY)
 {
 	mSpeedY = pSpeedY;
 }
 
-void Movements::SetDirectionX(Direction pDirectionX)
+void MovementComponent::SetDirectionX(Direction pDirectionX)
 {
 	mDirectionX = pDirectionX;
 }
 
-void Movements::SetDirectionY(Direction pDirectionY)
+void MovementComponent::SetDirectionY(Direction pDirectionY)
 {
 	mDirectionY = pDirectionY;
 }
 
-float Movements::GetSpeedX()
+float MovementComponent::GetSpeedX()
 {
 	return mSpeedX;
 }
 
-float Movements::GetSpeedY()
+float MovementComponent::GetSpeedY()
 {
 	return mSpeedY;
 }
 
-Direction Movements::GetDirectionX()
+Direction MovementComponent::GetDirectionX()
 {
 	return mDirectionX;
 }
 
-Direction Movements::GetDirectionY()
+Direction MovementComponent::GetDirectionY()
 {
 	return mDirectionY;
 }
 
-Vector2* Movements::GetPosition()
+Vector2* MovementComponent::GetPosition()
 {
 	return mPosition;
 }

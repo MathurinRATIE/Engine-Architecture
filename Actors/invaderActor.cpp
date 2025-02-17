@@ -10,17 +10,15 @@ InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, 
 	mCollidingActor = nullptr;
 
 	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
-	Component* colliderComponent = dynamic_cast<Component*>(collider);
-	AddComponent(colliderComponent);
+	AddComponent(collider);
 
 	Texture* invaderTexture = new Texture();
 	invaderTexture->Load(*mRenderer, "Imports/Invader.png");
-	SpriteComponent* sprite = new SpriteComponent(this, *invaderTexture);
+	SpriteComponent* sprite = new SpriteComponent(this, *invaderTexture, Renderer::Flip::None);
 	SetSprite(sprite);
 
-	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
-	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
-	AddComponent(movementsComponent);
+	mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
+	AddComponent(mMovements);
 
 	mMovements->SetDirectionX(startingDirection);
 }

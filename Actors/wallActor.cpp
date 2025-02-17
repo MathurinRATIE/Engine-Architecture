@@ -6,8 +6,7 @@ WallActor::WallActor(Scene* pScene, Window* pWindow, std::vector<Component*> pCo
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
 
 	Collider2D* collider = new Collider2D(mRect, this);
-	Component* colliderComponent = dynamic_cast<Component*>(collider);
-	AddComponent(colliderComponent);
+	AddComponent(collider);
 }
 
 void WallActor::UpdateActor()

@@ -10,17 +10,15 @@ PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, st
 	mCollidingActor = nullptr;
 
 	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
-	Component* colliderComponent = dynamic_cast<Component*>(collider);
-	AddComponent(colliderComponent);
+	AddComponent(collider);
 
 	Texture* spaceShipTexture = new Texture();
 	spaceShipTexture->Load(*mRenderer, "Imports/SpaceShip.png");
-	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture);
+	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture, Renderer::Flip::None);
 	SetSprite(sprite);
 
-	mMovements = new Movements(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
-	Component* movementsComponent = dynamic_cast<Component*>(mMovements);
-	AddComponent(movementsComponent);
+	mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
+	AddComponent(mMovements);
 }
 
 void PlayerActor::UpdateActor()

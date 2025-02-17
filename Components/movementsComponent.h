@@ -4,10 +4,10 @@
 #include "vector2.h"
 #include "component.h"
 
-class Movements : public Component
+class MovementComponent : public Component
 {
 public :
-	Movements(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor* pCollidingActor = nullptr, float pSpeedX = 1.0f, float pSpeedY = 1.0f, int pUpdateOrder = 100, bool pIsActive = true);
+	MovementComponent(Vector2* pPosition, Actor* pOwner, Window* pWindow, Actor* pCollidingActor = nullptr, float pSpeedX = 1.0f, float pSpeedY = 1.0f, int pUpdateOrder = 100, bool pIsActive = true);
 
 	void Update() override;
 

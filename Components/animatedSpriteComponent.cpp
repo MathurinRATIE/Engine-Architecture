@@ -1,6 +1,6 @@
 #include "animatedSpriteComponent.h"
 
-AnimatedSpriteComponent::AnimatedSpriteComponent(Actor* pOwner, const std::vector<Texture*>& pTextures, int pDrawOrder) : SpriteComponent(pOwner, *pTextures[0], pDrawOrder)
+AnimatedSpriteComponent::AnimatedSpriteComponent(Actor* pOwner, const std::vector<Texture*>& pTextures, int pDrawOrder, Renderer::Flip pFlip) : SpriteComponent(pOwner, *pTextures[0], pFlip, pDrawOrder)
 {
 	mCurrentFrame = 0.0f;
 	mAnimFps = 24.0f;
@@ -45,7 +45,7 @@ void AnimatedSpriteComponent::Update()
 	SpriteComponent::Update();
 
 	if (mAnimationTextures.size() == 0) return;
-	mCurrentFrame += mAnimFps * Time::deltaTime;
+	mCurrentFrame += mAnimationTextures.size() * Time::deltaTime;
 	while (mCurrentFrame >= mAnimationTextures.size())
 	{
 		mCurrentFrame -= mAnimationTextures.size();

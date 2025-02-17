@@ -5,7 +5,7 @@ void Platformer::Start(Renderer* pRenderer, Window* pWindow)
 	mRenderer = pRenderer;
 	mWindow = pWindow;
 
-	mPlayer = new PlatformerPlayerActor(this, mWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, { 64, 64 }), 3.0f);
+	mPlayer = new PlatformerPlayerActor(this, mWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, { 64, 64 }), 50.0f);
 }
 
 void Platformer::Update()
@@ -32,10 +32,10 @@ void Platformer::OnInput(SDL_Event pEvent)
 		switch (pEvent.key.keysym.sym)
 		{
 		case SDLK_q:
-			mPlayer->SetDirection(Direction::Left);
+			mPlayer->SetSpeed(Vector2(-mPlayer->GetBaseSpeed().x, 0.0f));
 			break;
 		case SDLK_d:
-			mPlayer->SetDirection(Direction::Right);
+			mPlayer->SetSpeed(Vector2(mPlayer->GetBaseSpeed().x, 0.0f));
 			break;
 		case SDLK_SPACE:
 			// Jump
@@ -45,7 +45,7 @@ void Platformer::OnInput(SDL_Event pEvent)
 	case SDL_KEYUP:
 		if (pEvent.key.keysym.sym == SDLK_q || pEvent.key.keysym.sym == SDLK_d)
 		{
-			mPlayer->SetDirection(Direction::None);
+			mPlayer->SetSpeed(Vector2(0.0f, 0.0f));
 		}
 		break;
 	}

@@ -12,6 +12,7 @@ struct Vector2
 	Vector2 normalized();
 	void normalize();
 	float Magnitude() const;
+	float SqrLength() const;
 	float dot(const Vector2& otherVector) const;
 	float cross(const Vector2& otherVector) const;
 	std::string ToString() const;
@@ -19,6 +20,7 @@ struct Vector2
 	bool operator==(const Vector2& right);
 	bool operator!=(const Vector2& right);
 
+	void operator=(const float value);
 	void operator+=(const Vector2& right);
 	void operator-=(const Vector2& right);
 	void operator*=(const float value);

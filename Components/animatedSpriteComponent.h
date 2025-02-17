@@ -7,7 +7,7 @@
 class AnimatedSpriteComponent: public SpriteComponent
 {
 public :
-	AnimatedSpriteComponent(Actor* pOwner, const std::vector<Texture*>& pTextures, int pDrawOrder);
+	AnimatedSpriteComponent(Actor* pOwner, const std::vector<Texture*>& pTextures, int pDrawOrder, Renderer::Flip pFlip);
 	virtual ~AnimatedSpriteComponent();
 	AnimatedSpriteComponent() = delete;
 	AnimatedSpriteComponent(const AnimatedSpriteComponent&) = delete;

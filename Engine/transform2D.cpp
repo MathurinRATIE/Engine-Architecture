@@ -4,7 +4,7 @@ Transform2D::Transform2D()
 {
     mPosition = Vector2::ZERO;
     mScale = Vector2::ONE;
-    mRotation = 0.0f;
+    mRotationZ = 0.0f;
 }
 
 Vector2 Transform2D::GetPosition()
@@ -19,7 +19,7 @@ Vector2 Transform2D::GetScale()
 
 float Transform2D::GetRotation()
 {
-    return mRotation;
+    return mRotationZ;
 }
 
 void Transform2D::SetPosition(Vector2 pPosition)
@@ -34,15 +34,25 @@ void Transform2D::SetScale(Vector2 pScale)
 
 void Transform2D::SetRotation(float pRotation)
 {
-    mRotation = pRotation;
+    mRotationZ = pRotation;
 }
 
 bool Transform2D::operator!=(Transform2D right)
 {
-    return mPosition != right.mPosition || mScale != right.mScale || mRotation != right.mRotation;
+    return mPosition != right.mPosition || mScale != right.mScale || mRotationZ != right.mRotationZ;
 }
 
 bool Transform2D::operator==(Transform2D right)
 {
-    return mPosition == right.mPosition && mScale == right.mScale && mRotation == right.mRotation;
+    return mPosition == right.mPosition && mScale == right.mScale && mRotationZ == right.mRotationZ;
+}
+
+Vector2 Transform2D::Right() const
+{
+    return Vector2(Maths::Cos(mRotationZ), -Maths::Sin(mRotationZ));
+}
+
+Vector2 Transform2D::Up() const
+{
+    return Vector2(Maths::Sin(mRotationZ), -Maths::Cos(mRotationZ));
 }

@@ -34,6 +34,11 @@ float Vector2::Magnitude() const
     return std::sqrt(x * x + y * y);
 }
 
+float Vector2::SqrLength() const
+{
+    return x * x + y * y;
+}
+
 float Vector2::dot(const Vector2& otherVector) const
 {
     return x * otherVector.x + y * otherVector.y;
@@ -57,6 +62,12 @@ bool Vector2::operator==(const Vector2& right)
 bool Vector2::operator!=(const Vector2& right)
 {
     return x != right.x || y != right.y;
+}
+
+void Vector2::operator=(const float value)
+{
+    x = value;
+    y = value;
 }
 
 void Vector2::operator+=(const Vector2& right)

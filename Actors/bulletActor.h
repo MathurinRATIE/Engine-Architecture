@@ -15,7 +15,7 @@ public :
 
 private :
 	Rectangle* mRect;
-	Movements* mMovements;
+	MovementComponent* mMovements;
 	Actor* mOwnerActor;
 	Actor* mCollidingActor;
 	Direction mDirectionY;

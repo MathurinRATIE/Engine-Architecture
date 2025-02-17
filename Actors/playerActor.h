@@ -24,7 +24,7 @@ public :
 private :
 	Scene* mScene;
 	Rectangle* mRect;
-	Movements* mMovements;
+	MovementComponent* mMovements;
 	Renderer* mRenderer;
 	Actor* mCollidingActor;
 	unsigned int timeSinceLastShot = 0;

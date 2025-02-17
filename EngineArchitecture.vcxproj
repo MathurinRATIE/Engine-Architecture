@@ -84,7 +84,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,7 +102,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,6 +151,7 @@
     <ClCompile Include="Actors\wallActor.cpp" />
     <ClCompile Include="Components\animatedSpriteComponent.cpp" />
     <ClCompile Include="Components\collider2DComponent.cpp" />
+    <ClCompile Include="Components\moveComponent.cpp" />
     <ClCompile Include="Components\movementsComponent.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
     <ClCompile Include="Engine\actor.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Actors\wallActor.h" />
     <ClInclude Include="Components\animatedSpriteComponent.h" />
     <ClInclude Include="Components\collider2DComponent.h" />
+    <ClInclude Include="Components\moveComponent.h" />
     <ClInclude Include="Components\movementsComponent.h" />
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
