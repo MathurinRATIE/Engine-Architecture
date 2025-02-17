@@ -72,6 +72,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <SourcePath>$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,13 +83,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2_image.lib;glu32.lib;glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,7 +101,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -104,7 +110,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2_image.lib;glu32.lib;glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -136,72 +142,79 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="actor.h" />
-    <ClInclude Include="assets.h" />
-    <ClInclude Include="ball.h" />
-    <ClInclude Include="bulletActor.h" />
-    <ClInclude Include="collider2DComponent.h" />
-    <ClInclude Include="component.h" />
-    <ClInclude Include="direction.h" />
-    <ClInclude Include="game.h" />
-    <ClInclude Include="log.h" />
-    <ClInclude Include="mainScene.h" />
-    <ClInclude Include="maths.h" />
-    <ClInclude Include="movementsComponent.h" />
-    <ClInclude Include="paddle.h" />
-    <ClInclude Include="playerActor.h" />
-    <ClInclude Include="pong.h" />
-    <ClInclude Include="rectangle.h" />
-    <ClInclude Include="renderer.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="spaceInvaders.h" />
-    <ClInclude Include="invader.h" />
-    <ClInclude Include="spriteComponent.h" />
-    <ClInclude Include="texture.h" />
-    <ClInclude Include="time.h" />
-    <ClInclude Include="transform2D.h" />
-    <ClInclude Include="vector2.h" />
-    <ClInclude Include="vector3.h" />
-    <ClInclude Include="vector4.h" />
-    <ClInclude Include="wallActor.h" />
-    <ClInclude Include="window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="actor.cpp" />
-    <ClCompile Include="assets.cpp" />
-    <ClCompile Include="ball.cpp" />
-    <ClCompile Include="bulletActor.cpp" />
-    <ClCompile Include="collider2DComponent.cpp" />
-    <ClCompile Include="component.cpp" />
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="log.cpp" />
+    <ClCompile Include="Actors\ballActor.cpp" />
+    <ClCompile Include="Actors\bulletActor.cpp" />
+    <ClCompile Include="Actors\invaderActor.cpp" />
+    <ClCompile Include="Actors\paddleActor.cpp" />
+    <ClCompile Include="Actors\platformerPlayerActor.cpp" />
+    <ClCompile Include="Actors\playerActor.cpp" />
+    <ClCompile Include="Actors\wallActor.cpp" />
+    <ClCompile Include="Components\animatedSpriteComponent.cpp" />
+    <ClCompile Include="Components\collider2DComponent.cpp" />
+    <ClCompile Include="Components\movementsComponent.cpp" />
+    <ClCompile Include="Components\spriteComponent.cpp" />
+    <ClCompile Include="Engine\actor.cpp" />
+    <ClCompile Include="Engine\assets.cpp" />
+    <ClCompile Include="Engine\component.cpp" />
+    <ClCompile Include="Engine\game.cpp" />
+    <ClCompile Include="Engine\log.cpp" />
+    <ClCompile Include="Engine\Maths\vector2.cpp" />
+    <ClCompile Include="Engine\Maths\vector3.cpp" />
+    <ClCompile Include="Engine\Maths\vector4.cpp" />
+    <ClCompile Include="Engine\rectangle.cpp" />
+    <ClCompile Include="Engine\renderer.cpp" />
+    <ClCompile Include="Engine\scene.cpp" />
+    <ClCompile Include="Engine\texture.cpp" />
+    <ClCompile Include="Engine\engineTime.cpp" />
+    <ClCompile Include="Engine\transform2D.cpp" />
+    <ClCompile Include="Engine\window.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainScene.cpp" />
-    <ClCompile Include="movementsComponent.cpp" />
-    <ClCompile Include="paddle.cpp" />
-    <ClCompile Include="playerActor.cpp" />
-    <ClCompile Include="pong.cpp" />
-    <ClCompile Include="rectangle.cpp" />
-    <ClCompile Include="renderer.cpp" />
-    <ClCompile Include="scene.cpp" />
-    <ClCompile Include="spaceInvaders.cpp" />
-    <ClCompile Include="invader.cpp" />
-    <ClCompile Include="spriteComponent.cpp" />
-    <ClCompile Include="texture.cpp" />
-    <ClCompile Include="time.cpp" />
-    <ClCompile Include="transform2D.cpp" />
-    <ClCompile Include="vector2.cpp" />
-    <ClCompile Include="vector3.cpp" />
-    <ClCompile Include="vector4.cpp" />
-    <ClCompile Include="wallActor.cpp" />
-    <ClCompile Include="window.cpp" />
+    <ClCompile Include="Scenes\platformer.cpp" />
+    <ClCompile Include="Scenes\mainScene.cpp" />
+    <ClCompile Include="Scenes\pong.cpp" />
+    <ClCompile Include="Scenes\spaceInvaders.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Imports\Bullet.png" />
     <Image Include="Imports\Invader.png" />
     <Image Include="Imports\pokeball.png" />
     <Image Include="Imports\SpaceShip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actors\ballActor.h" />
+    <ClInclude Include="Actors\bulletActor.h" />
+    <ClInclude Include="Actors\invaderActor.h" />
+    <ClInclude Include="Actors\paddleActor.h" />
+    <ClInclude Include="Actors\platformerPlayerActor.h" />
+    <ClInclude Include="Actors\playerActor.h" />
+    <ClInclude Include="Actors\wallActor.h" />
+    <ClInclude Include="Components\animatedSpriteComponent.h" />
+    <ClInclude Include="Components\collider2DComponent.h" />
+    <ClInclude Include="Components\movementsComponent.h" />
+    <ClInclude Include="Components\spriteComponent.h" />
+    <ClInclude Include="Engine\actor.h" />
+    <ClInclude Include="Engine\actorState.h" />
+    <ClInclude Include="Engine\assets.h" />
+    <ClInclude Include="Engine\component.h" />
+    <ClInclude Include="Engine\direction.h" />
+    <ClInclude Include="Engine\game.h" />
+    <ClInclude Include="Engine\log.h" />
+    <ClInclude Include="Engine\Maths\maths.h" />
+    <ClInclude Include="Engine\Maths\vector2.h" />
+    <ClInclude Include="Engine\Maths\vector3.h" />
+    <ClInclude Include="Engine\Maths\vector4.h" />
+    <ClInclude Include="Engine\rectangle.h" />
+    <ClInclude Include="Engine\renderer.h" />
+    <ClInclude Include="Engine\resource.h" />
+    <ClInclude Include="Engine\scene.h" />
+    <ClInclude Include="Engine\texture.h" />
+    <ClInclude Include="Engine\engineTime.h" />
+    <ClInclude Include="Engine\transform2D.h" />
+    <ClInclude Include="Engine\window.h" />
+    <ClInclude Include="Scenes\mainScene.h" />
+    <ClInclude Include="Scenes\platformer.h" />
+    <ClInclude Include="Scenes\pong.h" />
+    <ClInclude Include="Scenes\spaceInvaders.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

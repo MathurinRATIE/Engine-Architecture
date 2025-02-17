@@ -5,6 +5,7 @@
 #include "pong.h"
 #include "mainScene.h"
 #include "spaceInvaders.h"
+#include "platformer.h"
 
 using namespace std;
 
@@ -18,8 +19,11 @@ int main(int argc, char* argv[])
 	/*Game* actorComponentScene = new Game("Actor/Component", {new MainScene()});
 	actorComponentScene->Initialize();*/
 
-	Game* spaceInvaders = new Game("Space Invaders", { new SpaceInvaders() });
-	spaceInvaders->Initialize();
+	/*Game* spaceInvaders = new Game("Space Invaders", {new SpaceInvaders()});
+	spaceInvaders->Initialize();*/
+
+	Game* platformer = new Game("Platformer", { new Platformer() });
+	platformer->Initialize();
 
 	return 0;
 }

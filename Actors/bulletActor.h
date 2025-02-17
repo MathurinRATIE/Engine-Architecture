@@ -1,0 +1,23 @@
+#pragma once
+#include "collider2DComponent.h"
+#include "movementsComponent.h"
+#include "playerActor.h"
+#include "actor.h"
+
+class BulletActor : public Actor
+{
+public :
+	BulletActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY = Direction::Down, Transform2D pTransform = Transform2D(), ActorState pState = ActorState::Active);
+
+	Rectangle GetRect() override;
+
+	void UpdateActor() override;
+
+private :
+	Rectangle* mRect;
+	Movements* mMovements;
+	Actor* mOwnerActor;
+	Actor* mCollidingActor;
+	Direction mDirectionY;
+};
+

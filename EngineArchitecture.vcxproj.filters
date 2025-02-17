@@ -13,183 +13,130 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine">
+      <UniqueIdentifier>{7f68ae2f-75f9-46fc-bf0b-8420f1a332f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Actors">
+      <UniqueIdentifier>{96d7c114-5182-4107-81af-98c51e0084c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components">
+      <UniqueIdentifier>{9bd57ad0-be43-4b0c-880f-5c9a8434f177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Maths">
+      <UniqueIdentifier>{ec933d3a-cfb5-423f-9b6c-6bf083f17a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine">
+      <UniqueIdentifier>{64dcd37c-b1c1-4fd7-ad80-c72481ed48fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Maths">
+      <UniqueIdentifier>{0ea2390d-f728-445d-a1a7-980a6d911a4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Actors">
+      <UniqueIdentifier>{83b039ee-9bcc-42ea-8944-321319ddce3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components">
+      <UniqueIdentifier>{40d402cd-2266-4660-a8b4-66ec7f08b2ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Scenes">
+      <UniqueIdentifier>{d162fad2-8d6c-4cd9-b7ec-9396e4e1793b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Scenes">
+      <UniqueIdentifier>{db9493cd-2ba1-458f-8c99-93a6a7da0692}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="log.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="window.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="vector2.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="renderer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="rectangle.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="pong.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="ball.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="paddle.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="time.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="actor.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="component.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="transform2D.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="vector3.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="vector4.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="mainScene.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="playerActor.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="direction.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="collider2DComponent.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="movementsComponent.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="wallActor.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="spaceInvaders.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="invader.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="bulletActor.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="texture.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="assets.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="maths.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="spriteComponent.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="log.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="window.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\Maths\vector2.cpp">
+      <Filter>Fichiers sources\Engine\Maths</Filter>
     </ClCompile>
-    <ClCompile Include="vector2.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\Maths\vector3.cpp">
+      <Filter>Fichiers sources\Engine\Maths</Filter>
     </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\Maths\vector4.cpp">
+      <Filter>Fichiers sources\Engine\Maths</Filter>
     </ClCompile>
-    <ClCompile Include="renderer.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\transform2D.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="rectangle.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\window.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="pong.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\actor.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ball.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\assets.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="paddle.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\component.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="time.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\game.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="component.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\log.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="transform2D.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\rectangle.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="vector3.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\renderer.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="vector4.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\scene.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="actor.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\texture.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="scene.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Engine\engineTime.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="mainScene.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Actors\ballActor.cpp">
+      <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="playerActor.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Actors\bulletActor.cpp">
+      <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="collider2DComponent.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Actors\invaderActor.cpp">
+      <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="movementsComponent.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Actors\paddleActor.cpp">
+      <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="wallActor.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Actors\playerActor.cpp">
+      <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="spaceInvaders.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Actors\wallActor.cpp">
+      <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="invader.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Components\collider2DComponent.cpp">
+      <Filter>Fichiers sources\Components</Filter>
     </ClCompile>
-    <ClCompile Include="bulletActor.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Components\movementsComponent.cpp">
+      <Filter>Fichiers sources\Components</Filter>
     </ClCompile>
-    <ClCompile Include="texture.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Components\spriteComponent.cpp">
+      <Filter>Fichiers sources\Components</Filter>
     </ClCompile>
-    <ClCompile Include="assets.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Scenes\mainScene.cpp">
+      <Filter>Fichiers sources\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="spriteComponent.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Scenes\pong.cpp">
+      <Filter>Fichiers sources\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\spaceInvaders.cpp">
+      <Filter>Fichiers sources\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\platformer.cpp">
+      <Filter>Fichiers sources\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\animatedSpriteComponent.cpp">
+      <Filter>Fichiers sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\platformerPlayerActor.cpp">
+      <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,5 +152,109 @@
     <Image Include="Imports\SpaceShip.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Maths\maths.h">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\vector2.h">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\vector3.h">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\vector4.h">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\actor.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\actorState.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\assets.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\component.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\direction.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\game.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\log.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\rectangle.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\renderer.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\resource.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\scene.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\texture.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\engineTime.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\transform2D.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\window.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\ballActor.h">
+      <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\bulletActor.h">
+      <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\invaderActor.h">
+      <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\paddleActor.h">
+      <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\playerActor.h">
+      <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\wallActor.h">
+      <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\collider2DComponent.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\movementsComponent.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\spriteComponent.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\mainScene.h">
+      <Filter>Fichiers d%27en-tête\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\pong.h">
+      <Filter>Fichiers d%27en-tête\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\spaceInvaders.h">
+      <Filter>Fichiers d%27en-tête\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\platformer.h">
+      <Filter>Fichiers d%27en-tête\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\animatedSpriteComponent.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\platformerPlayerActor.h">
+      <Filter>Fichiers d%27en-tête\Actors</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
