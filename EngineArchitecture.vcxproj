@@ -169,6 +169,8 @@
     <ClCompile Include="Engine\engineTime.cpp" />
     <ClCompile Include="Engine\transform2D.cpp" />
     <ClCompile Include="Engine\window.cpp" />
+    <ClCompile Include="Engine\inputEvent.cpp" />
+    <ClCompile Include="Engine\inputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\platformer.cpp" />
     <ClCompile Include="Scenes\mainScene.cpp" />
@@ -200,6 +202,7 @@
     <ClInclude Include="Engine\component.h" />
     <ClInclude Include="Engine\direction.h" />
     <ClInclude Include="Engine\game.h" />
+    <ClInclude Include="Engine\IInputListener.h" />
     <ClInclude Include="Engine\log.h" />
     <ClInclude Include="Engine\Maths\maths.h" />
     <ClInclude Include="Engine\Maths\vector2.h" />
@@ -213,6 +216,8 @@
     <ClInclude Include="Engine\engineTime.h" />
     <ClInclude Include="Engine\transform2D.h" />
     <ClInclude Include="Engine\window.h" />
+    <ClInclude Include="Engine\inputEvent.h" />
+    <ClInclude Include="Engine\inputManager.h" />
     <ClInclude Include="Scenes\mainScene.h" />
     <ClInclude Include="Scenes\platformer.h" />
     <ClInclude Include="Scenes\pong.h" />
