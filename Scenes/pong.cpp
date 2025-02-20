@@ -81,36 +81,6 @@ void Pong::Render()
 	mRenderer->DrawRect(paddle2Rect, paddleColor);
 }
 
-void Pong::OnInput(SDL_Event pEvent)
-{
-	switch (pEvent.type) {
-	case SDL_KEYDOWN:
-		if (pEvent.key.keysym.sym == SDLK_s)
-			mMovePaddleDown = true;
-		if (pEvent.key.keysym.sym == SDLK_z)
-			mMovePaddleUp = true;
-		if (pEvent.key.keysym.sym == SDLK_DOWN)
-			mMovePaddleDown = true;
-		if (pEvent.key.keysym.sym == SDLK_UP)
-			mMovePaddleUp = true;
-		if (pEvent.key.keysym.sym == SDLK_SPACE)
-			mIsBallLaunched = true;
-		break;
-	case SDL_KEYUP :
-		if (pEvent.key.keysym.sym == SDLK_s)
-			mMovePaddleDown = false;
-		if (pEvent.key.keysym.sym == SDLK_z)
-			mMovePaddleUp = false;
-		if (pEvent.key.keysym.sym == SDLK_DOWN)
-			mMovePaddleDown = false;
-		if (pEvent.key.keysym.sym == SDLK_UP)
-			mMovePaddleUp = false;
-		break;
-	default:
-		break;
-	}
-}
-
 void Pong::Close()
 {
 	delete(&mBall);

@@ -2,7 +2,7 @@
 #include <filesystem>
 #include "actor.h"
 #include "renderer.h"
-#include "moveComponent.h"
+#include "playerControllerComponent.h"
 #include "animatedSpriteComponent.h"
 #include "collider2DComponent.h"
 
@@ -14,8 +14,6 @@ public :
 	
 	void UpdateActor() override;
 
-	void SetSpeed(Vector2 pSpeed);
-
 	std::vector<Texture*> LoadTexturesFromFolder(std::string pFolder);
 
 	Rectangle GetRect() override;
@@ -24,7 +22,7 @@ public :
 protected :
 	Vector2 mSpeed;
 	Rectangle* mRect;
-	MoveComponent* mMoveComponent;
+	PlayerControllerComponent* mPlayerControllerComponent;
 	Renderer* mRenderer;
 	Actor* mCollidingActor;
 	AnimatedSpriteComponent* mAnimatedSprite;

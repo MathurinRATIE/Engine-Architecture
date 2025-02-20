@@ -2,6 +2,7 @@
 #include "vector2.h"
 #include "Component.h"
 #include "maths.h"
+#include "inputManager.h"
 
 class MoveComponent : public Component
 {
@@ -16,6 +17,6 @@ public:
 
 	void Update() override;
 
-private:
+protected:
 	Vector2 mSpeed;
 };

@@ -37,6 +37,21 @@ public :
 	void SetTransform(Transform2D pTransform);
 	void SetSprite(SpriteComponent* pSprite);
 
+	template<typename T>
+	inline T* GetComponentOfType() const
+	{
+		T* result = nullptr;
+		for (Component* component : mComponents)
+		{
+			result = dynamic_cast<T*>(component);
+			if (result != nullptr)
+			{
+				return result;
+			}
+		}
+		return nullptr;
+	}
+
 protected :
 	Scene* mSceneOwner;
 	Window* mWindow;

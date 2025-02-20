@@ -28,9 +28,14 @@ void SpriteComponent::Draw(Renderer& pRenderer)
 	pRenderer.DrawSprite(mOwner, mTexture, Rectangle(), origin, mFlip);
 }
 
-void SpriteComponent::SetFlip(Renderer::Flip pFlip)
+void SpriteComponent::SetFlipX(bool isFlipped)
 {
-	mFlip = pFlip;
+	isFlipped ? mFlip = Renderer::Flip::Horizontal : mFlip = Renderer::Flip::None;
+}
+
+void SpriteComponent::SetFlipY(bool isFlipped)
+{
+	isFlipped ? mFlip = Renderer::Flip::Vertical : mFlip = Renderer::Flip::None;
 }
 
 int SpriteComponent::GetDrawOrder() const

@@ -16,7 +16,8 @@ public :
 
 	virtual void SetTexture(const Texture& pTexture);
 	virtual void Draw(Renderer& pRenderer);
-	void SetFlip(Renderer::Flip pFlip);
+	void SetFlipX(bool isFlipped);
+	void SetFlipY(bool isFlipped);
 
 	int GetDrawOrder() const;
 	int GetTexWidth() const;

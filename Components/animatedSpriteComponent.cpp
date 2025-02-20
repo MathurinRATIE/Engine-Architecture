@@ -1,12 +1,12 @@
 #include "animatedSpriteComponent.h"
 
-AnimatedSpriteComponent::AnimatedSpriteComponent(Actor* pOwner, const std::vector<Texture*>& pTextures, int pDrawOrder, Renderer::Flip pFlip) : SpriteComponent(pOwner, *pTextures[0], pFlip, pDrawOrder)
+AnimatedSpriteComponent::AnimatedSpriteComponent(Actor* pOwner, std::map <std::string, std::vector<Texture*>> pAnimations, std::string pCurrentAnimationName, int pDrawOrder, Renderer::Flip pFlip) : SpriteComponent(pOwner, *pAnimations[pCurrentAnimationName][0], pFlip, pDrawOrder)
 {
+	mAnimations = pAnimations;
 	mCurrentFrame = 0.0f;
 	mAnimFps = 24.0f;
-	mAnimationTextures = pTextures;
 
-	SetAnimationTextures(mAnimationTextures);
+	SetAnimationTextures(pCurrentAnimationName);
 
 	mOwner->GetScene()->GetRenderer()->AddSprite(this);
 }
@@ -29,6 +29,15 @@ float AnimatedSpriteComponent::GetAnimationFps() const
 void AnimatedSpriteComponent::SetAnimationTextures(const std::vector<Texture*>& pTextures)
 {
 	mAnimationTextures = pTextures;
+	if (mAnimationTextures.size() > 0)
+	{
+		SetTexture(*mAnimationTextures[0]);
+	}
+}
+
+void AnimatedSpriteComponent::SetAnimationTextures(std::string animationName)
+{
+	mAnimationTextures = mAnimations[animationName];
 	if (mAnimationTextures.size() > 0)
 	{
 		SetTexture(*mAnimationTextures[0]);

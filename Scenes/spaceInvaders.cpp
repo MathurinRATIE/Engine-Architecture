@@ -27,31 +27,6 @@ void SpaceInvaders::Render()
 	mRenderer->DrawSprites();
 }
 
-void SpaceInvaders::OnInput(SDL_Event pEvent)
-{
-	switch (pEvent.type)
-	{
-	case SDL_KEYDOWN:
-		if (pEvent.key.keysym.sym == SDLK_q)
-		{
-			mPlayer->SetDirectionX(Direction::Left);
-		}
-		if (pEvent.key.keysym.sym == SDLK_d)
-		{
-			mPlayer->SetDirectionX(Direction::Right);
-		}
-		break;
-	case SDL_KEYUP:
-		if (pEvent.key.keysym.sym == SDLK_q || pEvent.key.keysym.sym == SDLK_d)
-		{
-			mPlayer->SetDirectionX(Direction::None);
-		}
-		break;
-	default:
-		break;
-	}
-}
-
 void SpaceInvaders::Close()
 {
 }

@@ -2,6 +2,8 @@
 #include <map>
 #include "InputEvent.h"
 
+struct KeyEvent;
+
 class InputManager
 {
 public:

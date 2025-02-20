@@ -16,7 +16,6 @@ public :
 	virtual void Start(Renderer* pRenderer, Window* pWindow) = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
-	virtual void OnInput(SDL_Event pEvent) = 0;
 	virtual void Close() = 0;
 
 	void UpdateAllActors();

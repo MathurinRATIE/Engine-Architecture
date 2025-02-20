@@ -153,6 +153,7 @@
     <ClCompile Include="Components\collider2DComponent.cpp" />
     <ClCompile Include="Components\moveComponent.cpp" />
     <ClCompile Include="Components\movementsComponent.cpp" />
+    <ClCompile Include="Components\playerControllerComponent.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
     <ClCompile Include="Engine\actor.cpp" />
     <ClCompile Include="Engine\assets.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Components\collider2DComponent.h" />
     <ClInclude Include="Components\moveComponent.h" />
     <ClInclude Include="Components\movementsComponent.h" />
+    <ClInclude Include="Components\playerControllerComponent.h" />
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
     <ClInclude Include="Engine\actorState.h" />

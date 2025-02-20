@@ -1,4 +1,5 @@
 #include "game.h"
+#include "inputManager.h"
 
 Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), mLoadedScene(0), mIsRunning(true)
 {
@@ -68,19 +69,7 @@ void Game::CheckInputs()
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
-            switch (event.type) {
-            case SDL_QUIT:
-                mIsRunning = false;
-                break;
-            case SDL_KEYDOWN:
-                if (event.key.keysym.sym == SDLK_ESCAPE)
-                mIsRunning = false;
-                break;
-            default:
-                break;
-            }
-
-            mScenes[mLoadedScene]->OnInput(event);
+            InputManager::Instance().HandleInputs(event);
         }
     }
 }

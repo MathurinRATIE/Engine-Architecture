@@ -13,44 +13,24 @@ PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Ren
 	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
 	AddComponent(collider);
 
-	mAnimations["walk"] = LoadTexturesFromFolder("JackSparrow\\Walk");
+	mAnimations["walkSide"] = LoadTexturesFromFolder("JackSparrow\\WalkSide");
+	mAnimations["walkBack"] = LoadTexturesFromFolder("JackSparrow\\WalkBack");
+	mAnimations["walkFront"] = LoadTexturesFromFolder("JackSparrow\\WalkFront");
 	mAnimations["idle"] = LoadTexturesFromFolder("JackSparrow\\Idle");
-	mAnimations["run"] = LoadTexturesFromFolder("JackSparrow\\Run");
-	mAnimations["jump"] = LoadTexturesFromFolder("JackSparrow\\Jump");
+	//mAnimations["run"] = LoadTexturesFromFolder("JackSparrow\\Run");
+	//mAnimations["jump"] = LoadTexturesFromFolder("JackSparrow\\Jump");
 
-	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations["idle"], 1, Renderer::Flip::Horizontal);
+	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations, "idle", 1, Renderer::Flip::Horizontal);
 	mAnimatedSprite = animatedSprite;
 	AddComponent(animatedSprite);
 	SetSprite(animatedSprite);
 
-	mMoveComponent = new MoveComponent(this);
-	AddComponent(mMoveComponent);
+	mPlayerControllerComponent = new PlayerControllerComponent(this);
+	AddComponent(mPlayerControllerComponent);
 }
 
 void PlatformerPlayerActor::UpdateActor()
 {
-}
-
-void PlatformerPlayerActor::SetSpeed(Vector2 pSpeed)
-{
-	mMoveComponent->SetSpeed(pSpeed);
-
-	if (!Maths::NearZero(pSpeed.SqrLength()))
-	{
-		mAnimatedSprite->SetAnimationTextures(mAnimations["walk"]);
-		if (pSpeed.x > 0)
-		{
-			mSprite->SetFlip(Renderer::Flip::Horizontal);
-		}
-		else
-		{
-			mSprite->SetFlip(Renderer::Flip::None);
-		}
-	}
-	else
-	{
-		mAnimatedSprite->SetAnimationTextures(mAnimations["idle"]);
-	}
 }
 
 std::vector<Texture*> PlatformerPlayerActor::LoadTexturesFromFolder(std::string pFolder)
