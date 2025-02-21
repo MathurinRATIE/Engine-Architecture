@@ -146,6 +146,7 @@
     <ClCompile Include="Actors\bulletActor.cpp" />
     <ClCompile Include="Actors\invaderActor.cpp" />
     <ClCompile Include="Actors\paddleActor.cpp" />
+    <ClCompile Include="Actors\platformActor.cpp" />
     <ClCompile Include="Actors\platformerPlayerActor.cpp" />
     <ClCompile Include="Actors\playerActor.cpp" />
     <ClCompile Include="Actors\wallActor.cpp" />
@@ -183,6 +184,7 @@
   <ItemGroup>
     <Image Include="Imports\Bullet.png" />
     <Image Include="Imports\Invader.png" />
+    <Image Include="Imports\Platform.png" />
     <Image Include="Imports\pokeball.png" />
     <Image Include="Imports\SpaceShip.png" />
   </ItemGroup>
@@ -191,6 +193,7 @@
     <ClInclude Include="Actors\bulletActor.h" />
     <ClInclude Include="Actors\invaderActor.h" />
     <ClInclude Include="Actors\paddleActor.h" />
+    <ClInclude Include="Actors\platformActor.h" />
     <ClInclude Include="Actors\platformerPlayerActor.h" />
     <ClInclude Include="Actors\playerActor.h" />
     <ClInclude Include="Actors\wallActor.h" />

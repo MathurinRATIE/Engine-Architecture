@@ -16,14 +16,11 @@ public :
 
 	std::vector<Texture*> LoadTexturesFromFolder(std::string pFolder);
 
-	Rectangle GetRect() override;
 	Vector2 GetBaseSpeed();
 
 protected :
 	Vector2 mSpeed;
-	Rectangle* mRect;
 	PlayerControllerComponent* mPlayerControllerComponent;
-	Renderer* mRenderer;
 	Actor* mCollidingActor;
 	AnimatedSpriteComponent* mAnimatedSprite;
 	std::map <std::string, std::vector<Texture*>> mAnimations;

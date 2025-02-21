@@ -19,4 +19,5 @@ public:
 
 protected:
 	Vector2 mSpeed;
+	Vector2 mAppliedMovement = Vector2::ZERO;
 };

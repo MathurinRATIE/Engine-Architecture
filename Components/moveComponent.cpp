@@ -21,18 +21,24 @@ void MoveComponent::SetSpeed(Vector2 pSpeed)
 void MoveComponent::Update()
 {
 	Collider2D* collider = mOwner->GetComponentOfType<Collider2D>();
-	if (collider != nullptr && collider->GetState() != ColliderState::CollisionNone)
+	if (collider != nullptr && collider->GetState() != ColliderState::CollisionNone) // Test a desired position to avoid the little bounce
 	{
-		return;
+		Vector2 position = mOwner->GetTransform().GetPosition();
+		position -= mAppliedMovement;
+
+		Transform2D transform = mOwner->GetTransform();
+		transform.SetPosition(position);
+		mOwner->SetTransform(transform);
 	}
 
 	if (!Maths::NearZero(mSpeed.SqrLength()))
 	{
 		Vector2 position = mOwner->GetTransform().GetPosition();
-		position += (mOwner->GetTransform().Right() * mSpeed.x
+		mAppliedMovement = (mOwner->GetTransform().Right() * mSpeed.x
 				    + mOwner->GetTransform().Up() * mSpeed.y) * Time::deltaTime;
+		position += mAppliedMovement;
 
-		Transform2D transform = mOwner->GetTransform();   // TODO : WTF can't i make this in one line
+		Transform2D transform = mOwner->GetTransform();
 		transform.SetPosition(position);
 		mOwner->SetTransform(transform);
 	}

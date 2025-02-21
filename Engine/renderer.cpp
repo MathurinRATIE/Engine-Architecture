@@ -40,7 +40,7 @@ void Renderer::Close()
 
 void Renderer::DrawRect(Rectangle pRect, Color pColor)
 {
-    SDL_SetRenderDrawColor(mSdlRenderer, static_cast<int>(pColor.x), static_cast<int>(pColor.y), static_cast<int>(pColor.z), static_cast<int>(pColor.w));
+    SDL_SetRenderDrawColor(mSdlRenderer, static_cast<int>(pColor.x * 255.0f), static_cast<int>(pColor.y * 255.0f), static_cast<int>(pColor.z * 255.0f), static_cast<int>(pColor.w * 255.0f));
     SDL_Rect sdlRect = pRect.ToSdlRect();
     SDL_RenderFillRect(mSdlRenderer, &sdlRect);
 }
@@ -66,10 +66,10 @@ void Renderer::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle,
     destinationRect.h = static_cast<int>(pTexture.GetWidth() * transform.GetScale().y);
     destinationRect.x = static_cast<int>(transform.GetPosition().x * pOrigin.x);
     destinationRect.y = static_cast<int>(transform.GetPosition().y * pOrigin.y);*/
-    destinationRect.w = static_cast<int>(pTexture.GetWidth());
-    destinationRect.h = static_cast<int>(pTexture.GetHeight());
-    destinationRect.x = static_cast<int>(transform.GetPosition().x - pTexture.GetWidth() / 2);
-    destinationRect.y = static_cast<int>(transform.GetPosition().y - pTexture.GetHeight() / 2);
+    destinationRect.w = static_cast<int>(pRectangle.mDimensions.x);
+    destinationRect.h = static_cast<int>(pRectangle.mDimensions.y);
+    destinationRect.x = static_cast<int>(transform.GetPosition().x);
+    destinationRect.y = static_cast<int>(transform.GetPosition().y);
     /*destinationRect.w = 800;
     destinationRect.h = 800;
     destinationRect.x = 0;

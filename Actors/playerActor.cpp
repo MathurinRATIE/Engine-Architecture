@@ -1,6 +1,6 @@
 #include "playerActor.h"
 
-PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
+PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
 	mScene = pScene;
 	mWindow = pWindow;
@@ -9,7 +9,7 @@ PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, st
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
 	mCollidingActor = nullptr;
 
-	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
+	Collider2D* collider = new Collider2D(this, mCollidingActor);
 	AddComponent(collider);
 
 	Texture* spaceShipTexture = new Texture();

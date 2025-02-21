@@ -6,13 +6,14 @@
 #include <vector>
 
 class Scene;
+class Renderer;
 class Component;
 class SpriteComponent;
 
 class Actor
 {
 public :
-	Actor(Scene* pScene, Window* pWindow, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
+	Actor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
 	virtual ~Actor();
 	Actor(const Actor&) = delete;
 	Actor& operator=(const Actor&) = delete;
@@ -55,6 +56,7 @@ public :
 protected :
 	Scene* mSceneOwner;
 	Window* mWindow;
+	Renderer* mRenderer;
 	ActorState mState;
 	Transform2D mTransform;
 	SpriteComponent* mSprite;

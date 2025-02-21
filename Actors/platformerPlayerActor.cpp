@@ -1,16 +1,15 @@
 #include "platformerPlayerActor.h"
 
-PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pComponents)
+PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents)
 {
 	mSpeed = Vector2(pSpeed, 0.0f);
 	mSceneOwner = pScene;
 	mWindow = pWindow;
 	mTransform = pTransform;
 	mRenderer = pRenderer;
-	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
 	mCollidingActor = nullptr;
 
-	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
+	Collider2D* collider = new Collider2D(this, mCollidingActor);
 	AddComponent(collider);
 
 	mAnimations["walkSide"] = LoadTexturesFromFolder("JackSparrow\\WalkSide");
@@ -52,11 +51,6 @@ std::vector<Texture*> PlatformerPlayerActor::LoadTexturesFromFolder(std::string 
 		}
 	}
 	return textures;
-}
-
-Rectangle PlatformerPlayerActor::GetRect()
-{
-	return *mRect;
 }
 
 Vector2 PlatformerPlayerActor::GetBaseSpeed()

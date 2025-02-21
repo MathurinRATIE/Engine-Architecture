@@ -3,10 +3,9 @@
 #include "collider2DComponent.h"
 #include "collisionManager.h"
 
-Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor* pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive), IColliderListener()
+Collider2D::Collider2D(Actor* pOwner, Actor* pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive), IColliderListener()
 {
 	mOwner = pOwner;
-    mHitBox = pRect;
 	mCollidingActor = pCollidingActor;
 	mState = ColliderState::CollisionNone;
 
@@ -15,28 +14,16 @@ Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor* pCollidingActor, 
 
 void Collider2D::Update()
 {
-	for (Actor* actor : mOwner->GetScene()->GetActors())
-	{
-		if (actor != mOwner)
-		{
-			if (Collider2D* collider = actor->GetComponentOfType<Collider2D>())
-			{
-				if (CheckCollisions(collider->GetHitBox()))
-				{
-					mCollidingActor = actor;
-				}
-			}
-		}
-	}
 }
 
 bool Collider2D::CheckCollisions(Rectangle pBox)
 {
+	Rectangle hitBox = mOwner->GetRect();
 	// This
-	float selfXMin = mHitBox->mPosition.x;
-	float selfXMax = mHitBox->mPosition.x + mHitBox->mDimensions.x;
-	float selfYMin = mHitBox->mPosition.y;
-	float selfYMax = mHitBox->mPosition.y + mHitBox->mDimensions.y;
+	float selfXMin = hitBox.mPosition.x;
+	float selfXMax = hitBox.mPosition.x + hitBox.mDimensions.x;
+	float selfYMin = hitBox.mPosition.y;
+	float selfYMax = hitBox.mPosition.y + hitBox.mDimensions.y;
 
 	// Other
 	float otherXMin = pBox.mPosition.x;
@@ -57,7 +44,7 @@ bool Collider2D::CheckCollisions(Rectangle pBox)
 
 Rectangle Collider2D::GetHitBox()
 {
-	return *mHitBox;
+	return mOwner->GetRect();
 }
 
 void Collider2D::SetState(ColliderState pState)
@@ -73,4 +60,6 @@ ColliderState Collider2D::GetState()
 void Collider2D::OnNotifyCollider(Collider2D* pCollider, ColliderState pState)
 {
 	SetState(pState);
+
+	printf("Colliiiiiiiiide !");
 }

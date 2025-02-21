@@ -1,6 +1,6 @@
 #include "invaderActor.h"
 
-InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pComponents, pState, pTransform)
+InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
 	mScene = pScene;
 	mWindow = pWindow;
@@ -9,7 +9,7 @@ InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, 
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
 	mCollidingActor = nullptr;
 
-	Collider2D* collider = new Collider2D(mRect, this, mCollidingActor);
+	Collider2D* collider = new Collider2D(this, mCollidingActor);
 	AddComponent(collider);
 
 	Texture* invaderTexture = new Texture();

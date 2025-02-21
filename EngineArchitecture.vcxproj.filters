@@ -156,6 +156,9 @@
     <ClCompile Include="Engine\Colliders\colliderEvent.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Actors\platformActor.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Imports\pokeball.png">
@@ -168,6 +171,9 @@
       <Filter>Fichiers de ressources</Filter>
     </Image>
     <Image Include="Imports\SpaceShip.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Imports\Platform.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
@@ -296,6 +302,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Colliders\colliderEvent.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\platformActor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

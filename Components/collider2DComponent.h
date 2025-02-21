@@ -13,7 +13,7 @@ enum class ColliderState {
 class Collider2D : public IColliderListener, public Component
 {
 public :
-	Collider2D(Rectangle* pRect, Actor* pOwner, Actor* pCollidingActor = nullptr, int pUpdateOrder = 100, bool pIsActive = true);
+	Collider2D(Actor* pOwner, Actor* pCollidingActor = nullptr, int pUpdateOrder = 100, bool pIsActive = true);
 
 	void Update() override;
 
@@ -25,7 +25,6 @@ public :
 	void OnNotifyCollider(Collider2D* pCollider, ColliderState pState) override;
 
 protected :
-	Rectangle* mHitBox;
 	Actor* mCollidingActor;
 	ColliderState mState;
 };

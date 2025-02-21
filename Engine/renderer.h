@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "SDL_image.h"
 #include "rectangle.h"
 #include "window.h"

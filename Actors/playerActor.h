@@ -25,7 +25,6 @@ private :
 	Scene* mScene;
 	Rectangle* mRect;
 	MovementComponent* mMovements;
-	Renderer* mRenderer;
 	Actor* mCollidingActor;
 	float timeSinceLastShot = 0;
 };

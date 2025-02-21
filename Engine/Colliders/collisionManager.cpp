@@ -11,7 +11,6 @@ CollisionManager::~CollisionManager()
 
 void CollisionManager::CheckCollisions()
 {
-
 	for (std::pair<Collider2D*, ColliderEvent*> collider1 : mColliderEvents)
 	{
 		ColliderState previousState = collider1.first->GetState();
@@ -35,6 +34,7 @@ void CollisionManager::CheckCollisions()
 					break;
 				}
 
+				isColliding = true;
 				collider1.second->NotifyListeners(collider2.first, newState);
 			}
 		}
