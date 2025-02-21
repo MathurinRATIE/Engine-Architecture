@@ -27,5 +27,5 @@ private :
 	MovementComponent* mMovements;
 	Renderer* mRenderer;
 	Actor* mCollidingActor;
-	unsigned int timeSinceLastShot = 0;
+	float timeSinceLastShot = 0;
 };

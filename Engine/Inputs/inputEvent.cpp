@@ -23,7 +23,7 @@ void InputEvent::NotifyListeners(SDL_Event& pEvent) const
 {
     for (IInputListener* listener : mListeners)
     {
-        listener->OnNotify(pEvent);
+        listener->OnNotifyInput(pEvent);
     }
 }
   

@@ -1,6 +1,7 @@
 #include "moveComponent.h"
 #include "actor.h"
 #include "engineTime.h"
+#include "collider2DComponent.h"
 
 MoveComponent::MoveComponent(Actor* pOwner, int pUpdateOrder) : Component(pOwner, pUpdateOrder)
 {
@@ -19,6 +20,12 @@ void MoveComponent::SetSpeed(Vector2 pSpeed)
 
 void MoveComponent::Update()
 {
+	Collider2D* collider = mOwner->GetComponentOfType<Collider2D>();
+	if (collider != nullptr && collider->GetState() != ColliderState::CollisionNone)
+	{
+		return;
+	}
+
 	if (!Maths::NearZero(mSpeed.SqrLength()))
 	{
 		Vector2 position = mOwner->GetTransform().GetPosition();

@@ -1,12 +1,16 @@
 #include "actor.h"
 #include "scene.h"
 #include "collider2DComponent.h"
+#include "collisionManager.h"
 
-Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor* pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive)
+Collider2D::Collider2D(Rectangle* pRect, Actor* pOwner, Actor* pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive), IColliderListener()
 {
 	mOwner = pOwner;
     mHitBox = pRect;
 	mCollidingActor = pCollidingActor;
+	mState = ColliderState::CollisionNone;
+
+	CollisionManager::Instance().SubscribeTo(this, this);
 }
 
 void Collider2D::Update()
@@ -15,16 +19,11 @@ void Collider2D::Update()
 	{
 		if (actor != mOwner)
 		{
-			for (Component* component : actor->GetComponents())
+			if (Collider2D* collider = actor->GetComponentOfType<Collider2D>())
 			{
-				Collider2D* collider = dynamic_cast<Collider2D*>(component);
-
-				if (collider != nullptr)
+				if (CheckCollisions(collider->GetHitBox()))
 				{
-					if (CheckCollisions(collider->GetHitBox()))
-					{
-						mCollidingActor = actor;
-					}
+					mCollidingActor = actor;
 				}
 			}
 		}
@@ -59,4 +58,19 @@ bool Collider2D::CheckCollisions(Rectangle pBox)
 Rectangle Collider2D::GetHitBox()
 {
 	return *mHitBox;
+}
+
+void Collider2D::SetState(ColliderState pState)
+{
+	mState = pState;
+}
+
+ColliderState Collider2D::GetState()
+{
+	return mState;
+}
+
+void Collider2D::OnNotifyCollider(Collider2D* pCollider, ColliderState pState)
+{
+	SetState(pState);
 }

@@ -8,7 +8,7 @@ PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateO
 	InputManager::Instance().SubscribeTo(SDLK_d, this);
 }
 
-void PlayerControllerComponent::OnNotify(SDL_Event& pEvent)
+void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 {
 	switch (pEvent.key.keysym.sym)
 	{

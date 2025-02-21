@@ -5,5 +5,5 @@ class IInputListener
 {
 public:
 	virtual ~IInputListener() = default;
-	virtual void OnNotify(SDL_Event& pEvent) = 0;
+	virtual void OnNotifyInput(SDL_Event& pEvent) = 0;
 };
