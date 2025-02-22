@@ -113,9 +113,9 @@ ActorState Actor::GetState()
 	return mState;
 }
 
-Transform2D Actor::GetTransform()
+Transform2D* Actor::GetTransform()
 {
-	return mTransform;
+	return &mTransform;
 }
 
 std::vector<Component*> Actor::GetComponents()

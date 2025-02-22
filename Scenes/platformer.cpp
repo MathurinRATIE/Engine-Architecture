@@ -26,16 +26,11 @@ void Platformer::Update()
 
 void Platformer::Render()
 {
-	for (Actor* actor : mActors)
+	/*for (Actor* actor : mActors)            // Draw COLLISIONS
 	{
 		Color color = Color(0.0f, 1.0f, 1.0f, 1.0f);
-		Rectangle hitbox = actor->GetRect();//actor->GetComponentOfType<Collider2D>()->GetHitBox();
-		Vector2 pos = actor->GetTransform().GetPosition();
-		mRenderer->DrawRect(hitbox, color);
-
-		printf("%s\n", pos.ToString().c_str());
-		break;
-	}
+		mRenderer->DrawRect(actor->GetComponentOfType<Collider2D>()->GetHitBox(), color);
+	}*/
 
 	mRenderer->DrawSprites();
 }

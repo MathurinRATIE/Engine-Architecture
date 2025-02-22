@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "engineTime.h"
 #include "collider2DComponent.h"
+#include "collisionManager.h"
 
 MoveComponent::MoveComponent(Actor* pOwner, int pUpdateOrder) : Component(pOwner, pUpdateOrder)
 {
@@ -20,26 +21,18 @@ void MoveComponent::SetSpeed(Vector2 pSpeed)
 
 void MoveComponent::Update()
 {
-	Collider2D* collider = mOwner->GetComponentOfType<Collider2D>();
-	if (collider != nullptr && collider->GetState() != ColliderState::CollisionNone) // Test a desired position to avoid the little bounce
-	{
-		Vector2 position = mOwner->GetTransform().GetPosition();
-		position -= mAppliedMovement;
-
-		Transform2D transform = mOwner->GetTransform();
-		transform.SetPosition(position);
-		mOwner->SetTransform(transform);
-	}
-
 	if (!Maths::NearZero(mSpeed.SqrLength()))
 	{
-		Vector2 position = mOwner->GetTransform().GetPosition();
-		mAppliedMovement = (mOwner->GetTransform().Right() * mSpeed.x
-				    + mOwner->GetTransform().Up() * mSpeed.y) * Time::deltaTime;
-		position += mAppliedMovement;
+		Vector2 movement = (mOwner->GetTransform()->Right() * mSpeed.x +	// Calculate movement
+			mOwner->GetTransform()->Up() * mSpeed.y) * Time::deltaTime;
 
-		Transform2D transform = mOwner->GetTransform();
-		transform.SetPosition(position);
-		mOwner->SetTransform(transform);
+		Vector2 position = mOwner->GetTransform()->GetPosition() + movement;  // Apply movement
+		mOwner->GetTransform()->SetPosition(position);
+
+		if (CollisionManager::Instance().IsColliding(mOwner->GetComponentOfType<Collider2D>())) // Verify collisions
+		{
+			position -= movement;
+			mOwner->GetTransform()->SetPosition(position);
+		}
 	}
 }

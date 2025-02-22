@@ -9,6 +9,19 @@ CollisionManager::~CollisionManager()
 	}
 }
 
+bool CollisionManager::IsColliding(Collider2D* pCollider)
+{
+	for (std::pair<Collider2D*, ColliderEvent*> collider2 : mColliderEvents)
+	{
+		if (pCollider != collider2.first && pCollider->CheckCollisions(collider2.first->GetHitBox()))
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void CollisionManager::CheckCollisions()
 {
 	for (std::pair<Collider2D*, ColliderEvent*> collider1 : mColliderEvents)

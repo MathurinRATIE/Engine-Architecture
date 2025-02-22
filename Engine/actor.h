@@ -28,7 +28,7 @@ public :
 	virtual Rectangle GetRect();
 	Scene* GetScene();
 	ActorState GetState();
-	Transform2D GetTransform();
+	Transform2D* GetTransform();
 	std::vector<Component*> GetComponents();
 	SpriteComponent* GetSpriteComponent();
 

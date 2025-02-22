@@ -1,5 +1,6 @@
 #pragma once
 #include "rectangle.h"
+#include "vector4.h"
 #include "component.h"
 #include "IColliderListener.h"
 
@@ -13,7 +14,7 @@ enum class ColliderState {
 class Collider2D : public IColliderListener, public Component
 {
 public :
-	Collider2D(Actor* pOwner, Actor* pCollidingActor = nullptr, int pUpdateOrder = 100, bool pIsActive = true);
+	Collider2D(Actor* pOwner, Vector4 pOffset = Vector4::ZERO, Actor* pCollidingActor = nullptr, int pUpdateOrder = 100, bool pIsActive = true);
 
 	void Update() override;
 
@@ -25,6 +26,7 @@ public :
 	void OnNotifyCollider(Collider2D* pCollider, ColliderState pState) override;
 
 protected :
+	Vector4 mOffset;
 	Actor* mCollidingActor;
 	ColliderState mState;
 };

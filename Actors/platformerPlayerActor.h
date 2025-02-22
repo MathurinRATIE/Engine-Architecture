@@ -21,7 +21,6 @@ public :
 protected :
 	Vector2 mSpeed;
 	PlayerControllerComponent* mPlayerControllerComponent;
-	Actor* mCollidingActor;
 	AnimatedSpriteComponent* mAnimatedSprite;
 	std::map <std::string, std::vector<Texture*>> mAnimations;
 };

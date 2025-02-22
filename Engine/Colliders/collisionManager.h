@@ -11,6 +11,8 @@ public:
 	CollisionManager(const CollisionManager&) = delete;
 	CollisionManager& operator=(const CollisionManager&) = delete;
 
+
+	bool IsColliding(Collider2D* pCollider);
 	void CheckCollisions();
 	void SubscribeTo(Collider2D* pCollider, IColliderListener* pListener);
 

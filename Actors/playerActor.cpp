@@ -7,9 +7,8 @@ PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, st
 	mTransform = pTransform;
 	mRenderer = pRenderer;
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
-	mCollidingActor = nullptr;
 
-	Collider2D* collider = new Collider2D(this, mCollidingActor);
+	Collider2D* collider = new Collider2D(this);
 	AddComponent(collider);
 
 	Texture* spaceShipTexture = new Texture();
@@ -17,8 +16,8 @@ PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, st
 	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture, Renderer::Flip::None);
 	SetSprite(sprite);
 
-	mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
-	AddComponent(mMovements);
+	//mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);
+	//AddComponent(mMovements);
 }
 
 void PlayerActor::UpdateActor()

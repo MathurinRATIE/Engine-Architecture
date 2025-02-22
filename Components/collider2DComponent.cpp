@@ -3,9 +3,10 @@
 #include "collider2DComponent.h"
 #include "collisionManager.h"
 
-Collider2D::Collider2D(Actor* pOwner, Actor* pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive), IColliderListener()
+Collider2D::Collider2D(Actor* pOwner, Vector4 pOffset, Actor* pCollidingActor, int pUpdateOrder, bool pIsActive) : Component(pOwner, pUpdateOrder, pIsActive), IColliderListener()
 {
 	mOwner = pOwner;
+	mOffset = pOffset;
 	mCollidingActor = pCollidingActor;
 	mState = ColliderState::CollisionNone;
 
@@ -18,7 +19,7 @@ void Collider2D::Update()
 
 bool Collider2D::CheckCollisions(Rectangle pBox)
 {
-	Rectangle hitBox = mOwner->GetRect();
+	Rectangle hitBox = GetHitBox();
 	// This
 	float selfXMin = hitBox.mPosition.x;
 	float selfXMax = hitBox.mPosition.x + hitBox.mDimensions.x;
@@ -44,7 +45,13 @@ bool Collider2D::CheckCollisions(Rectangle pBox)
 
 Rectangle Collider2D::GetHitBox()
 {
-	return mOwner->GetRect();
+	Rectangle rect = mOwner->GetRect();
+	rect.mPosition.x -= mOffset.x;	// x --> horizontal before / y --> horizontal after / z --> vertical before / w --> vertical after
+	rect.mPosition.y -= mOffset.z;
+	rect.mDimensions.x += mOffset.x + mOffset.y;
+	rect.mDimensions.y += mOffset.z + mOffset.w;
+
+	return rect;
 }
 
 void Collider2D::SetState(ColliderState pState)
@@ -61,5 +68,8 @@ void Collider2D::OnNotifyCollider(Collider2D* pCollider, ColliderState pState)
 {
 	SetState(pState);
 
-	printf("Colliiiiiiiiide !");
+	if (pCollider)
+	{
+		mCollidingActor = pCollider->GetOwner();
+	}
 }

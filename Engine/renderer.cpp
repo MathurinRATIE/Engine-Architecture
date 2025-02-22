@@ -54,14 +54,14 @@ void Renderer::DrawSprites()
 {
     for (SpriteComponent* sprite : mSprites)
     {
-        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), sprite->GetOwner()->GetTransform().GetPosition(), sprite->GetFlip());
+        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), sprite->GetOwner()->GetTransform()->GetPosition(), sprite->GetFlip());
     }
 }
 
 void Renderer::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle, Vector2 pOrigin, Renderer::Flip pFlip) const
 {
     SDL_Rect destinationRect;
-    Transform2D transform = pActor->GetTransform();
+    Transform2D transform = *pActor->GetTransform();
     /*destinationRect.w = static_cast<int>(pTexture.GetWidth() * transform.GetScale().x);
     destinationRect.h = static_cast<int>(pTexture.GetWidth() * transform.GetScale().y);
     destinationRect.x = static_cast<int>(transform.GetPosition().x * pOrigin.x);

@@ -7,9 +7,8 @@ PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Ren
 	mWindow = pWindow;
 	mTransform = pTransform;
 	mRenderer = pRenderer;
-	mCollidingActor = nullptr;
 
-	Collider2D* collider = new Collider2D(this, mCollidingActor);
+	Collider2D* collider = new Collider2D(this, { -16, -16, -8, -2 });
 	AddComponent(collider);
 
 	mAnimations["walkSide"] = LoadTexturesFromFolder("JackSparrow\\WalkSide");

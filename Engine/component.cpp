@@ -3,6 +3,7 @@
 
 Component::Component(Actor* pOwner, int pUpdateOrder, bool pIsActive) : mOwner(pOwner), mUpdateOrder(pUpdateOrder), mIsActive(pIsActive)
 {
+	mOwner = pOwner;
 	mOwner->AddComponent(this);
 }
 

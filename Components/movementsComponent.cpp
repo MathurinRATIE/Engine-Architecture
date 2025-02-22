@@ -41,17 +41,17 @@ void MovementComponent::Update()
 		{
 			mPosition->x = 0;
 		}
-		else if (mPosition->x > mWindow->GetDimensions().x - mOwner->GetTransform().GetScale().x)
+		else if (mPosition->x > mWindow->GetDimensions().x - mOwner->GetTransform()->GetScale().x)
 		{
-			mPosition->x = mWindow->GetDimensions().x - mOwner->GetTransform().GetScale().x;
+			mPosition->x = mWindow->GetDimensions().x - mOwner->GetTransform()->GetScale().x;
 		}
 		if (mPosition->y < 0)
 		{
 			mPosition->y = 0;
 		}
-		else if (mPosition->y > mWindow->GetDimensions().y - mOwner->GetTransform().GetScale().y)
+		else if (mPosition->y > mWindow->GetDimensions().y - mOwner->GetTransform()->GetScale().y)
 		{
-			mPosition->y = mWindow->GetDimensions().y - mOwner->GetTransform().GetScale().y;
+			mPosition->y = mWindow->GetDimensions().y - mOwner->GetTransform()->GetScale().y;
 		}
 
 		mLastDirectionX = mDirectionX;
@@ -80,9 +80,7 @@ void MovementComponent::Update()
 		}
 	}
 
-	Transform2D transform = mOwner->GetTransform();
-	transform.SetPosition(*mPosition);
-	mOwner->SetTransform(transform);
+	mOwner->GetTransform()->SetPosition(*mPosition);
 }
 
 void MovementComponent::SetSpeedX(float pSpeedX)
