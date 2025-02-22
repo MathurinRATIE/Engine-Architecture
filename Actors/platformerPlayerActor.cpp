@@ -14,11 +14,13 @@ PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Ren
 	mAnimations["walkSide"] = LoadTexturesFromFolder("JackSparrow\\WalkSide");
 	mAnimations["walkBack"] = LoadTexturesFromFolder("JackSparrow\\WalkBack");
 	mAnimations["walkFront"] = LoadTexturesFromFolder("JackSparrow\\WalkFront");
-	mAnimations["idle"] = LoadTexturesFromFolder("JackSparrow\\Idle");
+	mAnimations["idleSide"] = LoadTexturesFromFolder("JackSparrow\\IdleSide");
+	mAnimations["idleBack"] = LoadTexturesFromFolder("JackSparrow\\IdleBack");
+	mAnimations["idleFront"] = LoadTexturesFromFolder("JackSparrow\\IdleFront");
 	//mAnimations["run"] = LoadTexturesFromFolder("JackSparrow\\Run");
 	//mAnimations["jump"] = LoadTexturesFromFolder("JackSparrow\\Jump");
 
-	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations, "idle", 1, Renderer::Flip::Horizontal);
+	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations, "idleFront", 1, Renderer::Flip::Horizontal);
 	mAnimatedSprite = animatedSprite;
 	AddComponent(animatedSprite);
 	SetSprite(animatedSprite);

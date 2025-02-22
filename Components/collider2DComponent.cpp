@@ -43,6 +43,29 @@ bool Collider2D::CheckCollisions(Rectangle pBox)
 	return false;
 }
 
+bool Collider2D::CheckGrounded(Rectangle pBox)
+{
+	Rectangle hitBox = GetHitBox();
+	// This
+	float selfXMin = hitBox.mPosition.x;
+	float selfXMax = hitBox.mPosition.x + hitBox.mDimensions.x;
+	float selfYMax = hitBox.mPosition.y + hitBox.mDimensions.y;
+
+	// Other
+	float otherXMin = pBox.mPosition.x;
+	float otherXMax = pBox.mPosition.x + pBox.mDimensions.x;
+	float otherYMin = pBox.mPosition.y;
+
+	if (!(selfXMin > otherXMax ||
+		selfXMax < otherXMin) &&
+		abs(selfYMax - otherYMin) < 5)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 Rectangle Collider2D::GetHitBox()
 {
 	Rectangle rect = mOwner->GetRect();

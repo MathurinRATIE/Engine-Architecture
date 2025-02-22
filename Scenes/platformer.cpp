@@ -7,9 +7,9 @@ void Platformer::Start(Renderer* pRenderer, Window* pWindow)
 	mRenderer = pRenderer;
 	mWindow = pWindow;
 
-	mPlayer = new PlatformerPlayerActor(this, mWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, { 64, 64 }), 50.0f);
+	mPlayer = new PlatformerPlayerActor(this, mWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2 }, { 64, 64 }), 50.0f);
 	
-	PlatformActor* platform = new PlatformActor(this, mWindow, mRenderer, {}, ActorState::Active, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2 }, { 105, 23 }));
+	PlatformActor* platform = new PlatformActor(this, mWindow, mRenderer, {}, ActorState::Active, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2 + 100 }, { 105, 23 }));
 }
 
 void Platformer::Update()

@@ -45,10 +45,18 @@ void CollisionManager::CheckCollisions()
 				case ColliderState::CollisionNone:
 					newState = ColliderState::CollisionEnter;
 					break;
+				case ColliderState::CollisionGounded:
+					newState = ColliderState::CollisionEnter;
+					break;
 				}
 
 				isColliding = true;
 				collider1.second->NotifyListeners(collider2.first, newState);
+				break;
+			}
+			else if (collider1 != collider2 && collider1.first->CheckGrounded(collider2.first->GetHitBox())) {
+				isColliding = true;
+				collider1.second->NotifyListeners(collider2.first, ColliderState::CollisionGounded);
 			}
 		}
 
@@ -60,9 +68,12 @@ void CollisionManager::CheckCollisions()
 				collider1.second->NotifyListeners(nullptr, ColliderState::CollisionExit);
 				break;
 			case ColliderState::CollisionTrigger:
-					collider1.second->NotifyListeners(nullptr, ColliderState::CollisionExit);
-					break;
+				collider1.second->NotifyListeners(nullptr, ColliderState::CollisionExit);
+				break;
 			case ColliderState::CollisionExit:
+				collider1.first->SetState(ColliderState::CollisionNone);
+				break;
+			case ColliderState::CollisionGounded:
 				collider1.first->SetState(ColliderState::CollisionNone);
 				break;
 			}

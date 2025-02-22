@@ -8,7 +8,8 @@ enum class ColliderState {
 	CollisionEnter,
 	CollisionTrigger,
 	CollisionExit,
-	CollisionNone
+	CollisionNone,
+	CollisionGounded
 };
 
 class Collider2D : public IColliderListener, public Component
@@ -19,6 +20,7 @@ public :
 	void Update() override;
 
 	bool CheckCollisions(Rectangle pBox);
+	bool CheckGrounded(Rectangle pBox);
 	Rectangle GetHitBox();
 	void SetState(ColliderState pState);
 	ColliderState GetState();

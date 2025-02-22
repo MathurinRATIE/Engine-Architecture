@@ -155,6 +155,7 @@
     <ClCompile Include="Components\moveComponent.cpp" />
     <ClCompile Include="Components\movementsComponent.cpp" />
     <ClCompile Include="Components\playerControllerComponent.cpp" />
+    <ClCompile Include="Components\rigidBody.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
     <ClCompile Include="Engine\actor.cpp" />
     <ClCompile Include="Engine\assets.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Components\moveComponent.h" />
     <ClInclude Include="Components\movementsComponent.h" />
     <ClInclude Include="Components\playerControllerComponent.h" />
+    <ClInclude Include="Components\rigidBody.h" />
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
     <ClInclude Include="Engine\actorState.h" />
