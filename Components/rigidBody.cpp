@@ -33,9 +33,9 @@ void RigidBody::SetVelocityY(float pVelocityY)
 	mVelocity.y = pVelocityY;
 }
 
-Vector2 RigidBody::GetVelocity()
+Vector2* RigidBody::GetVelocity()
 {
-	return mVelocity;
+	return &mVelocity;
 }
 
 void RigidBody::Update()

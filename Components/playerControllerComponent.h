@@ -15,4 +15,6 @@ public :
 
 private:
 	RigidBody* mRigidBody;
+	bool mIsJumpping = false;
+	bool mGrounded = false;
 };

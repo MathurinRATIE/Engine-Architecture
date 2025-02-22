@@ -4,12 +4,13 @@
 
 PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateOrder) : MoveComponent(pOwner, pUpdateOrder), IInputListener()
 {
-	InputManager::Instance().SubscribeTo(SDLK_z, this);
 	InputManager::Instance().SubscribeTo(SDLK_q, this);
-	InputManager::Instance().SubscribeTo(SDLK_s, this);
 	InputManager::Instance().SubscribeTo(SDLK_d, this);
+	InputManager::Instance().SubscribeTo(SDLK_SPACE, this);
+	//InputManager::Instance().SubscribeTo(SDLK_z, this);
+	//InputManager::Instance().SubscribeTo(SDLK_s, this);
 
-	mRigidBody = new RigidBody(mOwner, 40.0f, true);
+	mRigidBody = new RigidBody(mOwner, 20.0f, true);
 }
 
 PlayerControllerComponent::~PlayerControllerComponent()
@@ -73,22 +74,47 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 				mRigidBody->SetVelocityX(0.0f);
 			}
 			break;
+		case SDLK_SPACE:
+			if (pEvent.type == SDL_KEYDOWN)
+			{
+				mIsJumpping = true;
+				mRigidBody->SetVelocityY(200.0f);
+			}
 		}
+	}
+	if (pEvent.key.keysym.sym == SDLK_SPACE && pEvent.type == SDL_KEYUP)
+	{
+		mIsJumpping = false;
 	}
 }
 
 void PlayerControllerComponent::Update()
 {
 	mRigidBody->Update();
-	Vector2 velocity = mRigidBody->GetVelocity();
+	Vector2* velocity = mRigidBody->GetVelocity();
 
-	if (!Maths::NearZero(velocity.SqrLength()) && mOwner->GetComponentOfType<Collider2D>()->GetState() == ColliderState::CollisionGounded)
+	if (!Maths::NearZero(velocity->SqrLength()) && mOwner->GetComponentOfType<Collider2D>()->GetState() == ColliderState::CollisionGounded && !mIsJumpping)
 	{
 		mRigidBody->SetVelocityY(0.0f);
 	}
 
-	Vector2 movement = (mOwner->GetTransform()->Right() * velocity.x 
-		              + mOwner->GetTransform()->Up()* velocity.y) * Time::deltaTime;
+	if (mOwner->GetComponentOfType<Collider2D>()->GetState() == ColliderState::CollisionGounded)
+	{
+		if (!mGrounded)
+		{
+			mRigidBody->SetVelocityX(0.0f);
+		}
+
+		mGrounded = true;
+		printf("GROUNDED");
+	}
+	else {
+		mGrounded = false;
+		printf("In the air");
+	}
+
+	Vector2 movement = (mOwner->GetTransform()->Right() * velocity->x 
+		              + mOwner->GetTransform()->Up()* velocity->y) * Time::deltaTime;
 
 	Vector2 position = mOwner->GetTransform()->GetPosition() + movement;	// Apply movement
 	mOwner->GetTransform()->SetPosition(position);
@@ -97,5 +123,6 @@ void PlayerControllerComponent::Update()
 	{
 		position -= movement;
 		mOwner->GetTransform()->SetPosition(position);
+		mRigidBody->SetVelocityY(0.0f);
 	}
 }

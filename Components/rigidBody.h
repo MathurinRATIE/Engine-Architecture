@@ -12,7 +12,7 @@ public:
 	void SetVelocity(Vector2 pVelocity);
 	void SetVelocityX(float pVelocityX);
 	void SetVelocityY(float pVelocityY);
-	Vector2 GetVelocity();
+	Vector2* GetVelocity();
 
 	void Update() override;
 
