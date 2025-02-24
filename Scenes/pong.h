@@ -9,7 +9,7 @@ class Pong : public Scene
 public :
 	Pong();
 
-	void Start(Renderer* pRenderer, Window* rWindow) override;
+	void Start(RendererSdl* pRenderer, Window* rWindow) override;
 	void Update() override;
 	void Render() override;
 	void Close() override;

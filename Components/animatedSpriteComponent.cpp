@@ -1,6 +1,6 @@
 #include "animatedSpriteComponent.h"
 
-AnimatedSpriteComponent::AnimatedSpriteComponent(Actor* pOwner, std::map <std::string, std::vector<Texture*>> pAnimations, std::string pCurrentAnimationName, int pDrawOrder, Renderer::Flip pFlip) : SpriteComponent(pOwner, *pAnimations[pCurrentAnimationName][0], pFlip, pDrawOrder)
+AnimatedSpriteComponent::AnimatedSpriteComponent(Actor* pOwner, std::map <std::string, std::vector<Texture*>> pAnimations, std::string pCurrentAnimationName, int pDrawOrder, RendererSdl::Flip pFlip) : SpriteComponent(pOwner, *pAnimations[pCurrentAnimationName][0], pFlip, pDrawOrder)
 {
 	mAnimations = pAnimations;
 	mCurrentFrame = 0.0f;

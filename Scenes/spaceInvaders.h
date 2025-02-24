@@ -9,7 +9,7 @@ class SpaceInvaders : public Scene
 public :
 	SpaceInvaders() : Scene(), mPlayer(nullptr) {};
 
-	void Start(Renderer* pRenderer, Window* pWindow) override;
+	void Start(RendererSdl* pRenderer, Window* pWindow) override;
 	void Update() override;
 	void Render() override;
 	void Close() override;

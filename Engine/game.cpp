@@ -18,7 +18,7 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), m
 
     //Create window
     mWindow = new Window(800, 800);
-    mRenderer = new Renderer();
+    mRenderer = new RendererSdl();
 }
 
 void Game::Initialize()

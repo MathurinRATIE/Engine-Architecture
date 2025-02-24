@@ -1,7 +1,7 @@
 #pragma once
 #include <filesystem>
 #include "actor.h"
-#include "renderer.h"
+#include "rendererSdl.h"
 #include "playerControllerComponent.h"
 #include "animatedSpriteComponent.h"
 #include "collider2DComponent.h"
@@ -10,7 +10,7 @@
 class PlatformerPlayerActor : public Actor
 {
 public :
-	PlatformerPlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), float pSpeed = 1.0f, ActorState pState = ActorState::Active);
+	PlatformerPlayerActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), float pSpeed = 1.0f, ActorState pState = ActorState::Active);
 	
 	void UpdateActor() override;
 

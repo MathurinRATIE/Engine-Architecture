@@ -16,7 +16,7 @@ public :
 private:
 	RigidBody* mRigidBody;
 	int mMovementDirection = 0;		// 0: static | 1: right | -1: left
-	int mCurrentlyAppliedDirection;
+	int mCurrentlyAppliedDirection = NULL;
 	bool mIsJumpping = false;
 	bool mGrounded = false;
 };

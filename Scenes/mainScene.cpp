@@ -1,7 +1,7 @@
 
 #include "mainScene.h"
 
-void MainScene::Start(Renderer* pRenderer, Window* pWindow)
+void MainScene::Start(RendererSdl* pRenderer, Window* pWindow)
 {
 	mRenderer = pRenderer;
 	mWindow = pWindow;

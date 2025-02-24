@@ -27,6 +27,7 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 		case SDLK_SPACE:
 			if (pEvent.type == SDL_KEYDOWN)
 			{
+				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("jump");
 				mIsJumpping = true;
 				mRigidBody->SetVelocityY(200.0f);
 			}
@@ -68,7 +69,7 @@ void PlayerControllerComponent::Update()
 
 	if (mOwner->GetComponentOfType<Collider2D>()->GetState() == ColliderState::CollisionGounded)
 	{
-		if (mMovementDirection != mCurrentlyAppliedDirection)
+		if (mMovementDirection != mCurrentlyAppliedDirection || !mGrounded)
 		{
 			switch (mMovementDirection)
 			{
@@ -89,11 +90,16 @@ void PlayerControllerComponent::Update()
 			}
 			mCurrentlyAppliedDirection = mMovementDirection;
 		}
+		mGrounded = true;
 
 		if (!mIsJumpping)
 		{
 			mRigidBody->SetVelocityY(0.0f);
 		}
+	}
+	else
+	{
+		mGrounded = false;
 	}
 
 	Vector2* velocity = mRigidBody->GetVelocity();
@@ -118,7 +124,7 @@ void PlayerControllerComponent::Update()
 
 			if (collider->CheckCollisions(collider->GetCollidingActor()->GetComponentOfType<Collider2D>()))
 			{
-				position += {movement.y, 0};
+				position -= {movement.x, 0};
 				mOwner->GetTransform()->SetPosition(position);
 			}
 		}

@@ -1,6 +1,6 @@
 #include "wallActor.h"
 
-WallActor::WallActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+WallActor::WallActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
 	mTransform = pTransform;
 	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());

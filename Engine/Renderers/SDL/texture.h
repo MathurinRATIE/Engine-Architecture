@@ -1,10 +1,10 @@
 #pragma once
-#include "renderer.h"
+#include "rendererSdl.h"
 
 class Texture
 {
 public :
-	bool Load(Renderer& pRenderer, const std::string& pFileName);
+	bool Load(RendererSdl& pRenderer, const std::string& pFileName);
 	void Unload();
 	void UpdateInfo(int& pWidthOut, int& pHeightOut);
 

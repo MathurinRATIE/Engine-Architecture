@@ -75,7 +75,7 @@ std::vector<Actor*> Scene::GetActors()
 	return mActors;
 }
 
-Renderer* Scene::GetRenderer()
+RendererSdl* Scene::GetRenderer()
 {
 	return mRenderer;
 }

@@ -15,7 +15,7 @@ enum class ColliderState {
 class Collider2D : public IColliderListener, public Component
 {
 public :
-	Collider2D(Actor* pOwner, Vector4 pOffset = Vector4::ZERO, Actor* pCollidingActor = nullptr, int pUpdateOrder = 100, bool pIsActive = true);
+	Collider2D(Actor* pOwner, Vector4 pOffset = Vector4(), Actor* pCollidingActor = nullptr, int pUpdateOrder = 100, bool pIsActive = true);
 
 	void Update() override;
 

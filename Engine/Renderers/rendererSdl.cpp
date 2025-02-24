@@ -1,12 +1,12 @@
-#include "renderer.h"
+#include "rendererSdl.h"
 #include "spriteComponent.h"
 #include "texture.h"
 
-Renderer::Renderer():mSdlRenderer(nullptr)
+RendererSdl::RendererSdl():mSdlRenderer(nullptr)
 {
 }
 
-bool Renderer::Initialize(Window* rWindow)
+bool RendererSdl::Initialize(Window* rWindow)
 {
     mSdlRenderer = SDL_CreateRenderer(rWindow->GetSdlWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!mSdlRenderer)
@@ -22,35 +22,39 @@ bool Renderer::Initialize(Window* rWindow)
     return true;
 }
 
-void Renderer::BeginDraw()
+void RendererSdl::BeginDraw()
 {
     SDL_SetRenderDrawColor(mSdlRenderer, 120, 120, 255, 255);
     SDL_RenderClear(mSdlRenderer);
 }
 
-void Renderer::EndDraw()
+void RendererSdl::Draw()
+{
+}
+
+void RendererSdl::EndDraw()
 {
     SDL_RenderPresent(mSdlRenderer);
 }
 
-void Renderer::Close()
+void RendererSdl::Close()
 {
     SDL_DestroyRenderer(mSdlRenderer);
 }
 
-void Renderer::DrawRect(Rectangle pRect, Color pColor)
+void RendererSdl::DrawRect(Rectangle pRect, Color pColor)
 {
     SDL_SetRenderDrawColor(mSdlRenderer, static_cast<int>(pColor.x * 255.0f), static_cast<int>(pColor.y * 255.0f), static_cast<int>(pColor.z * 255.0f), static_cast<int>(pColor.w * 255.0f));
     SDL_Rect sdlRect = pRect.ToSdlRect();
     SDL_RenderFillRect(mSdlRenderer, &sdlRect);
 }
 
-SDL_Renderer* Renderer::GetRenderer()
+SDL_Renderer* RendererSdl::GetRenderer()
 {
     return mSdlRenderer;
 }
 
-void Renderer::DrawSprites()
+void RendererSdl::DrawSprites()
 {
     for (SpriteComponent* sprite : mSprites)
     {
@@ -58,7 +62,7 @@ void Renderer::DrawSprites()
     }
 }
 
-void Renderer::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle, Vector2 pOrigin, Renderer::Flip pFlip) const
+void RendererSdl::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle, Vector2 pOrigin, Flip pFlip) const
 {
     SDL_Rect destinationRect;
     Transform2D transform = *pActor->GetTransform();
@@ -97,7 +101,7 @@ void Renderer::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle,
     delete sourceSDL;
 }
 
-void Renderer::AddSprite(SpriteComponent* pSprite)
+void RendererSdl::AddSprite(SpriteComponent* pSprite)
 {
     int spriteDrawOrder = pSprite->GetDrawOrder();
     std::vector<SpriteComponent*>::iterator spriteComponentIterator;
@@ -113,9 +117,14 @@ void Renderer::AddSprite(SpriteComponent* pSprite)
     mSprites.insert(spriteComponentIterator, pSprite);
 }
 
-void Renderer::RemoveSprite(SpriteComponent* pSprite)
+void RendererSdl::RemoveSprite(SpriteComponent* pSprite)
 {
     std::vector<SpriteComponent*>::iterator spriteComponentIterator;
     spriteComponentIterator = std::find(mSprites.begin(), mSprites.end(), pSprite);
     mSprites.erase(spriteComponentIterator);
+}
+
+IRenderer::RendererType RendererSdl::GetType()
+{
+    return RendererType::SDL;
 }

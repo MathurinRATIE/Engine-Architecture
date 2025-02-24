@@ -1,132 +1,82 @@
-#include "Vector3.h"
+#include "vector3.h"
+#include "matrix4.h"
+#include "quaternion.h"
 
-const Vector3 Vector3::ZERO{ 0.0f, 0.0f, 0.0f };
-const Vector3 Vector3::ONE{ 1.0f, 1.0f, 1.0f };
+const Vector3 Vector3::zero(0.0f, 0.0f, 0.f);
+const Vector3 Vector3::unitX(1.0f, 0.0f, 0.0f);
+const Vector3 Vector3::unitY(0.0f, 1.0f, 0.0f);
+const Vector3 Vector3::unitZ(0.0f, 0.0f, 1.0f);
+const Vector3 Vector3::negUnitX(-1.0f, 0.0f, 0.0f);
+const Vector3 Vector3::negUnitY(0.0f, -1.0f, 0.0f);
+const Vector3 Vector3::negUnitZ(0.0f, 0.0f, -1.0f);
+const Vector3 Vector3::infinity(Maths::INFINITY_POS, Maths::INFINITY_POS, Maths::INFINITY_POS);
+const Vector3 Vector3::negInfinity(Maths::INFINITY_NEG, Maths::INFINITY_NEG, Maths::INFINITY_NEG);
 
-Vector3::Vector3()
+void Vector3::Set(float xP, float yP, float zP)
 {
-    x = 0;
-    y = 0;
-    z = 0;
+	x = xP;
+	y = yP;
+	z = zP;
 }
 
-Vector3::Vector3(float pX, float pY, float pZ)
+float Vector3::LengthSq() const
 {
-    x = pX;
-    y = pY;
-    z = pZ;
+	return (x * x + y * y + z * z);
 }
 
-Vector3 Vector3::normalized()
+float Vector3::Length() const
 {
-    float length = Magnitude();
-    if (length == 0)
-    {
-        return ZERO;
-    }
-
-    return (*this) / Magnitude();
+	return (Maths::Sqrt(LengthSq()));
 }
 
-void Vector3::normalize()
+void Vector3::Normalize()
 {
-    float length = Magnitude();
-    if (length == 0)
-    {
-        return;
-    }
-
-    (*this) /= Magnitude();
+	float len = Length();
+	x /= len;
+	y /= len;
+	z /= len;
 }
 
-float Vector3::Magnitude() const
+
+
+Vector3 Vector3::Transform(Vector3& vec, Matrix4& mat, float w)
 {
-    return sqrt(x * x + y * y + z * z);
+	Vector3 retVal;
+	retVal.x = vec.x * mat(0, 0) + vec.y * mat(1, 0) +
+		vec.z * mat(2, 0) + w * mat(3, 0);
+	retVal.y = vec.x * mat(0, 1) + vec.y * mat(1, 1) +
+		vec.z * mat(2, 1) + w * mat(3, 1);
+	retVal.z = vec.x * mat(0, 2) + vec.y * mat(1, 2) +
+		vec.z * mat(2, 2) + w * mat(3, 2);
+	//ignore w since we aren't returning a new value for it...
+	return retVal;
 }
 
-float Vector3::dot(const Vector3& otherVector) const
+Vector3 Vector3::TransformWithPerspDiv(Vector3& vec, Matrix4& mat, float w)
 {
-    return x * otherVector.x + y * otherVector.y + z * otherVector.z;
+	Vector3 retVal;
+	retVal.x = vec.x * mat(0, 0) + vec.y * mat(1, 0) +
+		vec.z * mat(2, 0) + w * mat(3, 0);
+	retVal.y = vec.x * mat(0, 1) + vec.y * mat(1, 1) +
+		vec.z * mat(2, 1) + w * mat(3, 1);
+	retVal.z = vec.x * mat(0, 2) + vec.y * mat(1, 2) +
+		vec.z * mat(2, 2) + w * mat(3, 2);
+	float transformedW = vec.x * mat(0, 3) + vec.y * mat(1, 3) +
+		vec.z * mat(2, 3) + w * mat(3, 3);
+	if (!Maths::NearZero(Maths::Abs(transformedW)))
+	{
+		transformedW = 1.0f / transformedW;
+		retVal *= transformedW;
+	}
+	return retVal;
 }
 
-Vector3 Vector3::cross(const Vector3& otherVector) const
-{
-    return { y * otherVector.z - z * otherVector.y, z * otherVector.x - x * otherVector.z, x * otherVector.y - y * otherVector.x };
-}
 
-std::string Vector3::ToString() const
+Vector3 Vector3::Transform(const Vector3& v, const Quaternion& q)
 {
-    return "( " + std::to_string(x) + " , " + std::to_string(y) + " , " + std::to_string(z) + " )";
-}
-
-void Vector3::operator+=(const Vector3& right)
-{
-    x += right.x;
-    y += right.y;
-    z += right.z;
-}
-
-void Vector3::operator-=(const Vector3& right)
-{
-    x -= right.x;
-    y -= right.y;
-    z -= right.z;
-}
-
-void Vector3::operator*=(const float value)
-{
-    x *= value;
-    y *= value;
-    z *= value;
-}
-
-void Vector3::operator/=(const float value)
-{
-    x /= value;
-    y /= value;
-    z /= value;
-}
-
-Vector3 operator+(const Vector3& left, const Vector3& right)
-{
-    return Vector3(left.x + right.x, left.y + right.y, left.z + right.z);
-}
-
-Vector3 operator-(const Vector3& left, const Vector3& right)
-{
-    return Vector3(left.x - right.x, left.y - right.y, left.z - right.z);
-}
-
-Vector3 operator*(const Vector3& left, const float value)
-{
-    return Vector3(left.x * value, left.y * value, left.z * value);
-}
-
-Vector3 operator*(const float value, const Vector3& right)
-{
-    return Vector3(value * right.x, value * right.y, value * right.z);
-}
-
-Vector3 operator/(const Vector3& left, const float value)
-{
-    if (value != 0.0f)
-    {
-        return Vector3(left.x / value, left.y / value, left.z / value);
-    }
-    else
-    {
-        throw std::invalid_argument("Cannot divide by zero.");
-    }
-}
-
-Vector3 operator/(const float value, const Vector3& right)
-{
-    if (right.x != 0.0f && right.y != 0.0f && right.z != 0.0f)
-    {
-        return Vector3(value / right.x, value / right.y, value / right.z);
-    }
-    else
-    {
-        throw std::invalid_argument("Cannot divide by zero.");
-    }
+	// v + 2.0*cross(q.xyz, cross(q.xyz,v) + q.w*v);
+	Vector3 qv(q.x, q.y, q.z);
+	Vector3 retVal = v;
+	retVal += 2.0f * Vector3::Cross(qv, Vector3::Cross(qv, v) + q.w * v);
+	return retVal;
 }

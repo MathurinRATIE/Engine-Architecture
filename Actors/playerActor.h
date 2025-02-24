@@ -12,7 +12,7 @@
 class PlayerActor : public Actor
 {
 public :
-	PlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), float mSpeedX = 1.0f, float mSpeedY = 1.0f, ActorState pState = ActorState::Active);
+	PlayerActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), float mSpeedX = 1.0f, float mSpeedY = 1.0f, ActorState pState = ActorState::Active);
 
 	void UpdateActor() override;
 

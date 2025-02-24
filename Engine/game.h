@@ -17,7 +17,7 @@ public :
 
 private :
 	Window* mWindow;
-	Renderer* mRenderer;
+	RendererSdl* mRenderer;
 	std::string mTitle;
 	std::vector<Scene*> mScenes;
 	int mLoadedScene;

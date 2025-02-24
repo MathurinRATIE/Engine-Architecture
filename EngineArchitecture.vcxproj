@@ -83,14 +83,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2_image.lib;glu32.lib;glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderer</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -164,11 +164,14 @@
     <ClCompile Include="Engine\component.cpp" />
     <ClCompile Include="Engine\game.cpp" />
     <ClCompile Include="Engine\log.cpp" />
+    <ClCompile Include="Engine\Maths\matrix4.cpp" />
+    <ClCompile Include="Engine\Maths\matrix4Row.cpp" />
+    <ClCompile Include="Engine\Maths\quaternion.cpp" />
     <ClCompile Include="Engine\Maths\vector2.cpp" />
     <ClCompile Include="Engine\Maths\vector3.cpp" />
     <ClCompile Include="Engine\Maths\vector4.cpp" />
     <ClCompile Include="Engine\rectangle.cpp" />
-    <ClCompile Include="Engine\renderer.cpp" />
+    <ClCompile Include="Engine\Renderer\rendererSdl.cpp" />
     <ClCompile Include="Engine\scene.cpp" />
     <ClCompile Include="Engine\texture.cpp" />
     <ClCompile Include="Engine\engineTime.cpp" />
@@ -217,11 +220,15 @@
     <ClInclude Include="Engine\Inputs\IInputListener.h" />
     <ClInclude Include="Engine\log.h" />
     <ClInclude Include="Engine\Maths\maths.h" />
+    <ClInclude Include="Engine\Maths\matrix4.h" />
+    <ClInclude Include="Engine\Maths\matrix4Row.h" />
+    <ClInclude Include="Engine\Maths\quaternion.h" />
     <ClInclude Include="Engine\Maths\vector2.h" />
     <ClInclude Include="Engine\Maths\vector3.h" />
     <ClInclude Include="Engine\Maths\vector4.h" />
     <ClInclude Include="Engine\rectangle.h" />
-    <ClInclude Include="Engine\renderer.h" />
+    <ClInclude Include="Engine\Renderer\IRenderer.h" />
+    <ClInclude Include="Engine\Renderer\rendererSdl.h" />
     <ClInclude Include="Engine\resource.h" />
     <ClInclude Include="Engine\scene.h" />
     <ClInclude Include="Engine\texture.h" />

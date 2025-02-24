@@ -8,7 +8,7 @@ class MainScene : public Scene
 public :
 	MainScene() : Scene() {};
 
-	void Start(Renderer* pRenderer, Window* pWindow) override;
+	void Start(RendererSdl* pRenderer, Window* pWindow) override;
 	void Update() override;
 	void Render() override;
 	void Close() override;

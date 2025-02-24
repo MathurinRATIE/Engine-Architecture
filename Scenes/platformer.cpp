@@ -2,7 +2,7 @@
 #include "platformActor.h"
 #include "collisionManager.h"
 
-void Platformer::Start(Renderer* pRenderer, Window* pWindow)
+void Platformer::Start(RendererSdl* pRenderer, Window* pWindow)
 {
 	mRenderer = pRenderer;
 	mWindow = pWindow;

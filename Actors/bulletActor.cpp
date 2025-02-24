@@ -1,6 +1,6 @@
 #include "bulletActor.h"
 
-BulletActor::BulletActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY, Transform2D pTransform, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+BulletActor::BulletActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY, Transform2D pTransform, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
     mSceneOwner = pScene;
     mWindow = pWindow;
@@ -16,7 +16,7 @@ BulletActor::BulletActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, st
 
     Texture* bulletTexture = new Texture();
     bulletTexture->Load(*pRenderer, "Imports/Bullet.png");
-    SpriteComponent* sprite = new SpriteComponent(this, *bulletTexture, Renderer::Flip::None);
+    SpriteComponent* sprite = new SpriteComponent(this, *bulletTexture, RendererSdl::Flip::None);
     SetSprite(sprite);
 
     //mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, 1.0f, 5.0f);

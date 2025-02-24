@@ -1,6 +1,6 @@
 #include "spriteComponent.h"
 
-SpriteComponent::SpriteComponent(Actor* pOwner, Texture& pTexture, Renderer::Flip pFlip, int pDrawOrder) :
+SpriteComponent::SpriteComponent(Actor* pOwner, Texture& pTexture, RendererSdl::Flip pFlip, int pDrawOrder) :
 	Component(pOwner),
 	mTexture(pTexture),
 	mFlip(pFlip),
@@ -22,7 +22,7 @@ void SpriteComponent::SetTexture(const Texture& pTexture)
 	mTexture.UpdateInfo(mTexWidth, mTexHeight);
 }
 
-void SpriteComponent::Draw(Renderer& pRenderer)
+void SpriteComponent::Draw(RendererSdl& pRenderer)
 {
 	Vector2 origin{ mTexWidth / 2.0f, mTexHeight / 2.0f };
 	pRenderer.DrawSprite(mOwner, mTexture, Rectangle(), origin, mFlip);
@@ -30,12 +30,12 @@ void SpriteComponent::Draw(Renderer& pRenderer)
 
 void SpriteComponent::SetFlipX(bool isFlipped)
 {
-	isFlipped ? mFlip = Renderer::Flip::Horizontal : mFlip = Renderer::Flip::None;
+	isFlipped ? mFlip = RendererSdl::Flip::Horizontal : mFlip = RendererSdl::Flip::None;
 }
 
 void SpriteComponent::SetFlipY(bool isFlipped)
 {
-	isFlipped ? mFlip = Renderer::Flip::Vertical : mFlip = Renderer::Flip::None;
+	isFlipped ? mFlip = RendererSdl::Flip::Vertical : mFlip = RendererSdl::Flip::None;
 }
 
 int SpriteComponent::GetDrawOrder() const
@@ -58,7 +58,7 @@ Texture SpriteComponent::GetTexture() const
 	return mTexture;
 }
 
-Renderer::Flip SpriteComponent::GetFlip() const
+RendererSdl::Flip SpriteComponent::GetFlip() const
 {
 	return mFlip;
 }

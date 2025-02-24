@@ -6,7 +6,7 @@
 #include <vector>
 
 class Scene;
-class Renderer;
+class RendererSdl;
 class Component;
 class SpriteComponent;
 
@@ -15,7 +15,7 @@ class Actor
 protected:
 	Scene* mSceneOwner;
 	Window* mWindow;
-	Renderer* mRenderer;
+	RendererSdl* mRenderer;
 	ActorState mState;
 	Transform2D mTransform;
 	SpriteComponent* mSprite;
@@ -23,7 +23,7 @@ protected:
 	std::vector<std::string> mTags;
 
 public :
-	Actor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
+	Actor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
 	virtual ~Actor();
 	Actor(const Actor&) = delete;
 	Actor& operator=(const Actor&) = delete;

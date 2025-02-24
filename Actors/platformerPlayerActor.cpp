@@ -1,6 +1,6 @@
 #include "platformerPlayerActor.h"
 
-PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents)
+PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents)
 {
 	mSpeed = Vector2(pSpeed, 0.0f);
 	mSceneOwner = pScene;
@@ -8,19 +8,19 @@ PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Ren
 	mTransform = pTransform;
 	mRenderer = pRenderer;
 
-	Collider2D* collider = new Collider2D(this, { -16, -16, -8, -2 });
+	Collider2D* collider = new Collider2D(this, Vector4(- 16, -16, -8, -2));
 	AddComponent(collider);
 
 	mAnimations["walkSide"] = LoadTexturesFromFolder("JackSparrow\\WalkSide");
-	mAnimations["walkBack"] = LoadTexturesFromFolder("JackSparrow\\WalkBack");
-	mAnimations["walkFront"] = LoadTexturesFromFolder("JackSparrow\\WalkFront");
+	//mAnimations["walkBack"] = LoadTexturesFromFolder("JackSparrow\\WalkBack");
+	//mAnimations["walkFront"] = LoadTexturesFromFolder("JackSparrow\\WalkFront");
 	mAnimations["idleSide"] = LoadTexturesFromFolder("JackSparrow\\IdleSide");
-	mAnimations["idleBack"] = LoadTexturesFromFolder("JackSparrow\\IdleBack");
-	mAnimations["idleFront"] = LoadTexturesFromFolder("JackSparrow\\IdleFront");
+	//mAnimations["idleBack"] = LoadTexturesFromFolder("JackSparrow\\IdleBack");
+	//mAnimations["idleFront"] = LoadTexturesFromFolder("JackSparrow\\IdleFront");
 	//mAnimations["run"] = LoadTexturesFromFolder("JackSparrow\\Run");
-	//mAnimations["jump"] = LoadTexturesFromFolder("JackSparrow\\Jump");
+	mAnimations["jump"] = LoadTexturesFromFolder("JackSparrow\\Jump");
 
-	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations, "idleFront", 1, Renderer::Flip::Horizontal);
+	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations, "idleSide", 1, RendererSdl::Flip::Horizontal);
 	mAnimatedSprite = animatedSprite;
 	AddComponent(animatedSprite);
 	SetSprite(animatedSprite);

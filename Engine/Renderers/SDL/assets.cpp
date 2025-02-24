@@ -2,11 +2,11 @@
 #include <sstream>
 #include "log.h"
 #include "texture.h"
-#include "renderer.h"
+#include "rendererSdl.h"
 
 std::map<std::string, Texture> Assets::mTextures = {};
 
-Texture Assets::LoadTexture(Renderer& pRenderer, std::string& pFileName, std::string& pName)
+Texture Assets::LoadTexture(RendererSdl& pRenderer, std::string& pFileName, std::string& pName)
 {
     mTextures[pName] = LoadTextureFromFile(pRenderer, pFileName);
     return mTextures[pName];
@@ -32,7 +32,7 @@ void Assets::Clear()
     mTextures.clear();
 }
 
-Texture Assets::LoadTextureFromFile(Renderer& pRenderer, std::string& pFileName)
+Texture Assets::LoadTextureFromFile(RendererSdl& pRenderer, std::string& pFileName)
 {
     Texture texture;
     texture.Load(pRenderer, pFileName);

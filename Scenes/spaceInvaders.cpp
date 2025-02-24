@@ -1,6 +1,6 @@
 #include "spaceInvaders.h"
 
-void SpaceInvaders::Start(Renderer* pRenderer, Window* pWindow)
+void SpaceInvaders::Start(RendererSdl* pRenderer, Window* pWindow)
 {
 	mRenderer = pRenderer;
 	mWindow = pWindow;
