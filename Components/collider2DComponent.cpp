@@ -17,26 +17,29 @@ void Collider2D::Update()
 {
 }
 
-bool Collider2D::CheckCollisions(Rectangle pBox)
+bool Collider2D::CheckCollisions(Collider2D* pCollider)
 {
-	Rectangle hitBox = GetHitBox();
+	Rectangle selfHitBox = GetHitBox();
+	Rectangle otherHitBox = pCollider->GetHitBox();
+
 	// This
-	float selfXMin = hitBox.mPosition.x;
-	float selfXMax = hitBox.mPosition.x + hitBox.mDimensions.x;
-	float selfYMin = hitBox.mPosition.y;
-	float selfYMax = hitBox.mPosition.y + hitBox.mDimensions.y;
+	float selfXMin = selfHitBox.mPosition.x;
+	float selfXMax = selfHitBox.mPosition.x + selfHitBox.mDimensions.x;
+	float selfYMin = selfHitBox.mPosition.y;
+	float selfYMax = selfHitBox.mPosition.y + selfHitBox.mDimensions.y;
 
 	// Other
-	float otherXMin = pBox.mPosition.x;
-	float otherXMax = pBox.mPosition.x + pBox.mDimensions.x;
-	float otherYMin = pBox.mPosition.y;
-	float otherYMax = pBox.mPosition.y + pBox.mDimensions.y;
+	float otherXMin = otherHitBox.mPosition.x;
+	float otherXMax = otherHitBox.mPosition.x + otherHitBox.mDimensions.x;
+	float otherYMin = otherHitBox.mPosition.y;
+	float otherYMax = otherHitBox.mPosition.y + otherHitBox.mDimensions.y;
 
 	if (!((selfXMin > otherXMax ||
 		selfXMax < otherXMin) ||
 		(selfYMin > otherYMax ||
 			selfYMax < otherYMin)))
 	{
+		mCollidingActor = pCollider->mOwner;
 		return true;
 	}
 
@@ -58,7 +61,7 @@ bool Collider2D::CheckGrounded(Rectangle pBox)
 
 	if (!(selfXMin > otherXMax ||
 		selfXMax < otherXMin) &&
-		abs(selfYMax - otherYMin) < 5)
+		abs(selfYMax - otherYMin) < 0.1)
 	{
 		return true;
 	}
@@ -85,6 +88,11 @@ void Collider2D::SetState(ColliderState pState)
 ColliderState Collider2D::GetState()
 {
 	return mState;
+}
+
+Actor* Collider2D::GetCollidingActor()
+{
+	return mCollidingActor;
 }
 
 void Collider2D::OnNotifyCollider(Collider2D* pCollider, ColliderState pState)

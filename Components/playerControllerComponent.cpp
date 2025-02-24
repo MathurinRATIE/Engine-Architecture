@@ -24,56 +24,6 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	{
 		switch (pEvent.key.keysym.sym)
 		{
-			/*case SDLK_z:
-				if (pEvent.type == SDL_KEYDOWN)
-				{
-					mRigidBody->SetMinVelocityY(30.0f);
-					mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("walkBack");
-					mOwner->GetComponentOfType<SpriteComponent>()->SetFlipX(false);
-				}
-				else
-				{
-					mRigidBody->SetVelocityY(0.0f);
-				}
-				break;
-			case SDLK_s:
-				if (pEvent.type == SDL_KEYDOWN)
-				{
-					mRigidBody->SetMinVelocityY(-30.0f);
-					mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("walkFront");
-					mOwner->GetComponentOfType<SpriteComponent>()->SetFlipX(false);
-				}
-				else
-				{
-					mRigidBody->SetVelocityY(0.0f);
-				}
-				break;*/
-		case SDLK_q:
-			if (pEvent.type == SDL_KEYDOWN)
-			{
-				mRigidBody->SetVelocityX(-80.0f);
-				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("walkSide");
-				mOwner->GetComponentOfType<SpriteComponent>()->SetFlipX(false);
-			}
-			else
-			{
-				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("idleSide");
-				mRigidBody->SetVelocityX(0.0f);
-			}
-			break;
-		case SDLK_d:
-			if (pEvent.type == SDL_KEYDOWN)
-			{
-				mRigidBody->SetVelocityX(80.0f);
-				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("walkSide");
-				mOwner->GetComponentOfType<SpriteComponent>()->SetFlipX(true);
-			}
-			else
-			{
-				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("idleSide");
-				mRigidBody->SetVelocityX(0.0f);
-			}
-			break;
 		case SDLK_SPACE:
 			if (pEvent.type == SDL_KEYDOWN)
 			{
@@ -86,43 +36,91 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	{
 		mIsJumpping = false;
 	}
+
+	switch (pEvent.key.keysym.sym)
+	{
+	case SDLK_q:
+		if (pEvent.type == SDL_KEYDOWN)
+		{
+			mMovementDirection = -1;
+		}
+		else
+		{
+			mMovementDirection = 0;
+		}
+		break;
+	case SDLK_d:
+		if (pEvent.type == SDL_KEYDOWN)
+		{
+			mMovementDirection = 1;
+		}
+		else
+		{
+			mMovementDirection = 0;
+		}
+		break;
+	}
 }
 
 void PlayerControllerComponent::Update()
 {
 	mRigidBody->Update();
-	Vector2* velocity = mRigidBody->GetVelocity();
-
-	if (!Maths::NearZero(velocity->SqrLength()) && mOwner->GetComponentOfType<Collider2D>()->GetState() == ColliderState::CollisionGounded && !mIsJumpping)
-	{
-		mRigidBody->SetVelocityY(0.0f);
-	}
 
 	if (mOwner->GetComponentOfType<Collider2D>()->GetState() == ColliderState::CollisionGounded)
 	{
-		if (!mGrounded)
+		if (mMovementDirection != mCurrentlyAppliedDirection)
 		{
-			mRigidBody->SetVelocityX(0.0f);
+			switch (mMovementDirection)
+			{
+			case -1:
+				mRigidBody->SetVelocityX(-80.0f);
+				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("walkSide");
+				mOwner->GetComponentOfType<SpriteComponent>()->SetFlipX(false);
+				break;
+			case 0:
+				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("idleSide");
+				mRigidBody->SetVelocityX(0.0f);
+				break;
+			case 1:
+				mRigidBody->SetVelocityX(80.0f);
+				mOwner->GetComponentOfType<AnimatedSpriteComponent>()->SetAnimationTextures("walkSide");
+				mOwner->GetComponentOfType<SpriteComponent>()->SetFlipX(true);
+				break;
+			}
+			mCurrentlyAppliedDirection = mMovementDirection;
 		}
 
-		mGrounded = true;
-		printf("GROUNDED");
-	}
-	else {
-		mGrounded = false;
-		printf("In the air");
+		if (!mIsJumpping)
+		{
+			mRigidBody->SetVelocityY(0.0f);
+		}
 	}
 
+	Vector2* velocity = mRigidBody->GetVelocity();
 	Vector2 movement = (mOwner->GetTransform()->Right() * velocity->x 
 		              + mOwner->GetTransform()->Up()* velocity->y) * Time::deltaTime;
 
 	Vector2 position = mOwner->GetTransform()->GetPosition() + movement;	// Apply movement
 	mOwner->GetTransform()->SetPosition(position);
 
-	if (CollisionManager::Instance().IsColliding(mOwner->GetComponentOfType<Collider2D>()))		// Verify collisions
+	Collider2D* collider = mOwner->GetComponentOfType<Collider2D>();
+	if (CollisionManager::Instance().IsColliding(collider))		// Verify collisions
 	{
-		position -= movement;
+		position -= {movement.x, 0};
 		mOwner->GetTransform()->SetPosition(position);
-		mRigidBody->SetVelocityY(0.0f);
+
+		if (collider->CheckCollisions(collider->GetCollidingActor()->GetComponentOfType<Collider2D>()))
+		{
+			position += {movement.x, 0};
+			position -= {0, movement.y};
+			mOwner->GetTransform()->SetPosition(position);
+			mRigidBody->SetVelocityY(0.0f);
+
+			if (collider->CheckCollisions(collider->GetCollidingActor()->GetComponentOfType<Collider2D>()))
+			{
+				position += {movement.y, 0};
+				mOwner->GetTransform()->SetPosition(position);
+			}
+		}
 	}
 }

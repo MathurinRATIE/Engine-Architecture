@@ -13,7 +13,7 @@ bool CollisionManager::IsColliding(Collider2D* pCollider)
 {
 	for (std::pair<Collider2D*, ColliderEvent*> collider2 : mColliderEvents)
 	{
-		if (pCollider != collider2.first && pCollider->CheckCollisions(collider2.first->GetHitBox()))
+		if (pCollider != collider2.first && pCollider->CheckCollisions(collider2.first))
 		{
 			return true;
 		}
@@ -31,7 +31,7 @@ void CollisionManager::CheckCollisions()
 
 		for (std::pair<Collider2D*, ColliderEvent*> collider2 : mColliderEvents)
 		{
-			if (collider1 != collider2 && collider1.first->CheckCollisions(collider2.first->GetHitBox()))
+			if (collider1 != collider2 && collider1.first->CheckCollisions(collider2.first))
 			{
 				ColliderState newState = previousState;
 				switch (previousState)

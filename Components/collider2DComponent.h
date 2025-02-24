@@ -19,11 +19,12 @@ public :
 
 	void Update() override;
 
-	bool CheckCollisions(Rectangle pBox);
+	bool CheckCollisions(Collider2D* pCollider);
 	bool CheckGrounded(Rectangle pBox);
 	Rectangle GetHitBox();
 	void SetState(ColliderState pState);
 	ColliderState GetState();
+	Actor* GetCollidingActor();
 
 	void OnNotifyCollider(Collider2D* pCollider, ColliderState pState) override;
 

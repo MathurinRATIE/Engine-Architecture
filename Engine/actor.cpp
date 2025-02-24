@@ -86,6 +86,30 @@ void Actor::SetSprite(SpriteComponent* pSprite)
 	mSprite = pSprite;
 }
 
+bool Actor::AddTag(std::string pTag)
+{
+	if (!HasTag(pTag))
+	{
+		mTags.push_back(pTag);
+		return true;
+	}
+
+	return false;
+}
+
+bool Actor::RemoveTag(std::string pTag)
+{
+	auto tagIterator = std::find(mTags.begin(), mTags.end(), pTag);
+
+	if (tagIterator != mTags.end())
+	{
+		mTags.erase(tagIterator);
+		return true;
+	}
+
+	return false;
+}
+
 void Actor::SetActive(bool pIsActive)
 {
 	if (pIsActive)
@@ -126,4 +150,14 @@ std::vector<Component*> Actor::GetComponents()
 SpriteComponent* Actor::GetSpriteComponent()
 {
 	return mSprite;
+}
+
+std::vector<std::string> Actor::GetAllTags()
+{
+	return mTags;
+}
+
+bool Actor::HasTag(std::string pTag)
+{
+	return (std::find(mTags.begin(), mTags.end(), pTag) != mTags.end());
 }

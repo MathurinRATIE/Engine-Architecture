@@ -12,6 +12,16 @@ class SpriteComponent;
 
 class Actor
 {
+protected:
+	Scene* mSceneOwner;
+	Window* mWindow;
+	Renderer* mRenderer;
+	ActorState mState;
+	Transform2D mTransform;
+	SpriteComponent* mSprite;
+	std::vector<Component*> mComponents;
+	std::vector<std::string> mTags;
+
 public :
 	Actor(Scene* pScene, Window* pWindow, Renderer* pRenderer, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform2D pTransform = Transform2D());
 	virtual ~Actor();
@@ -31,12 +41,16 @@ public :
 	Transform2D* GetTransform();
 	std::vector<Component*> GetComponents();
 	SpriteComponent* GetSpriteComponent();
+	std::vector<std::string> GetAllTags();
+	bool HasTag(std::string);
 
 	void AttachScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
 	void RemoveComponent(Component* pComponent);
 	void SetTransform(Transform2D pTransform);
 	void SetSprite(SpriteComponent* pSprite);
+	bool AddTag(std::string pTag);
+	bool RemoveTag(std::string pTag);
 
 	template<typename T>
 	inline T* GetComponentOfType() const
@@ -52,13 +66,4 @@ public :
 		}
 		return nullptr;
 	}
-
-protected :
-	Scene* mSceneOwner;
-	Window* mWindow;
-	Renderer* mRenderer;
-	ActorState mState;
-	Transform2D mTransform;
-	SpriteComponent* mSprite;
-	std::vector<Component*> mComponents;
 };
