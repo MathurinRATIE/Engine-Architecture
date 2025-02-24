@@ -83,14 +83,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderers;$(SolutionDir)/Engine/Renderers/SDL;$(SolutionDir)/Engine/Renderers/OpenGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2_image.lib;glu32.lib;glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderer</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderers</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -158,7 +158,8 @@
     <ClCompile Include="Components\rigidBody.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
     <ClCompile Include="Engine\actor.cpp" />
-    <ClCompile Include="Engine\assets.cpp" />
+    <ClCompile Include="Engine\Renderers\OpenGL\vertexArray.cpp" />
+    <ClCompile Include="Engine\Renderers\SDL\assets.cpp" />
     <ClCompile Include="Engine\Colliders\colliderEvent.cpp" />
     <ClCompile Include="Engine\Colliders\collisionManager.cpp" />
     <ClCompile Include="Engine\component.cpp" />
@@ -170,10 +171,10 @@
     <ClCompile Include="Engine\Maths\vector2.cpp" />
     <ClCompile Include="Engine\Maths\vector3.cpp" />
     <ClCompile Include="Engine\Maths\vector4.cpp" />
-    <ClCompile Include="Engine\rectangle.cpp" />
-    <ClCompile Include="Engine\Renderer\rendererSdl.cpp" />
+    <ClCompile Include="Engine\Renderers\SDL\rectangle.cpp" />
+    <ClCompile Include="Engine\Renderers\rendererSdl.cpp" />
     <ClCompile Include="Engine\scene.cpp" />
-    <ClCompile Include="Engine\texture.cpp" />
+    <ClCompile Include="Engine\Renderers\SDL\texture.cpp" />
     <ClCompile Include="Engine\engineTime.cpp" />
     <ClCompile Include="Engine\transform2D.cpp" />
     <ClCompile Include="Engine\window.cpp" />
@@ -210,7 +211,8 @@
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
     <ClInclude Include="Engine\actorState.h" />
-    <ClInclude Include="Engine\assets.h" />
+    <ClInclude Include="Engine\Renderers\OpenGL\vertexArray.h" />
+    <ClInclude Include="Engine\Renderers\SDL\assets.h" />
     <ClInclude Include="Engine\Colliders\colliderEvent.h" />
     <ClInclude Include="Engine\Colliders\IColliderListener.h" />
     <ClInclude Include="Engine\Colliders\collisionManager.h" />
@@ -226,12 +228,12 @@
     <ClInclude Include="Engine\Maths\vector2.h" />
     <ClInclude Include="Engine\Maths\vector3.h" />
     <ClInclude Include="Engine\Maths\vector4.h" />
-    <ClInclude Include="Engine\rectangle.h" />
-    <ClInclude Include="Engine\Renderer\IRenderer.h" />
-    <ClInclude Include="Engine\Renderer\rendererSdl.h" />
+    <ClInclude Include="Engine\Renderers\SDL\rectangle.h" />
+    <ClInclude Include="Engine\Renderers\IRenderer.h" />
+    <ClInclude Include="Engine\Renderers\rendererSdl.h" />
     <ClInclude Include="Engine\resource.h" />
     <ClInclude Include="Engine\scene.h" />
-    <ClInclude Include="Engine\texture.h" />
+    <ClInclude Include="Engine\Renderers\SDL\texture.h" />
     <ClInclude Include="Engine\engineTime.h" />
     <ClInclude Include="Engine\transform2D.h" />
     <ClInclude Include="Engine\window.h" />
