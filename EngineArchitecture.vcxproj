@@ -158,6 +158,9 @@
     <ClCompile Include="Components\rigidBody.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
     <ClCompile Include="Engine\actor.cpp" />
+    <ClCompile Include="Engine\Renderers\rendererGl.cpp" />
+    <ClCompile Include="Engine\Renderers\OpenGL\shader.cpp" />
+    <ClCompile Include="Engine\Renderers\OpenGL\shaderProgram.cpp" />
     <ClCompile Include="Engine\Renderers\OpenGL\vertexArray.cpp" />
     <ClCompile Include="Engine\Renderers\SDL\assets.cpp" />
     <ClCompile Include="Engine\Colliders\colliderEvent.cpp" />
@@ -211,6 +214,9 @@
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
     <ClInclude Include="Engine\actorState.h" />
+    <ClInclude Include="Engine\Renderers\rendererGl.h" />
+    <ClInclude Include="Engine\Renderers\OpenGL\shader.h" />
+    <ClInclude Include="Engine\Renderers\OpenGL\shaderProgram.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\vertexArray.h" />
     <ClInclude Include="Engine\Renderers\SDL\assets.h" />
     <ClInclude Include="Engine\Colliders\colliderEvent.h" />
@@ -243,6 +249,10 @@
     <ClInclude Include="Scenes\platformer.h" />
     <ClInclude Include="Scenes\pong.h" />
     <ClInclude Include="Scenes\spaceInvaders.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\shaderBase.fs" />
+    <None Include="Shaders\shaderBase.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

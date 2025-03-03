@@ -1,7 +1,7 @@
 #include "game.h"
 #include "inputManager.h"
 
-Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), mLoadedScene(0), mIsRunning(true)
+Game::Game(std::string pTitle, std::vector<Scene*> pScenes, IRenderer::RendererType pType): mScenes(pScenes), mLoadedScene(0), mIsRunning(true)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
@@ -16,9 +16,19 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes): mScenes(pScenes), m
         std::cout << "Glew initialized successfully\n";
     }
 
-    //Create window
     mWindow = new Window(800, 800);
-    mRenderer = new RendererSdl();
+    
+    switch (pType)
+    {
+    case IRenderer::RendererType::SDL:
+        mRenderer = new RendererSdl();
+        break;
+    case IRenderer::RendererType::OPENGL:
+        mRenderer = new RendererGl();
+        break;
+    default:
+        break;
+    }
 }
 
 void Game::Initialize()

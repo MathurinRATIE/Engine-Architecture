@@ -30,8 +30,8 @@ public:
 
 	void DrawSprites();
 	void DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle, Vector2 origin, Flip flip) const override;
-	void AddSprite(SpriteComponent* pSprite);
-	void RemoveSprite(SpriteComponent* pSprite);
+	void AddSprite(SpriteComponent* pSprite) override;
+	void RemoveSprite(SpriteComponent* pSprite) override;
 
 private:
 	SDL_Renderer* mSdlRenderer;

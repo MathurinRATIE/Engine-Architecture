@@ -13,7 +13,7 @@ class Scene
 public :
 	Scene();
 
-	virtual void Start(RendererSdl* pRenderer, Window* pWindow) = 0;
+	virtual void Start(IRenderer* pRenderer, Window* pWindow) = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 	virtual void Close() = 0;
@@ -27,11 +27,11 @@ public :
 	void AddPendingRemoveActor(Actor* pActor);
 	void RemoveActor(Actor* pActor);
 	std::vector<Actor*> GetActors();
-	RendererSdl* GetRenderer();
+	IRenderer* GetRenderer();
 	void Unload();
 
 protected :
-	RendererSdl* mRenderer;
+	IRenderer* mRenderer;
 	Window* mWindow;
 	std::vector<Actor*> mActors;
 	std::vector<Actor*> mPendingActors;

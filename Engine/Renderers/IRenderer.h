@@ -8,6 +8,8 @@ class Texture;
 class IRenderer
 {
 public:
+    std::vector<SpriteComponent*> mSprites;
+
     enum class Flip
     {
         None = SDL_FLIP_NONE,
@@ -30,5 +32,7 @@ public:
     virtual void Close() = 0;
     virtual RendererType GetType() = 0;
 
+    virtual void AddSprite(SpriteComponent* pSprite) = 0;
+    virtual void RemoveSprite(SpriteComponent* pSprite) = 0;
     virtual void DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle, Vector2 origin, Flip flip = Flip::None) const = 0;
 };
