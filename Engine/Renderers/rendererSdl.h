@@ -26,7 +26,7 @@ public:
 	void Close() override;
 
 	void DrawRect(Rectangle rRect, Color pColor);
-	SDL_Renderer* GetRenderer();
+	SDL_Renderer* ToSdlRenderer();
 	IRenderer::RendererType GetType() override;
 
 	void DrawSprites();

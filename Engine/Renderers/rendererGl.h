@@ -9,6 +9,8 @@ class RendererGl : public IRenderer
 {
 private:
 	Window* mWindow;
+	std::string mVertexShaderFileName;
+	std::string mFragmentShaderFileName;
 	Shader* mVertexShader;
 	Shader* mFragmentShader;
 	ShaderProgram* mShaderProgram;
@@ -16,7 +18,7 @@ private:
 	SDL_GLContext mContext;
 
 public:
-	RendererGl();
+	RendererGl(std::string pVertexShaderFileName, std::string pFragmenntShaderFileName);
 	virtual ~RendererGl();
 	RendererGl(const RendererGl&) = delete;
 	RendererGl& operator=(const RendererGl&) = delete;

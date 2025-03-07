@@ -3,7 +3,7 @@
 #include "glew.h"
 #include "SDL.h"
 
-RendererGl::RendererGl():mWindow(nullptr), mVao(nullptr), mContext(nullptr)
+RendererGl::RendererGl(std::string pVertexShaderFileName, std::string pFragmentShaderFileName):mWindow(nullptr), mVao(nullptr), mContext(nullptr), mVertexShaderFileName(pVertexShaderFileName), mFragmentShaderFileName(pFragmentShaderFileName)
 {
 }
 
@@ -50,13 +50,16 @@ bool RendererGl::Initialize(Window* rWindow)
     mShaderProgram = new ShaderProgram();
 
     std::vector<Shader*> shaders;
-    mVertexShader = new Shader(0, "shaderBase", ShaderType::VERTEX);
-    mVertexShader->Load("shaderBase.vs", ShaderType::VERTEX);
+    mVertexShader = new Shader(0, "VertexShader", ShaderType::VERTEX);
+    mVertexShader->Load(mVertexShaderFileName, ShaderType::VERTEX);
     shaders.push_back(mVertexShader);
-    mFragmentShader = new Shader(1, "shaderBase", ShaderType::FRAGMENT);
-    mFragmentShader->Load("shaderBase.fs", ShaderType::FRAGMENT);
+    mFragmentShader = new Shader(1, "FragmentShader", ShaderType::FRAGMENT);
+    mFragmentShader->Load(mFragmentShaderFileName, ShaderType::FRAGMENT);
     shaders.push_back(mFragmentShader);
     mShaderProgram->Compose(shaders);
+
+    Texture pokeballTexture = Texture();
+    pokeballTexture.Load(*static_cast<IRenderer*>(this), "Imports/pokeball.png");
 
     return true;
 }

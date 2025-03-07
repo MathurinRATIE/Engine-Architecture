@@ -256,6 +256,8 @@
   <ItemGroup>
     <None Include="Shaders\shaderBase.fs" />
     <None Include="Shaders\shaderBase.vs" />
+    <None Include="Shaders\texture.fs" />
+    <None Include="Shaders\texture.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

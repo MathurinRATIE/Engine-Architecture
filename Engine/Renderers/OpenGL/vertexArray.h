@@ -18,10 +18,10 @@ public:
 };
 
 constexpr float vertices[] = {
--0.5f, 0.5f, 0.0f,	//A
-0.5f, 0.5f, 0.0f,	//B
-0.5f, -0.5f, 0.0f,	//C
--0.5f, -0.5f, 0.0f };	//D
+-0.5f, 0.5f, 0.0f,		0.0f, 0.0f,		// TOP		LEFT
+0.5f, 0.5f, 0.0f,		1.0f, 0.0f,		// TOP		RIGHT
+0.5f, -0.5f, 0.0f,		1.0f, 1.0f,		// BOTTOM	RIGHT
+-0.5f, -0.5f, 0.0f,		0.0f, 1.0f };	// BOTTOM	LEFT
 
 constexpr unsigned int indices[] = {
 0, 1, 2,

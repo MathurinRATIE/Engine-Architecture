@@ -112,7 +112,7 @@ void RendererSdl::AddSprite(SpriteComponent* pSprite)
     mSprites.insert(spriteComponentIterator, pSprite);
 }
 
-SDL_Renderer* RendererSdl::GetRenderer()
+SDL_Renderer* RendererSdl::ToSdlRenderer()
 {
     return mSdlRenderer;
 }
