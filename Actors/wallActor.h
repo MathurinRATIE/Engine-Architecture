@@ -9,7 +9,7 @@
 class WallActor : public Actor
 {
 public:
-	WallActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), ActorState pState = ActorState::Active);
+	WallActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), ActorState pState = ActorState::Active);
 
 	void UpdateActor() override;
 

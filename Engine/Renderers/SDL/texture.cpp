@@ -1,6 +1,6 @@
 #include "texture.h"
 
-bool Texture::Load(IRenderer& pRenderer, const std::string& pFileName)
+bool Texture::Load(RendererSdl& pRenderer, const std::string& pFileName)
 {
 	// Create Surface from File
 	mFileName = pFileName;

@@ -6,6 +6,7 @@
 #include "mainScene.h"
 #include "spaceInvaders.h"
 #include "platformer.h"
+#include "sampleSceneOpenGL.h"
 
 using namespace std;
 
@@ -22,8 +23,11 @@ int main(int argc, char* argv[])
 	/*Game* spaceInvaders = new Game("Space Invaders", {new SpaceInvaders()});
 	spaceInvaders->Initialize();*/
 
-	Game* platformer = new Game("Platformer", { new Platformer() });
-	platformer->Initialize();
+	/*Game* platformer = new Game("Platformer", {new Platformer()}, IRenderer::RendererType::SDL);
+	platformer->Initialize();*/
+
+	Game* sampleSceneOpenGL = new Game("OpenGL", { new SampleSceneOpenGL() }, IRenderer::RendererType::OPENGL);
+	sampleSceneOpenGL->Initialize();
 
 	return 0;
 }

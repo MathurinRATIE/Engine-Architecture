@@ -14,7 +14,7 @@ public :
 
 protected :
 	std::string mFileName;
-	int mWidth;
+	int mWidth = 0;
 	int mHeight;
-	SDL_Texture* mSDLTexture;
+	SDL_Texture* mSDLTexture = nullptr;
 };

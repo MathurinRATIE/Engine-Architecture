@@ -4,7 +4,7 @@ Pong::Pong() : Scene()
 {
 };
 
-void Pong::Start(RendererSdl* pRenderer, Window* pWindow)
+void Pong::Start(IRenderer* pRenderer, Window* pWindow)
 {
 	mRenderer = pRenderer;
 	mWindow = pWindow;
@@ -69,7 +69,7 @@ void Pong::Update()
 
 void Pong::Render()
 {
-	Rectangle ballRect = mBall->GetRect();
+	/*Rectangle ballRect = mBall->GetRect();
 	Rectangle paddle1Rect = mPaddle1->GetRect();
 	Rectangle paddle2Rect = mPaddle2->GetRect();
 
@@ -78,7 +78,7 @@ void Pong::Render()
 
 	mRenderer->DrawRect(ballRect, ballColor);
 	mRenderer->DrawRect(paddle1Rect, paddleColor);
-	mRenderer->DrawRect(paddle2Rect, paddleColor);
+	mRenderer->DrawRect(paddle2Rect, paddleColor);*/
 }
 
 void Pong::Close()

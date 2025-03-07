@@ -49,11 +49,6 @@ void RendererSdl::DrawRect(Rectangle pRect, Color pColor)
     SDL_RenderFillRect(mSdlRenderer, &sdlRect);
 }
 
-SDL_Renderer* RendererSdl::GetRenderer()
-{
-    return mSdlRenderer;
-}
-
 void RendererSdl::DrawSprites()
 {
     for (SpriteComponent* sprite : mSprites)
@@ -115,6 +110,11 @@ void RendererSdl::AddSprite(SpriteComponent* pSprite)
     }
 
     mSprites.insert(spriteComponentIterator, pSprite);
+}
+
+SDL_Renderer* RendererSdl::GetRenderer()
+{
+    return mSdlRenderer;
 }
 
 void RendererSdl::RemoveSprite(SpriteComponent* pSprite)

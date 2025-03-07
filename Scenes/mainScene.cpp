@@ -1,7 +1,7 @@
 
 #include "mainScene.h"
 
-void MainScene::Start(RendererSdl* pRenderer, Window* pWindow)
+void MainScene::Start(IRenderer* pRenderer, Window* pWindow)
 {
 	mRenderer = pRenderer;
 	mWindow = pWindow;
@@ -17,13 +17,13 @@ void MainScene::Update()
 
 void MainScene::Render()
 {
-	Rectangle playerRect = mPlayer->GetRect();
+	/*Rectangle playerRect = mPlayer->GetRect();
 	Color playerColor = Color(253, 168, 132, 255);
 	mRenderer->DrawRect(playerRect, playerColor);
 
 	Rectangle wallRect = mWall->GetRect();
 	Color wallColor = Color(82, 255, 100, 255);
-	mRenderer->DrawRect(wallRect, wallColor);
+	mRenderer->DrawRect(wallRect, wallColor);*/
 }
 
 void MainScene::Close()

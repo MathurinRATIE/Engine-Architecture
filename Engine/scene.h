@@ -31,9 +31,9 @@ public :
 	void Unload();
 
 protected :
-	IRenderer* mRenderer;
-	Window* mWindow;
-	std::vector<Actor*> mActors;
-	std::vector<Actor*> mPendingActors;
-	std::vector<Actor*> mPendingRemoveActors;
+	IRenderer* mRenderer = nullptr;
+	Window* mWindow = nullptr;
+	std::vector<Actor*> mActors = {};
+	std::vector<Actor*> mPendingActors = {};
+	std::vector<Actor*> mPendingRemoveActors = {};
 };

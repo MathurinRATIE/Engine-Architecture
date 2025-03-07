@@ -9,6 +9,7 @@
 #include "IRenderer.h"
 
 class SpriteComponent;
+class RendererGl;
 class Texture;
 
 class RendererSdl : public IRenderer

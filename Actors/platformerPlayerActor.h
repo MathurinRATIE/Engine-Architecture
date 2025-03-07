@@ -10,7 +10,7 @@
 class PlatformerPlayerActor : public Actor
 {
 public :
-	PlatformerPlayerActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), float pSpeed = 1.0f, ActorState pState = ActorState::Active);
+	PlatformerPlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), float pSpeed = 1.0f, ActorState pState = ActorState::Active);
 	
 	void UpdateActor() override;
 

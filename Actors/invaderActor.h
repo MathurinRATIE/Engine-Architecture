@@ -9,7 +9,7 @@
 class InvaderActor : public Actor
 {
 public:
-	InvaderActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), Direction startingDirection = Direction::Right, float mSpeedX = 1.0f, float mSpeedY = 1.0f, ActorState pState = ActorState::Active);
+	InvaderActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), Direction startingDirection = Direction::Right, float mSpeedX = 1.0f, float mSpeedY = 1.0f, ActorState pState = ActorState::Active);
 
 	void UpdateActor() override;
 
@@ -19,5 +19,5 @@ private:
 	Scene* mScene;
 	Rectangle* mRect;
 	MovementComponent* mMovements;
-	unsigned int timeSinceLastShot = 0;
+	float timeSinceLastShot = 0;
 };

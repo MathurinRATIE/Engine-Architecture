@@ -3,7 +3,7 @@
 #include "actor.h"
 #include "spriteComponent.h"
 
-Actor::Actor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, ActorState pState, Transform2D pTransform)
+Actor::Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, Transform2D pTransform)
 {
 	mSceneOwner = pScene;
 	mWindow = pWindow;

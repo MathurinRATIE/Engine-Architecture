@@ -1,6 +1,6 @@
 #include "playerActor.h"
 
-PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
 	mScene = pScene;
 	mWindow = pWindow;
@@ -12,8 +12,12 @@ PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer,
 	AddComponent(collider);
 
 	Texture* spaceShipTexture = new Texture();
-	spaceShipTexture->Load(*mRenderer, "Imports/SpaceShip.png");
-	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture, RendererSdl::Flip::None);
+	RendererSdl* renderer = static_cast<RendererSdl*>(mRenderer);
+	if (renderer)
+	{
+		spaceShipTexture->Load(*renderer, "Imports/SpaceShip.png");
+	}
+	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture, IRenderer::Flip::None);
 	SetSprite(sprite);
 
 	//mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);

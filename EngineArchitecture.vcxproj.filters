@@ -183,6 +183,12 @@
     <ClCompile Include="Engine\Renderers\OpenGL\shaderProgram.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Renderers\IRenderer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\sampleSceneOpenGL.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Imports\pokeball.png">
@@ -356,6 +362,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Renderers\OpenGL\shaderProgram.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\sampleSceneOpenGL.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

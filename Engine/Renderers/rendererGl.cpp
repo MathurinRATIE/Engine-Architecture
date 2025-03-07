@@ -18,16 +18,6 @@ RendererGl::~RendererGl()
 bool RendererGl::Initialize(Window* rWindow)
 {
     mWindow = rWindow;
-    mShaderProgram = new ShaderProgram();
-
-    std::vector<Shader*> shaders;
-    mVertexShader = new Shader(0, "shaderBase", ShaderType::VERTEX);
-    mVertexShader->Load("Shaders/shaderBase.vs", ShaderType::VERTEX);
-    shaders.push_back(mVertexShader);
-    mFragmentShader = new Shader(1, "shaderBase", ShaderType::FRAGMENT);
-    mFragmentShader->Load("Shaders/shaderBase.fs", ShaderType::FRAGMENT);
-    shaders.push_back(mFragmentShader);
-    mShaderProgram->Compose(shaders);
 
     //Setting OpenGL attributes
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -56,6 +46,18 @@ bool RendererGl::Initialize(Window* rWindow)
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
     mVao = new VertexArray(vertices, 4, indices, 6);
+
+    mShaderProgram = new ShaderProgram();
+
+    std::vector<Shader*> shaders;
+    mVertexShader = new Shader(0, "shaderBase", ShaderType::VERTEX);
+    mVertexShader->Load("shaderBase.vs", ShaderType::VERTEX);
+    shaders.push_back(mVertexShader);
+    mFragmentShader = new Shader(1, "shaderBase", ShaderType::FRAGMENT);
+    mFragmentShader->Load("shaderBase.fs", ShaderType::FRAGMENT);
+    shaders.push_back(mFragmentShader);
+    mShaderProgram->Compose(shaders);
+
     return true;
 }
 
@@ -72,6 +74,7 @@ void RendererGl::BeginDraw()
 
 void RendererGl::Draw()
 {
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 void RendererGl::DrawSprites()

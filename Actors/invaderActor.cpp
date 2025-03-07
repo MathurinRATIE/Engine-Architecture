@@ -1,6 +1,6 @@
 #include "invaderActor.h"
 
-InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
 	mScene = pScene;
 	mWindow = pWindow;
@@ -12,8 +12,12 @@ InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, RendererSdl* pRendere
 	AddComponent(collider);
 
 	Texture* invaderTexture = new Texture();
-	invaderTexture->Load(*mRenderer, "Imports/Invader.png");
-	SpriteComponent* sprite = new SpriteComponent(this, *invaderTexture, RendererSdl::Flip::None);
+	RendererSdl* renderer = static_cast<RendererSdl*>(mRenderer);
+	if (renderer)
+	{
+		invaderTexture->Load(*renderer, "Imports/Invader.png");
+	}
+	SpriteComponent* sprite = new SpriteComponent(this, *invaderTexture, IRenderer::Flip::None);
 	SetSprite(sprite);
 
 	//mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, mSpeedX, mSpeedY);

@@ -15,8 +15,12 @@ BulletActor::BulletActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, s
     AddComponent(collider);
 
     Texture* bulletTexture = new Texture();
-    bulletTexture->Load(*pRenderer, "Imports/Bullet.png");
-    SpriteComponent* sprite = new SpriteComponent(this, *bulletTexture, RendererSdl::Flip::None);
+    RendererSdl* renderer = static_cast<RendererSdl*>(mRenderer);
+    if (renderer)
+    {
+        bulletTexture->Load(*renderer, "Imports/Bullet.png");
+    }
+    SpriteComponent* sprite = new SpriteComponent(this, *bulletTexture, IRenderer::Flip::None);
     SetSprite(sprite);
 
     //mMovements = new MovementComponent(&mRect->mPosition, this, pWindow, mCollidingActor, 1.0f, 5.0f);

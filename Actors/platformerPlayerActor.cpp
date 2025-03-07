@@ -1,6 +1,6 @@
 #include "platformerPlayerActor.h"
 
-PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, RendererSdl* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents)
+PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents)
 {
 	mSpeed = Vector2(pSpeed, 0.0f);
 	mSceneOwner = pScene;
@@ -20,7 +20,7 @@ PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, Ren
 	//mAnimations["run"] = LoadTexturesFromFolder("JackSparrow\\Run");
 	mAnimations["jump"] = LoadTexturesFromFolder("JackSparrow\\Jump");
 
-	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations, "idleSide", 1, RendererSdl::Flip::Horizontal);
+	AnimatedSpriteComponent* animatedSprite = new AnimatedSpriteComponent(this, mAnimations, "idleSide", 1, IRenderer::Flip::Horizontal);
 	mAnimatedSprite = animatedSprite;
 	AddComponent(animatedSprite);
 	SetSprite(animatedSprite);
@@ -39,18 +39,23 @@ std::vector<Texture*> PlatformerPlayerActor::LoadTexturesFromFolder(std::string 
 	std::string separator = "..\\Imports\\";
 	std::string folderPath = SDL_GetBasePath() + separator + pFolder;
 
-	for (auto& entry : std::filesystem::recursive_directory_iterator(folderPath))
+	RendererSdl* renderer = static_cast<RendererSdl*>(mRenderer);
+	if (renderer)
 	{
-		auto extension = entry.path().extension().string();
-
-		if (extension == ".png")
+		for (auto& entry : std::filesystem::recursive_directory_iterator(folderPath))
 		{
-			Texture* texture = new Texture();
-			texture->Load(*mRenderer, entry.path().string());
+			auto extension = entry.path().extension().string();
 
-			textures.push_back(texture);
+			if (extension == ".png")
+			{
+				Texture* texture = new Texture();
+				texture->Load(*renderer, entry.path().string());
+
+				textures.push_back(texture);
+			}
 		}
 	}
+	
 	return textures;
 }
 

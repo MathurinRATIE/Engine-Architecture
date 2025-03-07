@@ -2,6 +2,8 @@
 #include "log.h"
 #include "glew.h"
 
+const std::string Shader::SHADER_PATH = "Shaders/";
+
 Shader::Shader() : mId(0), mCode(""), mType(VERTEX) {}
 
 Shader::Shader(int pId, std::string pCode, ShaderType pType) :mId(pId), mCode(pCode), mType(pType)

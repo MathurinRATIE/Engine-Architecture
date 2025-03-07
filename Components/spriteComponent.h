@@ -8,14 +8,14 @@
 class SpriteComponent : public Component
 {
 public :
-	SpriteComponent(Actor* pOwner, Texture& pTexture, RendererSdl::Flip pFlip, int pDrawOrder = 100);
+	SpriteComponent(Actor* pOwner, Texture& pTexture, IRenderer::Flip pFlip, int pDrawOrder = 100);
 	virtual ~SpriteComponent();
 	SpriteComponent() = delete;
 	SpriteComponent(const SpriteComponent&) = delete;
 	SpriteComponent& operator= (const SpriteComponent&) = delete;
 
 	virtual void SetTexture(const Texture& pTexture);
-	virtual void Draw(RendererSdl& pRenderer);
+	virtual void Draw(IRenderer& pRenderer);
 	void SetFlipX(bool isFlipped);
 	void SetFlipY(bool isFlipped);
 
@@ -23,11 +23,11 @@ public :
 	int GetTexWidth() const;
 	int GetTexHeight() const;
 	Texture GetTexture() const;
-	RendererSdl::Flip GetFlip() const;
+	IRenderer::Flip GetFlip() const;
 
 protected :
 	Texture mTexture;
-	RendererSdl::Flip mFlip;
+	IRenderer::Flip mFlip;
 	int mDrawOrder;
 	int mTexWidth;
 	int mTexHeight;
