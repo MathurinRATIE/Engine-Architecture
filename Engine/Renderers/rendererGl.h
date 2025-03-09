@@ -16,6 +16,7 @@ private:
 	ShaderProgram* mShaderProgram;
 	VertexArray* mVao;
 	SDL_GLContext mContext;
+	Matrix4Row mViewProj;
 
 public:
 	RendererGl(std::string pVertexShaderFileName, std::string pFragmenntShaderFileName);

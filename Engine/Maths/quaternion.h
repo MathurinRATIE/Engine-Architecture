@@ -131,5 +131,13 @@ public:
 
 	class Matrix4Row AsMatrixRow() const;
 
+	void RotateX(float pAngle);
+	void  RotateY(float pAngle);
+	void RotateZ(float pAngle);
+	void ApplyRotation(Quaternion pQuaternion);
+
 	static const Quaternion Identity;
+
+	bool operator==(const Quaternion& right);
+	bool operator!=(const Quaternion& right);
 };

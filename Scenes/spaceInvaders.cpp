@@ -5,8 +5,8 @@ void SpaceInvaders::Start(IRenderer* pRenderer, Window* pWindow)
 	mRenderer = pRenderer;
 	mWindow = pWindow;
 
-	mPlayer = new PlayerActor(this, mWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75 }, {30, 30}), 3.0f);
-	InvaderActor* spaceShip = new InvaderActor(this, mWindow, mRenderer, {}, Transform2D({mWindow->GetDimensions().x / 2, 75}, {15, 15}), Direction::Right, 1.5f);
+	mPlayer = new PlayerActor(this, mWindow, mRenderer, {}, Transform3D(Vector3(mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y - 75, 0.0f), Vector3(30, 30, 0.0f), Quaternion(0.0f, 0.0f, 3.0f, 1.0f)));
+	InvaderActor* spaceShip = new InvaderActor(this, mWindow, mRenderer, {}, Transform3D(Vector3(mWindow->GetDimensions().x / 2, 75, 0.0f), Vector3(15, 15, 0)), Direction::Right, 1.5f);
 }
 
 void SpaceInvaders::Update()

@@ -1,6 +1,6 @@
 #include "platformerPlayerActor.h"
 
-PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents)
+PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform3D pTransform, float pSpeed, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents)
 {
 	mSpeed = Vector2(pSpeed, 0.0f);
 	mSceneOwner = pScene;

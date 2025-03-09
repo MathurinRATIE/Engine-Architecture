@@ -3,7 +3,7 @@
 #include "actor.h"
 #include "spriteComponent.h"
 
-Actor::Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, Transform2D pTransform)
+Actor::Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, const Transform3D& pTransform)
 {
 	mSceneOwner = pScene;
 	mWindow = pWindow;
@@ -11,6 +11,7 @@ Actor::Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<C
 	mComponents = pComponents;
 	mState = pState;
 	mTransform = pTransform;
+	mTransform.SetOwner(this);
 
 	mSceneOwner->AddPendingActor(this);
 }
@@ -39,6 +40,11 @@ void Actor::UpdateComponents()
 	{
 		component->Update();
 	}
+}
+
+void Actor::UpdateComponentsTransform()
+{
+	// TODO : what should this do ?
 }
 
 void Actor::UpdateActor()
@@ -76,7 +82,7 @@ void Actor::RemoveComponent(Component* pComponent)
 	}
 }
 
-void Actor::SetTransform(Transform2D pTransform)
+void Actor::SetTransform(Transform3D pTransform)
 {
 	mTransform = pTransform;
 }
@@ -124,7 +130,7 @@ void Actor::SetActive(bool pIsActive)
 
 Rectangle Actor::GetRect()
 {
-	return Rectangle(mTransform.GetPosition(), mTransform.GetScale());
+	return Rectangle(Vector2(mTransform.GetPosition().x, mTransform.GetPosition().y), Vector2(mTransform.GetScale().x, mTransform.GetScale().y));
 }
 
 Scene* Actor::GetScene()
@@ -137,7 +143,7 @@ ActorState Actor::GetState()
 	return mState;
 }
 
-Transform2D* Actor::GetTransform()
+Transform3D* Actor::GetTransform()
 {
 	return &mTransform;
 }

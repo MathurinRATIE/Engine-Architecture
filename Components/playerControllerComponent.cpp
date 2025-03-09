@@ -103,29 +103,29 @@ void PlayerControllerComponent::Update()
 	}
 
 	Vector2* velocity = mRigidBody->GetVelocity();
-	Vector2 movement = (mOwner->GetTransform()->Right() * velocity->x 
-		              + mOwner->GetTransform()->Up()* velocity->y) * Time::deltaTime;
+	Vector2 movement = (Vector2(mOwner->GetTransform()->Right().x, mOwner->GetTransform()->Right().y) * velocity->x
+					  + Vector2(mOwner->GetTransform()->Up().x, mOwner->GetTransform()->Up().y) *velocity->y) * Time::deltaTime;
 
-	Vector2 position = mOwner->GetTransform()->GetPosition() + movement;	// Apply movement
-	mOwner->GetTransform()->SetPosition(position);
+	Vector2 position = Vector2(mOwner->GetTransform()->GetPosition().x, mOwner->GetTransform()->GetPosition().y) + movement;	// Apply movement
+	mOwner->GetTransform()->SetPosition(Vector3(position.x, position.y, 0.0f));
 
 	Collider2D* collider = mOwner->GetComponentOfType<Collider2D>();
 	if (CollisionManager::Instance().IsColliding(collider))		// Verify collisions
 	{
 		position -= {movement.x, 0};
-		mOwner->GetTransform()->SetPosition(position);
+		mOwner->GetTransform()->SetPosition(Vector3(position.x, position.y, 0.0f));
 
 		if (collider->CheckCollisions(collider->GetCollidingActor()->GetComponentOfType<Collider2D>()))
 		{
 			position += {movement.x, 0};
 			position -= {0, movement.y};
-			mOwner->GetTransform()->SetPosition(position);
+			mOwner->GetTransform()->SetPosition(Vector3(position.x, position.y, 0.0f));
 			mRigidBody->SetVelocityY(0.0f);
 
 			if (collider->CheckCollisions(collider->GetCollidingActor()->GetComponentOfType<Collider2D>()))
 			{
 				position -= {movement.x, 0};
-				mOwner->GetTransform()->SetPosition(position);
+				mOwner->GetTransform()->SetPosition(Vector3(position.x, position.y, 0.0f));
 			}
 		}
 	}

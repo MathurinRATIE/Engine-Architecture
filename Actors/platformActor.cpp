@@ -3,9 +3,9 @@
 #include "spriteComponent.h"
 #include "texture.h"
 
-PlatformActor::PlatformActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, Transform2D pTransform) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+PlatformActor::PlatformActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, Transform3D pTransform) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
-    Rectangle* rect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
+    Rectangle* rect = new Rectangle(Vector2(mTransform.GetPosition().x, mTransform.GetPosition().y), Vector2(mTransform.GetScale().x, mTransform.GetScale().y));
     Collider2D* collider = new Collider2D(this);
     AddComponent(collider);
 

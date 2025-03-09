@@ -1,5 +1,6 @@
 #include "rendererGl.h"
 #include "spriteComponent.h"
+#include "actor.h"
 #include "glew.h"
 #include "SDL.h"
 
@@ -61,6 +62,8 @@ bool RendererGl::Initialize(Window* rWindow)
     Texture pokeballTexture = Texture();
     pokeballTexture.Load(*static_cast<IRenderer*>(this), "Imports/pokeball.png");
 
+    mViewProj = Matrix4Row::CreateSimpleViewProj(800, 800);     // TODO : link to the window size
+
     return true;
 }
 
@@ -72,16 +75,22 @@ void RendererGl::BeginDraw()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     if (mShaderProgram != nullptr) mShaderProgram->Use();
+
+    //mShaderProgram->setMatrix4Row("uViexProj", mViewProj);
     mVao->SetActive();
 }
 
 void RendererGl::Draw()
 {
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 void RendererGl::DrawSprites()
 {
+    for (SpriteComponent* sprite : mSprites)
+    {
+        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), { sprite->GetOwner()->GetTransform()->GetPosition().x, sprite->GetOwner()->GetTransform()->GetPosition().y }, sprite->GetFlip());
+    }
 }
 
 void RendererGl::EndDraw()
@@ -91,7 +100,15 @@ void RendererGl::EndDraw()
 
 void RendererGl::DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle, Vector2 origin, Flip flip) const
 {
-    //TODO drawsprite function (from RendererSdl ?)
+    mShaderProgram->Use();
+    pOwner->GetTransform()->ComputeWorldTransform();
+
+    Matrix4Row scaleMatrix = Matrix4Row::CreateScale(pTexture.GetWidth(), pTexture.GetHeight(), 0.0f);
+    Matrix4Row world = scaleMatrix * pOwner->GetTransform()->GetWorldTransform();
+    
+    mShaderProgram->setMatrix4Row("uWorldTransform", world);
+    pTexture.SetActive();
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
 void RendererGl::AddSprite(SpriteComponent* pSprite)

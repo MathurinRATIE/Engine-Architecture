@@ -125,3 +125,48 @@ Matrix4Row Quaternion::AsMatrixRow() const
 
 	return m;
 }
+
+void Quaternion::RotateX(float pAngle)
+{
+	float cosHalfAngle = cos(pAngle / 2);
+	float sinHalfAngle = sin(pAngle / 2);
+	Quaternion rotationQuat = Quaternion(sinHalfAngle, 0, 0, cosHalfAngle);
+
+	ApplyRotation(rotationQuat);
+}
+
+void Quaternion::RotateY(float pAngle)
+{
+	float cosHalfAngle = cos(pAngle / 2);
+	float sinHalfAngle = sin(pAngle / 2);
+	Quaternion rotationQuat = Quaternion(0, sinHalfAngle, 0, cosHalfAngle);
+
+	ApplyRotation(rotationQuat);
+}
+
+void Quaternion::RotateZ(float pAngle)
+{
+	float cosHalfAngle = cos(pAngle / 2);
+	float sinHalfAngle = sin(pAngle / 2);
+	Quaternion rotationQuat = Quaternion(0, 0, sinHalfAngle, cosHalfAngle);
+
+	ApplyRotation(rotationQuat);
+}
+
+void Quaternion::ApplyRotation(Quaternion pQuaternion)
+{
+	x = w * pQuaternion.x + x * pQuaternion.w + y * pQuaternion.z - z * pQuaternion.y;
+	y = w * pQuaternion.y - x * pQuaternion.z + y * pQuaternion.w + z * pQuaternion.x;
+	z = w * pQuaternion.z + x * pQuaternion.y - y * pQuaternion.x + z * pQuaternion.w;
+	w = w * pQuaternion.w - x * pQuaternion.x - y * pQuaternion.y - z * pQuaternion.z;
+}
+
+bool Quaternion::operator==(const Quaternion& right)
+{
+	return x == right.x && y == right.y && z == right.z && w == right.w;
+}
+
+bool Quaternion::operator!=(const Quaternion& right)
+{
+	return x != right.x || y != right.y || z != right.z || w != right.w;
+}

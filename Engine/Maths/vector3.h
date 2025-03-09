@@ -80,6 +80,16 @@ public:
 		return *this;
 	}
 
+	bool operator==(const Vector3& right)
+	{
+		return x == right.x && y == right.y && z == right.z;
+	}
+
+	bool operator!=(const Vector3& right)
+	{
+		return x != right.x || y != right.y || z != right.z;
+	}
+
 	// Normalize the provided vector
 	static Vector3 Normalize(const Vector3& vec)
 	{
@@ -125,6 +135,7 @@ public:
 	static Vector3 Transform(const Vector3& v, const class Quaternion& q);
 
 	static const Vector3 zero;
+	static const Vector3 one;
 	static const Vector3 unitX;
 	static const Vector3 unitY;
 	static const Vector3 unitZ;

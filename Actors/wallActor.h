@@ -1,7 +1,7 @@
 #pragma once
 #include "scene.h"
 #include "direction.h"
-#include "transform2D.h"
+#include "transform3D.h"
 #include "collider2DComponent.h"
 #include "movementsComponent.h"
 #include "actor.h"
@@ -9,7 +9,7 @@
 class WallActor : public Actor
 {
 public:
-	WallActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform = Transform2D(), ActorState pState = ActorState::Active);
+	WallActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform3D pTransform = Transform3D(), ActorState pState = ActorState::Active);
 
 	void UpdateActor() override;
 

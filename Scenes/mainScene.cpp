@@ -6,8 +6,8 @@ void MainScene::Start(IRenderer* pRenderer, Window* pWindow)
 	mRenderer = pRenderer;
 	mWindow = pWindow;
 
-	mPlayer = new PlayerActor(this, pWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2 }, {15, 15}));
-	mWall = new WallActor(this, pWindow, mRenderer, {}, Transform2D({ mWindow->GetDimensions().x / 2 + 100, mWindow->GetDimensions().y / 2 - 150 }, { 15, 15 }));
+	mPlayer = new PlayerActor(this, pWindow, mRenderer, {}, Transform3D(Vector3(mWindow->GetDimensions().x / 2, mWindow->GetDimensions().y / 2, 0), Vector3(15, 15, 0)));
+	mWall = new WallActor(this, pWindow, mRenderer, {}, Transform3D(Vector3(mWindow->GetDimensions().x / 2 + 100, mWindow->GetDimensions().y / 2 - 150, 0), Vector3(15, 15, 0)));
 }
 
 void MainScene::Update()

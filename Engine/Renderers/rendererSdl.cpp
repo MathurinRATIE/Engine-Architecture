@@ -53,22 +53,22 @@ void RendererSdl::DrawSprites()
 {
     for (SpriteComponent* sprite : mSprites)
     {
-        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), sprite->GetOwner()->GetTransform()->GetPosition(), sprite->GetFlip());
+        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), { sprite->GetOwner()->GetTransform()->GetPosition().x, sprite->GetOwner()->GetTransform()->GetPosition().y }, sprite->GetFlip());
     }
 }
 
 void RendererSdl::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectangle, Vector2 pOrigin, Flip pFlip) const
 {
     SDL_Rect destinationRect;
-    Transform2D transform = *pActor->GetTransform();
+    Transform3D* transform = pActor->GetTransform();
     /*destinationRect.w = static_cast<int>(pTexture.GetWidth() * transform.GetScale().x);
     destinationRect.h = static_cast<int>(pTexture.GetWidth() * transform.GetScale().y);
     destinationRect.x = static_cast<int>(transform.GetPosition().x * pOrigin.x);
     destinationRect.y = static_cast<int>(transform.GetPosition().y * pOrigin.y);*/
     destinationRect.w = static_cast<int>(pRectangle.mDimensions.x);
     destinationRect.h = static_cast<int>(pRectangle.mDimensions.y);
-    destinationRect.x = static_cast<int>(transform.GetPosition().x);
-    destinationRect.y = static_cast<int>(transform.GetPosition().y);
+    destinationRect.x = static_cast<int>(transform->GetPosition().x);
+    destinationRect.y = static_cast<int>(transform->GetPosition().y);
     /*destinationRect.w = 800;
     destinationRect.h = 800;
     destinationRect.x = 0;
@@ -89,7 +89,7 @@ void RendererSdl::DrawSprite(Actor* pActor, Texture pTexture, Rectangle pRectang
         pTexture.GetSdlTexture(),
         sourceSDL,
         &destinationRect,
-        -Maths::ToDeg(transform.GetRotation()),
+        -Maths::ToDeg(transform->GetRotation().z),
         nullptr,
         static_cast<SDL_RendererFlip>(pFlip));
 

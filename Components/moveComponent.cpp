@@ -23,10 +23,10 @@ void MoveComponent::Update()
 {
 	if (!Maths::NearZero(mSpeed.SqrLength()))
 	{
-		Vector2 movement = (mOwner->GetTransform()->Right() * mSpeed.x +	// Calculate movement
+		Vector3 movement = (mOwner->GetTransform()->Right() * mSpeed.x +	// Calculate movement
 			mOwner->GetTransform()->Up() * mSpeed.y) * Time::deltaTime;
 
-		Vector2 position = mOwner->GetTransform()->GetPosition() + movement;	// Apply movement
+		Vector3 position = mOwner->GetTransform()->GetPosition() + movement;	// Apply movement
 		mOwner->GetTransform()->SetPosition(position);
 
 		if (CollisionManager::Instance().IsColliding(mOwner->GetComponentOfType<Collider2D>()))		// Verify collisions

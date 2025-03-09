@@ -1,12 +1,12 @@
 #include "playerActor.h"
 
-PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, const Transform3D& pTransform, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
 	mScene = pScene;
 	mWindow = pWindow;
 	mTransform = pTransform;
 	mRenderer = pRenderer;
-	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
+	mRect = new Rectangle(Vector2(mTransform.GetPosition().x, mTransform.GetPosition().y), Vector2(mTransform.GetScale().x, mTransform.GetScale().y));
 
 	Collider2D* collider = new Collider2D(this);
 	AddComponent(collider);
@@ -32,7 +32,7 @@ void PlayerActor::UpdateActor()
 	{
 		timeSinceLastShot -= 1000;
 
-		BulletActor* bullet = new BulletActor(mSceneOwner, mWindow, mRenderer, {}, this, Direction::Up, Transform2D({ mRect->mPosition.x + 5, mRect->mPosition.y - 19 }, { 5, 20 }));
+		BulletActor* bullet = new BulletActor(mSceneOwner, mWindow, mRenderer, {}, this, Direction::Up, Transform3D(Vector3(mRect->mPosition.x + 5, mRect->mPosition.y - 19, 0), Vector3(5, 20, 0)));
 		mScene->AddPendingActor(bullet);
 	}
 }

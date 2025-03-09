@@ -80,7 +80,7 @@ void MovementComponent::Update()
 		}
 	}
 
-	mOwner->GetTransform()->SetPosition(*mPosition);
+	mOwner->GetTransform()->SetPosition(Vector3(mPosition->x, mPosition->y, 0));
 }
 
 void MovementComponent::SetSpeedX(float pSpeedX)

@@ -1,6 +1,6 @@
 #include "bulletActor.h"
 
-BulletActor::BulletActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY, Transform2D pTransform, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+BulletActor::BulletActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Actor* pOwner, Direction pDirectionY, Transform3D pTransform, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
     mSceneOwner = pScene;
     mWindow = pWindow;
@@ -8,7 +8,7 @@ BulletActor::BulletActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, s
     mOwnerActor = pOwner;
     mTransform = pTransform;
     mState = pState;
-    mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
+    mRect = new Rectangle(Vector2(mTransform.GetPosition().x, mTransform.GetPosition().y), Vector2(mTransform.GetScale().x, mTransform.GetScale().y));
     mDirectionY = pDirectionY;
 
     Collider2D* collider = new Collider2D(this);

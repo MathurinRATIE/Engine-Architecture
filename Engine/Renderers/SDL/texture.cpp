@@ -35,10 +35,15 @@ void Texture::Unload()
 	{
 		SDL_DestroyTexture(mSDLTexture);
 	}
+	else
+	{
+		glDeleteTextures(1, &mTextureId);
+	}
 }
 
 void Texture::SetActive()
 {
+	glBindTexture(GL_TEXTURE_2D, mTextureId);
 }
 
 void Texture::UpdateInfo(int& pWidthOut, int& pHeightOut)

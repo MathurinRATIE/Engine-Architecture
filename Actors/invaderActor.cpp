@@ -1,12 +1,12 @@
 #include "invaderActor.h"
 
-InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform2D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
+InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, Transform3D pTransform, Direction startingDirection, float mSpeedX, float mSpeedY, ActorState pState) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {
 	mScene = pScene;
 	mWindow = pWindow;
 	mTransform = pTransform;
 	mRenderer = pRenderer;
-	mRect = new Rectangle(mTransform.GetPosition(), mTransform.GetScale());
+	mRect = new Rectangle(Vector2(mTransform.GetPosition().x, mTransform.GetPosition().y), Vector2(mTransform.GetScale().x, mTransform.GetScale().y));
 
 	Collider2D* collider = new Collider2D(this);
 	AddComponent(collider);
@@ -43,7 +43,7 @@ void InvaderActor::UpdateActor()
 	{
 		timeSinceLastShot -= 1000;
 
-		BulletActor* bullet = new BulletActor(mSceneOwner, mWindow, mRenderer, {}, this, Direction::Down, Transform2D({ mRect->mPosition.x + 5, mRect->mPosition.y + mRect->mDimensions.y + 1 }, { 5, 20 }));
+		BulletActor* bullet = new BulletActor(mSceneOwner, mWindow, mRenderer, {}, this, Direction::Down, Transform3D(Vector3(mRect->mPosition.x + 5, mRect->mPosition.y + mRect->mDimensions.y + 1, 0), Vector3(5, 20, 0)));
 	}
 }
 
