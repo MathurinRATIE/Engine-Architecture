@@ -83,14 +83,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderers;$(SolutionDir)/Engine/Renderers/SDL;$(SolutionDir)/Engine/Renderers/OpenGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderers;$(SolutionDir)/Engine/Renderers/SDL;$(SolutionDir)/Engine/Renderers/OpenGL;%(AdditionalIncludeDirectories);$(SolutionDir)/Engine/Meshes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2_image.lib;glu32.lib;glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderers</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;$(SolutionDir)/Engine/Renderers;$(SolutionDir)/Engine/Meshes</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +101,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\include;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;%(AdditionalIncludeDirectories);$(SolutionDir)/Engine/Meshes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -110,7 +110,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2_image.lib;glu32.lib;glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\GL\SDL\lib\x86;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\bin\Release\Win32;$(SolutionDir)\Dependencies\SDL2_image-2.8.2\lib\x86;$(SolutionDir)/Engine;$(SolutionDir)/Engine/Maths;$(SolutionDir)/Actors;$(SolutionDir)/Components;$(SolutionDir)/Scenes;$(SolutionDir)/Engine/Inputs;$(SolutionDir)/Engine/Colliders;;$(SolutionDir)/Engine/Meshes</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -152,12 +152,14 @@
     <ClCompile Include="Actors\wallActor.cpp" />
     <ClCompile Include="Components\animatedSpriteComponent.cpp" />
     <ClCompile Include="Components\collider2DComponent.cpp" />
+    <ClCompile Include="Components\meshComponent.cpp" />
     <ClCompile Include="Components\moveComponent.cpp" />
     <ClCompile Include="Components\movementsComponent.cpp" />
     <ClCompile Include="Components\playerControllerComponent.cpp" />
     <ClCompile Include="Components\rigidBody.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
     <ClCompile Include="Engine\actor.cpp" />
+    <ClCompile Include="Engine\Meshes\mesh.cpp" />
     <ClCompile Include="Engine\Renderers\IRenderer.cpp" />
     <ClCompile Include="Engine\Renderers\rendererGl.cpp" />
     <ClCompile Include="Engine\Renderers\OpenGL\shader.cpp" />
@@ -209,6 +211,7 @@
     <ClInclude Include="Actors\wallActor.h" />
     <ClInclude Include="Components\animatedSpriteComponent.h" />
     <ClInclude Include="Components\collider2DComponent.h" />
+    <ClInclude Include="Components\meshComponent.h" />
     <ClInclude Include="Components\moveComponent.h" />
     <ClInclude Include="Components\movementsComponent.h" />
     <ClInclude Include="Components\playerControllerComponent.h" />
@@ -216,6 +219,7 @@
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
     <ClInclude Include="Engine\actorState.h" />
+    <ClInclude Include="Engine\Meshes\mesh.h" />
     <ClInclude Include="Engine\Renderers\rendererGl.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\shader.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\shaderProgram.h" />

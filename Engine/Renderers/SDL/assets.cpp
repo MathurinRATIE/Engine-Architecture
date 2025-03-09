@@ -12,7 +12,7 @@ Texture Assets::LoadTexture(IRenderer& pRenderer, std::string& pFileName, std::s
     return mTextures[pName];
 }
 
-Texture& Assets::GetTextureFromName(std::string& pName)
+Texture& Assets::GetTextureFromName(std::string pName)
 {
     if (mTextures.find(pName) == mTextures.end())
     {
