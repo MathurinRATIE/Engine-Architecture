@@ -1,5 +1,6 @@
 #include "rendererGl.h"
 #include "spriteComponent.h"
+#include "meshComponent.h"
 #include "actor.h"
 #include "glew.h"
 #include "SDL.h"
@@ -124,7 +125,7 @@ void RendererGl::DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle
     mSpriteShaderProgram->Use();
     pOwner->GetTransform()->ComputeWorldTransform();
 
-    Matrix4Row scaleMatrix = Matrix4Row::CreateScale(pTexture.GetWidth(), pTexture.GetHeight(), 0.0f);
+    Matrix4Row scaleMatrix = Matrix4Row::CreateScale(float(pTexture.GetWidth()), float(pTexture.GetHeight()), 0.0f);
     Matrix4Row world = scaleMatrix * pOwner->GetTransform()->GetWorldTransform();
     
     mSpriteShaderProgram->setMatrix4Row("uWorldTransform", world);

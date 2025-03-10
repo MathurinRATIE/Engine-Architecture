@@ -1,6 +1,10 @@
 #pragma once
 #include <vector>
-#include "texture.h"
+
+class Texture;
+class VertexArray;
+class ShaderProgram;
+class Shader;
 
 class Mesh
 {
@@ -11,9 +15,11 @@ public:
 	void Unload();
 	void AddTexture(Texture* pTexture);
 
+    //void CreateShaderProgram(std::string pVertexShaderFile, std::string pFragmentShaderFile);
+
 	ShaderProgram* GetShaderProgram();
     VertexArray* GetVertexArray();
-    Texture* GetTexture(int pTextureIndex);
+    Texture* GetTexture(size_t pTextureIndex);
 
 private:
 	std::vector<Texture*> mTextures;

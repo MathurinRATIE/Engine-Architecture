@@ -1,6 +1,5 @@
-#pragma once
+ #pragma once
 #include <filesystem>
-#include "actor.h"
 #include "rendererSdl.h"
 #include "playerControllerComponent.h"
 #include "animatedSpriteComponent.h"

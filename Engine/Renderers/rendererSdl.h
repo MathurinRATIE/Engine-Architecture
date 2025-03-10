@@ -1,11 +1,6 @@
 #pragma once
-#include <vector>
 #include "SDL_image.h"
-#include "rectangle.h"
-#include "window.h"
 #include "vector4.h"
-#include "actor.h"
-#include "maths.h"
 #include "IRenderer.h"
 
 class SpriteComponent;

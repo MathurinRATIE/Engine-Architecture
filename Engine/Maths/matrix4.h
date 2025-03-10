@@ -1,7 +1,5 @@
 # pragma once
 #include <array>
-#include "maths.h"
-#include "vector3.h"
 #include "quaternion.h"
 
 using std::array;

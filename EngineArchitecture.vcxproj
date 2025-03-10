@@ -160,13 +160,13 @@
     <ClCompile Include="Components\rigidBody.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
     <ClCompile Include="Engine\actor.cpp" />
-    <ClCompile Include="Engine\Meshes\mesh.cpp" />
+    <ClCompile Include="Engine\Renderers\mesh.cpp" />
     <ClCompile Include="Engine\Renderers\IRenderer.cpp" />
     <ClCompile Include="Engine\Renderers\rendererGl.cpp" />
     <ClCompile Include="Engine\Renderers\OpenGL\shader.cpp" />
     <ClCompile Include="Engine\Renderers\OpenGL\shaderProgram.cpp" />
     <ClCompile Include="Engine\Renderers\OpenGL\vertexArray.cpp" />
-    <ClCompile Include="Engine\Renderers\SDL\assets.cpp" />
+    <ClCompile Include="Engine\Renderers\assets.cpp" />
     <ClCompile Include="Engine\Colliders\colliderEvent.cpp" />
     <ClCompile Include="Engine\Colliders\collisionManager.cpp" />
     <ClCompile Include="Engine\component.cpp" />
@@ -181,7 +181,7 @@
     <ClCompile Include="Engine\Renderers\SDL\rectangle.cpp" />
     <ClCompile Include="Engine\Renderers\rendererSdl.cpp" />
     <ClCompile Include="Engine\scene.cpp" />
-    <ClCompile Include="Engine\Renderers\SDL\texture.cpp" />
+    <ClCompile Include="Engine\Renderers\texture.cpp" />
     <ClCompile Include="Engine\engineTime.cpp" />
     <ClCompile Include="Engine\transform3D.cpp" />
     <ClCompile Include="Engine\window.cpp" />
@@ -195,11 +195,13 @@
     <ClCompile Include="Scenes\spaceInvaders.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Pictures\Wall.png" />
     <Image Include="Imports\Bullet.png" />
     <Image Include="Imports\Invader.png" />
     <Image Include="Imports\Platform.png" />
     <Image Include="Imports\pokeball.png" />
     <Image Include="Imports\SpaceShip.png" />
+    <Image Include="Imports\Wall.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actors\ballActor.h" />
@@ -221,12 +223,12 @@
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
     <ClInclude Include="Engine\actorState.h" />
-    <ClInclude Include="Engine\Meshes\mesh.h" />
+    <ClInclude Include="Engine\Renderers\mesh.h" />
     <ClInclude Include="Engine\Renderers\rendererGl.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\shader.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\shaderProgram.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\vertexArray.h" />
-    <ClInclude Include="Engine\Renderers\SDL\assets.h" />
+    <ClInclude Include="Engine\Renderers\assets.h" />
     <ClInclude Include="Engine\Colliders\colliderEvent.h" />
     <ClInclude Include="Engine\Colliders\IColliderListener.h" />
     <ClInclude Include="Engine\Colliders\collisionManager.h" />
@@ -247,7 +249,7 @@
     <ClInclude Include="Engine\Renderers\rendererSdl.h" />
     <ClInclude Include="Engine\resource.h" />
     <ClInclude Include="Engine\scene.h" />
-    <ClInclude Include="Engine\Renderers\SDL\texture.h" />
+    <ClInclude Include="Engine\Renderers\texture.h" />
     <ClInclude Include="Engine\engineTime.h" />
     <ClInclude Include="Engine\transform3D.h" />
     <ClInclude Include="Engine\window.h" />

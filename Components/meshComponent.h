@@ -1,7 +1,7 @@
 #pragma once
+#include "mesh.h"
 #include "component.h"
 #include "matrix4Row.h"
-#include "mesh.h"
 
 class MeshComponent : public Component
 {
@@ -12,9 +12,9 @@ public:
 	virtual void Draw(Matrix4Row viewProj);
 
 	virtual void SetMesh(Mesh& pMesh);
-	void SetTextureIndex(int pTextureIndex);
+	void SetTextureIndex(size_t pTextureIndex);
 
 protected:
 	Mesh* mMesh;
-	unsigned int mTextureIndex;
+	size_t mTextureIndex;
 };

@@ -1,6 +1,5 @@
 #pragma once
 #include <memory.h>
-#include "vector3.h"
 #include "quaternion.h"
 
 // Row major order 4*4 matrix

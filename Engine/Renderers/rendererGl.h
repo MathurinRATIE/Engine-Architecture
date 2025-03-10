@@ -1,10 +1,10 @@
 #pragma once
-#include <vector>
 #include "vertexArray.h"
 #include "shaderProgram.h"
-#include "meshComponent.h"
+#include "IRenderer.h"
 
 class SpriteComponent;
+class MeshComponent;
 
 class RendererGl : public IRenderer
 {

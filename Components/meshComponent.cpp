@@ -1,6 +1,7 @@
 #include "meshComponent.h"
-#include "rendererGl.h"
 #include "scene.h"
+#include "rendererGl.h"
+#include "texture.h"
 
 MeshComponent::MeshComponent(Actor* pOwner) : Component(pOwner)
 {
@@ -40,7 +41,7 @@ void MeshComponent::SetMesh(Mesh& pMesh)
 	mMesh = &pMesh;
 }
 
-void MeshComponent::SetTextureIndex(int pTextureIndex)
+void MeshComponent::SetTextureIndex(size_t pTextureIndex)
 {
 	mTextureIndex = pTextureIndex;
 }

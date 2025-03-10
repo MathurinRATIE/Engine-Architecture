@@ -1,9 +1,9 @@
 #pragma once
+#include <vector>
 #include "actorState.h"
 #include "rectangle.h"
 #include "window.h"
 #include "transform3D.h"
-#include <vector>
 
 class Scene;
 class IRenderer;

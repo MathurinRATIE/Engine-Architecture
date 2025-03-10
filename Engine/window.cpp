@@ -1,9 +1,11 @@
 #include "window.h"
 
+Vector2 Window::Dimensions;
+
 Window::Window(int pWidth, int pHeight) :mSdlWindow(nullptr), mDimensions({ static_cast<float>(pWidth),  static_cast<float>(pHeight) })
 {
-    Dimensions.x = pWidth;
-    Dimensions.y = pHeight;
+    Dimensions.x = float(pWidth);
+    Dimensions.y = float(pHeight);
 }
 
 Vector2 Window::GetDimensions() const

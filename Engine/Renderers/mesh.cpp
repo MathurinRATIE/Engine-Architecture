@@ -1,20 +1,25 @@
 #include "mesh.h"
+#include "texture.h"
 #include "assets.h"
 
 Mesh::Mesh()
 {
     mVertexArray = new VertexArray(cubeVertices, 28, cubeIndices, 36);
+
+    mVertexShader = new Shader();
+    mFragmentShader = new Shader();
     mVertexShader->Load("basic.vs", ShaderType::VERTEX);
     mFragmentShader->Load("basic.fs", ShaderType::FRAGMENT);
+
+    mShaderProgram = new ShaderProgram();
     mShaderProgram->Compose({ &mVertexShader, &mFragmentShader });
-    mTextures.emplace_back(&Assets::GetTextureFromName("pokeball"));
+
+    mTextures.emplace_back(&Assets::GetTextureFromName("Wall"));
 }
 
 Mesh::~Mesh()
 {
-    delete mFragmentShader;
     delete mVertexShader;
-    delete mShaderProgram;
 }
 
 void Mesh::Unload()
@@ -27,6 +32,13 @@ void Mesh::AddTexture(Texture* pTexture)
     mTextures.push_back(pTexture);
 }
 
+/*void Mesh::CreateShaderProgram(std::string pVertexShaderFile, std::string pFragmentShaderFile)
+{
+    mVertexShader->Load(pVertexShaderFile, ShaderType::VERTEX);
+    mFragmentShader->Load(pFragmentShaderFile, ShaderType::FRAGMENT);
+    mShaderProgram->Compose({ &mVertexShader, &mFragmentShader });
+}*/
+
 ShaderProgram* Mesh::GetShaderProgram()
 {
     return mShaderProgram;
@@ -37,7 +49,7 @@ VertexArray* Mesh::GetVertexArray()
     return mVertexArray;
 }
 
-Texture* Mesh::GetTexture(int pTextureIndex)
+Texture* Mesh::GetTexture(size_t pTextureIndex)
 {
     if (mTextures.size() >= pTextureIndex - 1)
     {

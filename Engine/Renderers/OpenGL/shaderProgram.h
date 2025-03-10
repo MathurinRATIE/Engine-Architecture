@@ -1,11 +1,10 @@
 #pragma once
 #include <glew.h>
-#include "shader.h"
 #include <vector>
+#include "shader.h"
 #include "matrix4Row.h"
 #include "matrix4.h"
 #include "vector2.h"
-#include "vector3.h"
 #include "vector4.h"
 
 class ShaderProgram

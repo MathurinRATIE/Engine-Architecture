@@ -1,6 +1,4 @@
 #pragma once
-#include "vector3.h"
-#include "maths.h"
 #include "matrix4Row.h"
 #include "component.h"
 

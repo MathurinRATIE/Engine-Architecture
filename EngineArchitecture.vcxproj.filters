@@ -66,7 +66,7 @@
     <ClCompile Include="Engine\actor.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Renderers\SDL\assets.cpp">
+    <ClCompile Include="Engine\Renderers\assets.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\component.cpp">
@@ -87,7 +87,7 @@
     <ClCompile Include="Engine\scene.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Renderers\SDL\texture.cpp">
+    <ClCompile Include="Engine\Renderers\texture.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\engineTime.cpp">
@@ -189,7 +189,7 @@
     <ClCompile Include="Scenes\sampleSceneOpenGL.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Meshes\mesh.cpp">
+    <ClCompile Include="Engine\Renderers\mesh.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Components\meshComponent.cpp">
@@ -215,6 +215,12 @@
     <Image Include="Imports\Platform.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="..\..\..\..\Pictures\Wall.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Imports\Wall.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Maths\maths.h">
@@ -235,7 +241,7 @@
     <ClInclude Include="Engine\actorState.h">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Renderers\SDL\assets.h">
+    <ClInclude Include="Engine\Renderers\assets.h">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\component.h">
@@ -262,7 +268,7 @@
     <ClInclude Include="Engine\scene.h">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Renderers\SDL\texture.h">
+    <ClInclude Include="Engine\Renderers\texture.h">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\engineTime.h">
@@ -376,7 +382,7 @@
     <ClInclude Include="Scenes\sampleSceneOpenGL.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Meshes\mesh.h">
+    <ClInclude Include="Engine\Renderers\mesh.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Components\meshComponent.h">
