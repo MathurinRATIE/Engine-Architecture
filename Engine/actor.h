@@ -23,7 +23,7 @@ protected:
 	std::vector<std::string> mTags;
 
 public :
-	Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, const Transform3D& pTransform = Transform3D());
+	Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState = ActorState::Active, Transform3D pTransform = Transform3D());
 	virtual ~Actor();
 	Actor(const Actor&) = delete;
 	Actor& operator=(const Actor&) = delete;
@@ -31,7 +31,6 @@ public :
 	void Start();
 	void Update();
 	void UpdateComponents();
-	void UpdateComponentsTransform();
 	virtual void UpdateActor();
 
 	void SetActive(bool pIsActive);

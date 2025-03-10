@@ -2,15 +2,15 @@
 #include <glew.h>
 
 VertexArray::VertexArray(const float* pVertices, unsigned int pVerticeCount, const unsigned int* pIndices, unsigned int pIndexCount) :
-    mVerticeCount(pVerticeCount), mIndexCount(pIndexCount), mVertexArrayId(0), mVboId(0), mIndexBufferId(0)
+    mVerticeCount(pVerticeCount), mIndexCount(pIndexCount), mVertexArrayId(0), mVertexBufferId(0), mIndexBufferId(0)
 {
     //Generate VAO
     glGenVertexArrays(1, &mVertexArrayId);
     glBindVertexArray(mVertexArrayId);
 
     //Generate VBO
-    glGenBuffers(1, &mVboId);
-    glBindBuffer(GL_ARRAY_BUFFER, mVboId);
+    glGenBuffers(1, &mVertexBufferId);
+    glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferId);
     glBufferData(GL_ARRAY_BUFFER, mVerticeCount * 5 * sizeof(float), pVertices, GL_STATIC_DRAW);
 
     //Generate Index Buffer

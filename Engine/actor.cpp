@@ -3,7 +3,7 @@
 #include "actor.h"
 #include "spriteComponent.h"
 
-Actor::Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, const Transform3D& pTransform)
+Actor::Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, Transform3D pTransform)
 {
 	mSceneOwner = pScene;
 	mWindow = pWindow;
@@ -11,7 +11,7 @@ Actor::Actor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<C
 	mComponents = pComponents;
 	mState = pState;
 	mTransform = pTransform;
-	mTransform.SetOwner(this);
+	mSprite = nullptr;
 
 	mSceneOwner->AddPendingActor(this);
 }
@@ -40,11 +40,6 @@ void Actor::UpdateComponents()
 	{
 		component->Update();
 	}
-}
-
-void Actor::UpdateComponentsTransform()
-{
-	// TODO : what should this do ?
 }
 
 void Actor::UpdateActor()

@@ -1,9 +1,13 @@
 #include "sampleSceneOpenGL.h"
+#include "cubeActor.h"
 
 void SampleSceneOpenGL::Start(IRenderer* pRenderer, Window* pWindow)
 {
 	mRenderer = pRenderer;
 	mWindow = pWindow;
+
+	CubeActor* cubeActor = new CubeActor(this, pWindow, pRenderer, {});
+	AddPendingActor(cubeActor);
 }
 
 void SampleSceneOpenGL::Update()

@@ -4,7 +4,7 @@
 #include "matrix4Row.h"
 #include "component.h"
 
-class Transform3D : public Component
+class Transform3D
 {
 public :
 	Transform3D(Vector3 pPosition = Vector3::zero, Vector3 pScale = Vector3::one, Quaternion pRotation = Quaternion::Identity);
@@ -17,7 +17,6 @@ public :
 	void SetPosition(Vector3 pPosition);
 	void SetScale(Vector3 pScale);
 	void SetRotation(Quaternion pRotation);
-	void SetOwner(Actor* pOwner);
 	void ComputeWorldTransform();
 
 	bool operator!=(Transform3D right);

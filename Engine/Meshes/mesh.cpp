@@ -31,3 +31,17 @@ ShaderProgram* Mesh::GetShaderProgram()
 {
     return mShaderProgram;
 }
+
+VertexArray* Mesh::GetVertexArray()
+{
+    return mVertexArray;
+}
+
+Texture* Mesh::GetTexture(int pTextureIndex)
+{
+    if (mTextures.size() >= pTextureIndex - 1)
+    {
+        return mTextures[pTextureIndex];
+    }
+    return nullptr;
+}

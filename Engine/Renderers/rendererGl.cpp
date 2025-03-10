@@ -4,16 +4,25 @@
 #include "glew.h"
 #include "SDL.h"
 
-RendererGl::RendererGl(std::string pVertexShaderFileName, std::string pFragmentShaderFileName):mWindow(nullptr), mVao(nullptr), mContext(nullptr), mVertexShaderFileName(pVertexShaderFileName), mFragmentShaderFileName(pFragmentShaderFileName)
+RendererGl::RendererGl(std::string pVertexShaderFileName, std::string pFragmentShaderFileName):mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr), mVertexShaderFileName(pVertexShaderFileName), mFragmentShaderFileName(pFragmentShaderFileName)
 {
+    mWindow = nullptr;
+    mSpriteVao = nullptr;
+    mContext = nullptr;
+    mSpriteShaderProgram = nullptr;
+    mVertexShader = nullptr;
+    mFragmentShader = nullptr;
+    mSpriteViewProj = Matrix4Row::CreateSimpleViewProj(Window::Dimensions.x, Window::Dimensions.y);
+    mView = Matrix4Row::CreateLookAt(Vector3(0, 0, 5), Vector3::unitX, Vector3::unitZ);
+    mProj = Matrix4Row::CreatePerspectiveFOV(70.0f, Window::Dimensions.x, Window::Dimensions.y, 0.01f, 10000.0f);
 }
 
 RendererGl::~RendererGl()
 {
-    delete mVao;
+    delete mSpriteVao;
     delete mVertexShader;
     delete mFragmentShader;
-    delete mShaderProgram;
+    delete mSpriteShaderProgram;
 }
 
 bool RendererGl::Initialize(Window* rWindow)
@@ -46,9 +55,9 @@ bool RendererGl::Initialize(Window* rWindow)
     {
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
-    mVao = new VertexArray(vertices, 4, indices, 6);
+    mSpriteVao = new VertexArray(vertices, 4, indices, 6);
 
-    mShaderProgram = new ShaderProgram();
+    mSpriteShaderProgram = new ShaderProgram();
 
     std::vector<Shader*> shaders;
     mVertexShader = new Shader(0, "VertexShader", ShaderType::VERTEX);
@@ -57,12 +66,7 @@ bool RendererGl::Initialize(Window* rWindow)
     mFragmentShader = new Shader(1, "FragmentShader", ShaderType::FRAGMENT);
     mFragmentShader->Load(mFragmentShaderFileName, ShaderType::FRAGMENT);
     shaders.push_back(mFragmentShader);
-    mShaderProgram->Compose(shaders);
-
-    Texture pokeballTexture = Texture();
-    pokeballTexture.Load(*static_cast<IRenderer*>(this), "Imports/pokeball.png");
-
-    mViewProj = Matrix4Row::CreateSimpleViewProj(800, 800);     // TODO : link to the window size
+    mSpriteShaderProgram->Compose(shaders);
 
     return true;
 }
@@ -70,26 +74,43 @@ bool RendererGl::Initialize(Window* rWindow)
 void RendererGl::BeginDraw()
 {
     glClearColor(0.45f, 0.45f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    if (mShaderProgram != nullptr) mShaderProgram->Use();
-
-    //mShaderProgram->setMatrix4Row("uViexProj", mViewProj);
-    mVao->SetActive();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void RendererGl::Draw()
 {
-    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    DrawMeshes();
+    DrawSprites();
 }
 
 void RendererGl::DrawSprites()
 {
+    glEnable(GL_BLEND);
+    glDisable(GL_DEPTH_TEST);
+    glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    if (mSpriteShaderProgram != nullptr)
+    {
+        mSpriteShaderProgram->Use();
+    }
+    mSpriteShaderProgram->setMatrix4Row("uViexProj", mSpriteViewProj);
+    mSpriteVao->SetActive();
+
     for (SpriteComponent* sprite : mSprites)
     {
-        DrawSprite(sprite->GetOwner(), sprite->GetTexture(), sprite->GetOwner()->GetRect(), { sprite->GetOwner()->GetTransform()->GetPosition().x, sprite->GetOwner()->GetTransform()->GetPosition().y }, sprite->GetFlip());
+        sprite->Draw(*this);
+    }
+}
+
+void RendererGl::DrawMeshes()
+{
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_BLEND);
+
+    for (MeshComponent* mesh : mMeshComponents)
+    {
+        mesh->Draw(mView * mProj);
     }
 }
 
@@ -100,13 +121,13 @@ void RendererGl::EndDraw()
 
 void RendererGl::DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle, Vector2 origin, Flip flip) const
 {
-    mShaderProgram->Use();
+    mSpriteShaderProgram->Use();
     pOwner->GetTransform()->ComputeWorldTransform();
 
     Matrix4Row scaleMatrix = Matrix4Row::CreateScale(pTexture.GetWidth(), pTexture.GetHeight(), 0.0f);
     Matrix4Row world = scaleMatrix * pOwner->GetTransform()->GetWorldTransform();
     
-    mShaderProgram->setMatrix4Row("uWorldTransform", world);
+    mSpriteShaderProgram->setMatrix4Row("uWorldTransform", world);
     pTexture.SetActive();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
@@ -129,10 +150,25 @@ void RendererGl::RemoveSprite(SpriteComponent* pSprite)
     mSprites.erase(sc);
 }
 
+void RendererGl::AddMesh(MeshComponent* pMeshComponent)
+{
+    mMeshComponents.push_back(pMeshComponent);
+}
+
+void RendererGl::RemoveMesh(MeshComponent* pMeshComponent)
+{
+    auto iterator = std::find(mMeshComponents.begin(), mMeshComponents.end(), pMeshComponent);
+
+    if (iterator != mMeshComponents.end())
+    {
+        mMeshComponents.erase(iterator);
+    }
+}
+
 void RendererGl::Close()
 {
     SDL_GL_DeleteContext(mContext);
-    delete mVao;
+    delete mSpriteVao;
 }
 
 IRenderer::RendererType RendererGl::GetType()

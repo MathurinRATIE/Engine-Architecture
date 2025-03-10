@@ -19,4 +19,6 @@ public:
 
 	bool Open();
 	void Close();
+
+	static Vector2 Dimensions;
 };

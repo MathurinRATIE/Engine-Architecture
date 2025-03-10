@@ -2,6 +2,8 @@
 
 Window::Window(int pWidth, int pHeight) :mSdlWindow(nullptr), mDimensions({ static_cast<float>(pWidth),  static_cast<float>(pHeight) })
 {
+    Dimensions.x = pWidth;
+    Dimensions.y = pHeight;
 }
 
 Vector2 Window::GetDimensions() const

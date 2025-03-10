@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="Actors\ballActor.cpp" />
     <ClCompile Include="Actors\bulletActor.cpp" />
+    <ClCompile Include="Actors\cubeActor.cpp" />
     <ClCompile Include="Actors\invaderActor.cpp" />
     <ClCompile Include="Actors\paddleActor.cpp" />
     <ClCompile Include="Actors\platformActor.cpp" />
@@ -203,6 +204,7 @@
   <ItemGroup>
     <ClInclude Include="Actors\ballActor.h" />
     <ClInclude Include="Actors\bulletActor.h" />
+    <ClInclude Include="Actors\cubeActor.h" />
     <ClInclude Include="Actors\invaderActor.h" />
     <ClInclude Include="Actors\paddleActor.h" />
     <ClInclude Include="Actors\platformActor.h" />
@@ -258,6 +260,8 @@
     <ClInclude Include="Scenes\spaceInvaders.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\mesh.fs" />
+    <None Include="Shaders\mesh.vs" />
     <None Include="Shaders\shaderBase.fs" />
     <None Include="Shaders\shaderBase.vs" />
     <None Include="Shaders\texture.fs" />

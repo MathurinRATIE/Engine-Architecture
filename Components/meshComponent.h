@@ -8,12 +8,13 @@ class MeshComponent : public Component
 public:
 	MeshComponent(Actor* pOwner);
 	virtual ~MeshComponent();
+	
 	virtual void Draw(Matrix4Row viewProj);
+
 	virtual void SetMesh(Mesh& pMesh);
-	void SetTextureIndex(size_t pTextureIndex);
+	void SetTextureIndex(int pTextureIndex);
 
 protected:
 	Mesh* mMesh;
-	size_t mTextureIndex;
+	unsigned int mTextureIndex;
 };
-

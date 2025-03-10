@@ -2,7 +2,7 @@
 #include "quaternion.h"
 #include "actor.h"
 
-Transform3D::Transform3D(Vector3 pPosition, Vector3 pScale, Quaternion pRotation) : Component(nullptr)
+Transform3D::Transform3D(Vector3 pPosition, Vector3 pScale, Quaternion pRotation)
 {
     mPosition = pPosition;
     mScale = pScale;
@@ -45,11 +45,6 @@ void Transform3D::SetRotation(Quaternion pRotation)
     mRotation = pRotation;
 }
 
-void Transform3D::SetOwner(Actor* pOwner)
-{
-    mOwner = pOwner;
-}
-
 void Transform3D::ComputeWorldTransform()
 {
     if (!mNeedsUpdate)
@@ -61,7 +56,6 @@ void Transform3D::ComputeWorldTransform()
     mWorldTransform = Matrix4Row::CreateScale(mScale);
     mWorldTransform *= Matrix4Row::CreateFromQuaternion(mRotation);
     mWorldTransform *= Matrix4Row::CreateTranslation(mPosition);
-    mOwner->UpdateComponentsTransform();
 }
 
 bool Transform3D::operator!=(Transform3D right)
