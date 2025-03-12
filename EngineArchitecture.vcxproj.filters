@@ -111,7 +111,7 @@
     <ClCompile Include="Actors\wallActor.cpp">
       <Filter>Fichiers sources\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="Components\collider2DComponent.cpp">
+    <ClCompile Include="Components\collider3DComponent.cpp">
       <Filter>Fichiers sources\Components</Filter>
     </ClCompile>
     <ClCompile Include="Components\movementsComponent.cpp">
@@ -196,6 +196,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Actors\cubeActor.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\camera.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -298,7 +301,7 @@
     <ClInclude Include="Actors\wallActor.h">
       <Filter>Fichiers d%27en-tête\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="Components\collider2DComponent.h">
+    <ClInclude Include="Components\collider3DComponent.h">
       <Filter>Fichiers d%27en-tête\Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\movementsComponent.h">
@@ -389,6 +392,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Actors\cubeActor.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\camera.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\cube.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

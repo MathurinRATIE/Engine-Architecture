@@ -3,7 +3,7 @@
 #include "rendererSdl.h"
 #include "playerControllerComponent.h"
 #include "animatedSpriteComponent.h"
-#include "collider2DComponent.h"
+#include "collider3DComponent.h"
 
 
 class PlatformerPlayerActor : public Actor

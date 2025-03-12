@@ -1,5 +1,5 @@
 #pragma once
-#include "collider2DComponent.h"
+#include "collider3DComponent.h"
 #include "movementsComponent.h"
 #include "playerActor.h"
 #include "actor.h"

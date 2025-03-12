@@ -12,12 +12,12 @@ public:
 	CollisionManager& operator=(const CollisionManager&) = delete;
 
 
-	bool IsColliding(Collider2D* pCollider);
+	bool IsColliding(Collider3D* pCollider);
 	void CheckCollisions();
-	void SubscribeTo(Collider2D* pCollider, IColliderListener* pListener);
+	void SubscribeTo(Collider3D* pCollider, IColliderListener* pListener);
 
 	static CollisionManager& Instance();
 
 private:
-	std::map<Collider2D*, ColliderEvent*> mColliderEvents;
+	std::map<Collider3D*, ColliderEvent*> mColliderEvents;
 };

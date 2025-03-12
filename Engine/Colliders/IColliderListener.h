@@ -1,10 +1,10 @@
 #pragma once
-class Collider2D;
+class Collider3D;
 enum class ColliderState;
 
 class IColliderListener
 {
 public:
 	virtual ~IColliderListener() = default;
-	virtual void OnNotifyCollider(Collider2D* pCollider, ColliderState pState) = 0;
+	virtual void OnNotifyCollider(Collider3D* pCollider, ColliderState pState) = 0;
 };

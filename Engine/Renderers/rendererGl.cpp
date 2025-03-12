@@ -5,7 +5,7 @@
 #include "glew.h"
 #include "SDL.h"
 
-RendererGl::RendererGl(std::string pVertexShaderFileName, std::string pFragmentShaderFileName):mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr), mVertexShaderFileName(pVertexShaderFileName), mFragmentShaderFileName(pFragmentShaderFileName)
+RendererGl::RendererGl():mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
     mWindow = nullptr;
     mSpriteVao = nullptr;
@@ -14,7 +14,7 @@ RendererGl::RendererGl(std::string pVertexShaderFileName, std::string pFragmentS
     mVertexShader = nullptr;
     mFragmentShader = nullptr;
     mSpriteViewProj = Matrix4Row::CreateSimpleViewProj(Window::Dimensions.x, Window::Dimensions.y);
-    mView = Matrix4Row::CreateLookAt(Vector3(0, 0, 5), Vector3::unitX, Vector3::unitZ);
+    mView = Matrix4Row::CreateLookAt(Vector3(0, 0, 0), Vector3::unitX, Vector3::unitZ);
     mProj = Matrix4Row::CreatePerspectiveFOV(70.0f, Window::Dimensions.x, Window::Dimensions.y, 0.01f, 10000.0f);
 }
 
@@ -62,10 +62,10 @@ bool RendererGl::Initialize(Window* rWindow)
 
     std::vector<Shader*> shaders;
     mVertexShader = new Shader(0, "VertexShader", ShaderType::VERTEX);
-    mVertexShader->Load(mVertexShaderFileName, ShaderType::VERTEX);
+    mVertexShader->Load("texture.vs", ShaderType::VERTEX);
     shaders.push_back(mVertexShader);
     mFragmentShader = new Shader(1, "FragmentShader", ShaderType::FRAGMENT);
-    mFragmentShader->Load(mFragmentShaderFileName, ShaderType::FRAGMENT);
+    mFragmentShader->Load("texture.fs", ShaderType::FRAGMENT);
     shaders.push_back(mFragmentShader);
     mSpriteShaderProgram->Compose(shaders);
 
@@ -170,6 +170,11 @@ void RendererGl::Close()
 {
     SDL_GL_DeleteContext(mContext);
     delete mSpriteVao;
+}
+
+void RendererGl::SetViewMatrix(Matrix4Row pView)
+{
+    mView = pView;
 }
 
 IRenderer::RendererType RendererGl::GetType()

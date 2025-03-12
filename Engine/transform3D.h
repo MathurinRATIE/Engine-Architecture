@@ -14,6 +14,7 @@ public :
 
 	void SetPosition(Vector3 pPosition);
 	void SetScale(Vector3 pScale);
+	void Rotate(float pRotation, Vector3 pAxis);
 	void SetRotation(Quaternion pRotation);
 	void ComputeWorldTransform();
 

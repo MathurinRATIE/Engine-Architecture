@@ -11,7 +11,7 @@ BulletActor::BulletActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, s
     mRect = new Rectangle(Vector2(mTransform.GetPosition().x, mTransform.GetPosition().y), Vector2(mTransform.GetScale().x, mTransform.GetScale().y));
     mDirectionY = pDirectionY;
 
-    Collider2D* collider = new Collider2D(this);
+    Collider3D* collider = new Collider3D(this);
     AddComponent(collider);
 
     Texture* bulletTexture = new Texture();

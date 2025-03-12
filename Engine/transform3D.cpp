@@ -40,6 +40,12 @@ void Transform3D::SetScale(Vector3 pScale)
     mScale = pScale;
 }
 
+void Transform3D::Rotate(float pRotation, Vector3 pAxis)
+{
+    Quaternion appliedRotation = Quaternion(pAxis, pRotation);
+    mRotation = Quaternion::Concatenate(mRotation, appliedRotation);
+}
+
 void Transform3D::SetRotation(Quaternion pRotation)
 {
     mRotation = pRotation;
@@ -70,12 +76,12 @@ bool Transform3D::operator==(Transform3D right)
 
 Vector3 Transform3D::Right() const
 {
-    return Vector3(Maths::Cos(mRotation.z), -Maths::Sin(mRotation.z), 0.0f);
+    return Vector3::Transform(Vector3::unitY, mRotation);
 }
 
 Vector3 Transform3D::Up() const
 {
-    return Vector3(Maths::Sin(mRotation.z), -Maths::Cos(mRotation.z), 0.0f);
+    return Vector3::Transform(Vector3::unitZ, mRotation);
 }
 
 Vector3 Transform3D::Forward() const

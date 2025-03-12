@@ -1,24 +1,24 @@
 #include "rigidBody.h"
 #include "actor.h"
-#include "collider2DComponent.h"
+#include "collider3DComponent.h"
 #include "engineTime.h"
 
 RigidBody::RigidBody(Actor* pOwner, float pMass, bool pEnableGravity) : Component(pOwner)
 {
-	if (pEnableGravity)
+	/*if (pEnableGravity)
 	{
-		mForces["gravity"] = Vector2(0, -9.81f);
+		mForces["gravity"] = Vector3(0, 0, -9.81f);
 	}
 
-	mMass = pMass;
+	mMass = pMass;*/
 }
 
-void RigidBody::AddVelocity(Vector2 pVelocity)
+void RigidBody::AddVelocity(Vector3 pVelocity)
 {
 	mVelocity += pVelocity;
 }
 
-void RigidBody::SetVelocity(Vector2 pVelocity)
+void RigidBody::SetVelocity(Vector3 pVelocity)
 {
 	mVelocity = pVelocity;
 }
@@ -33,15 +33,20 @@ void RigidBody::SetVelocityY(float pVelocityY)
 	mVelocity.y = pVelocityY;
 }
 
-Vector2* RigidBody::GetVelocity()
+void RigidBody::SetVelocityZ(float pVelocityZ)
+{
+	mVelocity.z = pVelocityZ;
+}
+
+Vector3* RigidBody::GetVelocity()
 {
 	return &mVelocity;
 }
 
 void RigidBody::Update()
 {
-	if (!(mOwner->GetComponentOfType<Collider2D>()->GetState() == ColliderState::CollisionGounded))
+	/*if (!(mOwner->GetComponentOfType<Collider3D>()->GetState() == ColliderState::CollisionGounded))
 	{
 		AddVelocity(mForces["gravity"] * mMass * Time::deltaTime);
-	}
+	}*/
 }

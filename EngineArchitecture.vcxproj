@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="Actors\ballActor.cpp" />
     <ClCompile Include="Actors\bulletActor.cpp" />
+    <ClCompile Include="Actors\camera.cpp" />
     <ClCompile Include="Actors\cubeActor.cpp" />
     <ClCompile Include="Actors\invaderActor.cpp" />
     <ClCompile Include="Actors\paddleActor.cpp" />
@@ -152,7 +153,7 @@
     <ClCompile Include="Actors\playerActor.cpp" />
     <ClCompile Include="Actors\wallActor.cpp" />
     <ClCompile Include="Components\animatedSpriteComponent.cpp" />
-    <ClCompile Include="Components\collider2DComponent.cpp" />
+    <ClCompile Include="Components\collider3DComponent.cpp" />
     <ClCompile Include="Components\meshComponent.cpp" />
     <ClCompile Include="Components\moveComponent.cpp" />
     <ClCompile Include="Components\movementsComponent.cpp" />
@@ -206,6 +207,7 @@
   <ItemGroup>
     <ClInclude Include="Actors\ballActor.h" />
     <ClInclude Include="Actors\bulletActor.h" />
+    <ClInclude Include="Actors\camera.h" />
     <ClInclude Include="Actors\cubeActor.h" />
     <ClInclude Include="Actors\invaderActor.h" />
     <ClInclude Include="Actors\paddleActor.h" />
@@ -214,7 +216,7 @@
     <ClInclude Include="Actors\playerActor.h" />
     <ClInclude Include="Actors\wallActor.h" />
     <ClInclude Include="Components\animatedSpriteComponent.h" />
-    <ClInclude Include="Components\collider2DComponent.h" />
+    <ClInclude Include="Components\collider3DComponent.h" />
     <ClInclude Include="Components\meshComponent.h" />
     <ClInclude Include="Components\moveComponent.h" />
     <ClInclude Include="Components\movementsComponent.h" />
@@ -223,6 +225,7 @@
     <ClInclude Include="Components\spriteComponent.h" />
     <ClInclude Include="Engine\actor.h" />
     <ClInclude Include="Engine\actorState.h" />
+    <ClInclude Include="Engine\Maths\cube.h" />
     <ClInclude Include="Engine\Renderers\mesh.h" />
     <ClInclude Include="Engine\Renderers\rendererGl.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\shader.h" />

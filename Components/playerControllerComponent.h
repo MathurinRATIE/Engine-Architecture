@@ -15,8 +15,8 @@ public :
 
 private:
 	RigidBody* mRigidBody;
-	int mMovementDirection = 0;		// 0: static | 1: right | -1: left
-	int mCurrentlyAppliedDirection = NULL;
+	Vector3 mMovement = Vector3::zero;
+	Vector3 mCurrentlyAppliedMovement = Vector3::zero;
 	bool mIsJumpping = false;
 	bool mGrounded = false;
 };

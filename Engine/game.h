@@ -11,7 +11,7 @@
 class Game
 {
 public :
-	Game(std::string pTitle, std::vector<Scene*> pScenes, IRenderer::RendererType pType, std::string pVertexShaderFileName = "shaderBase", std::string pFragmentShaderFileName = "shaderBase");
+	Game(std::string pTitle, std::vector<Scene*> pScenes, IRenderer::RendererType pType);
 	Game(const Game&) = delete;
 	Game& operator=(const Game&) = delete;
 

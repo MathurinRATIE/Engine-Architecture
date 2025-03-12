@@ -1,6 +1,6 @@
 #pragma once
-#include "vector2.h"
-#include "Component.h"
+#include "vector3.h"
+#include "component.h"
 #include "maths.h"
 #include "inputManager.h"
 
@@ -12,11 +12,11 @@ public:
 	MoveComponent(const MoveComponent&) = delete;
 	MoveComponent& operator= (const MoveComponent&) = delete;
 
-	Vector2 GetSpeed() const;
-	void SetSpeed(Vector2 pSpeed);
+	Vector3 GetSpeed() const;
+	void SetSpeed(Vector3 pSpeed);
 
 	void Update() override;
 
 protected:
-	Vector2 mSpeed;
+	Vector3 mSpeed;
 };

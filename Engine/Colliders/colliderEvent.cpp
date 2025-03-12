@@ -19,7 +19,7 @@ void ColliderEvent::Unsubscribe(IColliderListener* pListener)
 	}
 }
 
-void ColliderEvent::NotifyListeners(Collider2D* pCollider, ColliderState pState) const
+void ColliderEvent::NotifyListeners(Collider3D* pCollider, ColliderState pState) const
 {
 	for (IColliderListener* listener : mListeners)
 	{

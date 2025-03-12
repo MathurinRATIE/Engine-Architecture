@@ -8,7 +8,7 @@ PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, s
 	mRenderer = pRenderer;
 	mRect = new Rectangle(Vector2(mTransform.GetPosition().x, mTransform.GetPosition().y), Vector2(mTransform.GetScale().x, mTransform.GetScale().y));
 
-	Collider2D* collider = new Collider2D(this);
+	Collider3D* collider = new Collider3D(this);
 	AddComponent(collider);
 
 	Texture* spaceShipTexture = new Texture();

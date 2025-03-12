@@ -8,8 +8,8 @@ Mesh::Mesh()
 
     mVertexShader = new Shader();
     mFragmentShader = new Shader();
-    mVertexShader->Load("basic.vs", ShaderType::VERTEX);
-    mFragmentShader->Load("basic.fs", ShaderType::FRAGMENT);
+    mVertexShader->Load("mesh.vs", ShaderType::VERTEX);
+    mFragmentShader->Load("mesh.fs", ShaderType::FRAGMENT);
 
     mShaderProgram = new ShaderProgram();
     mShaderProgram->Compose({ &mVertexShader, &mFragmentShader });
@@ -51,7 +51,7 @@ VertexArray* Mesh::GetVertexArray()
 
 Texture* Mesh::GetTexture(size_t pTextureIndex)
 {
-    if (mTextures.size() >= pTextureIndex - 1)
+    if (mTextures.size() > pTextureIndex)
     {
         return mTextures[pTextureIndex];
     }

@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 	/*Game* platformer = new Game("Platformer", {new Platformer()}, IRenderer::RendererType::SDL);
 	platformer->Initialize();*/
 
-	Game* sampleSceneOpenGL = new Game("OpenGL", { new SampleSceneOpenGL() }, IRenderer::RendererType::OPENGL, "texture.vs", "texture.fs");
+	Game* sampleSceneOpenGL = new Game("OpenGL", { new SampleSceneOpenGL() }, IRenderer::RendererType::OPENGL);
 	sampleSceneOpenGL->Initialize();
 
 	return 0;

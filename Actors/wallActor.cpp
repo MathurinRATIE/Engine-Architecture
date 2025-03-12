@@ -5,7 +5,7 @@ WallActor::WallActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::
 	mTransform = pTransform;
 	mRect = new Rectangle({ mTransform.GetPosition().x, mTransform.GetPosition().y }, { mTransform.GetScale().x, mTransform.GetScale().y });
 
-	Collider2D* collider = new Collider2D(this);
+	Collider3D* collider = new Collider3D(this);
 	AddComponent(collider);
 }
 

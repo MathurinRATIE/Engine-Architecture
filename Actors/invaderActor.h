@@ -2,7 +2,7 @@
 #include "scene.h"
 #include "direction.h"
 #include "bulletActor.h"
-#include "collider2DComponent.h"
+#include "collider3DComponent.h"
 #include "movementsComponent.h"
 #include "engineTime.h"
 

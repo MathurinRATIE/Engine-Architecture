@@ -2,16 +2,16 @@
 
 CollisionManager::~CollisionManager()
 {
-	std::map<Collider2D*, ColliderEvent*>::iterator colliderEventsIterator;
+	std::map<Collider3D*, ColliderEvent*>::iterator colliderEventsIterator;
 	for (colliderEventsIterator = mColliderEvents.begin(); colliderEventsIterator != mColliderEvents.end(); colliderEventsIterator++)
 	{
 		delete(colliderEventsIterator->second);
 	}
 }
 
-bool CollisionManager::IsColliding(Collider2D* pCollider)
+bool CollisionManager::IsColliding(Collider3D* pCollider)
 {
-	for (std::pair<Collider2D*, ColliderEvent*> collider2 : mColliderEvents)
+	for (std::pair<Collider3D*, ColliderEvent*> collider2 : mColliderEvents)
 	{
 		if (pCollider != collider2.first && pCollider->CheckCollisions(collider2.first))
 		{
@@ -24,12 +24,12 @@ bool CollisionManager::IsColliding(Collider2D* pCollider)
 
 void CollisionManager::CheckCollisions()
 {
-	for (std::pair<Collider2D*, ColliderEvent*> collider1 : mColliderEvents)
+	for (std::pair<Collider3D*, ColliderEvent*> collider1 : mColliderEvents)
 	{
 		ColliderState previousState = collider1.first->GetState();
 		bool isColliding = false;
 
-		for (std::pair<Collider2D*, ColliderEvent*> collider2 : mColliderEvents)
+		for (std::pair<Collider3D*, ColliderEvent*> collider2 : mColliderEvents)
 		{
 			if (collider1 != collider2 && collider1.first->CheckCollisions(collider2.first))
 			{
@@ -81,7 +81,7 @@ void CollisionManager::CheckCollisions()
 	}
 }
 
-void CollisionManager::SubscribeTo(Collider2D* pCollider, IColliderListener* pListener)
+void CollisionManager::SubscribeTo(Collider3D* pCollider, IColliderListener* pListener)
 {
 	size_t hasKey = mColliderEvents.count(pCollider);
 	if (hasKey == 0)

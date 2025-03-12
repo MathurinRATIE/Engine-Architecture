@@ -10,8 +10,6 @@ class RendererGl : public IRenderer
 {
 private:
 	Window* mWindow;
-	std::string mVertexShaderFileName;
-	std::string mFragmentShaderFileName;
 	Shader* mVertexShader;
 	Shader* mFragmentShader;
 	ShaderProgram* mSpriteShaderProgram;
@@ -23,7 +21,7 @@ private:
 	std::vector<MeshComponent*> mMeshComponents;
 
 public:
-	RendererGl(std::string pVertexShaderFileName, std::string pFragmenntShaderFileName);
+	RendererGl();
 	virtual ~RendererGl();
 	RendererGl(const RendererGl&) = delete;
 	RendererGl& operator=(const RendererGl&) = delete;
@@ -41,13 +39,15 @@ public:
 	void AddMesh(MeshComponent* pMeshComponent);
 	void RemoveMesh(MeshComponent* pMeshComponent);
 	void Close() override;
+
+	void SetViewMatrix(Matrix4Row pView);
 	RendererType GetType() override;
 };
 
 constexpr float vertices[] = {
--0.5f, 0.5f, 0.0f,		0.0f, 0.0f,		// TOP		LEFT
-0.5f, 0.5f, 0.0f,		1.0f, 0.0f,		// TOP		RIGHT
-0.5f, -0.5f, 0.0f,		1.0f, 1.0f,		// BOTTOM	RIGHT
+-0.5f,  0.5f, 0.0f,		0.0f, 0.0f,		// TOP		LEFT
+ 0.5f,  0.5f, 0.0f,		1.0f, 0.0f,		// TOP		RIGHT
+ 0.5f, -0.5f, 0.0f,		1.0f, 1.0f,		// BOTTOM	RIGHT
 -0.5f, -0.5f, 0.0f,		0.0f, 1.0f };	// BOTTOM	LEFT
 
 constexpr unsigned int indices[] = {

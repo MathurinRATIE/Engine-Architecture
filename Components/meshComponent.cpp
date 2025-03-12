@@ -20,7 +20,10 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 {
 	if (mMesh)
 	{
+		mOwner->GetTransform()->ComputeWorldTransform();
 		Matrix4Row worldTransform = mOwner->GetTransform()->GetWorldTransform();
+		worldTransform *= worldTransform.CreateRotationX(0.5f);
+		worldTransform *= worldTransform.CreateRotationZ(1.0f);
 		mMesh->GetShaderProgram()->Use();
 		mMesh->GetShaderProgram()->setMatrix4Row("uViewProj", viewProj);
 		mMesh->GetShaderProgram()->setMatrix4Row("uWorldTransform", worldTransform);
@@ -30,6 +33,7 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 		{
 			texture->SetActive();
 		}
+
 		mMesh->GetVertexArray()->SetActive();
 
 		glDrawElements(GL_TRIANGLES, mMesh->GetVertexArray()->GetIndicesCount(), GL_UNSIGNED_INT, nullptr);

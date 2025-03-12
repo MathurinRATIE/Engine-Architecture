@@ -3,7 +3,7 @@
 #include "direction.h"
 #include "transform3D.h"
 #include "bulletActor.h"
-#include "collider2DComponent.h"
+#include "collider3DComponent.h"
 #include "movementsComponent.h"
 #include "actor.h"
 #include "spriteComponent.h"

@@ -8,7 +8,7 @@ PlatformerPlayerActor::PlatformerPlayerActor(Scene* pScene, Window* pWindow, IRe
 	mTransform = pTransform;
 	mRenderer = pRenderer;
 
-	Collider2D* collider = new Collider2D(this, Vector4(- 16, -16, -8, -2));
+	Collider3D* collider = new Collider3D(this, Vector3(- 16, -16, 0), Vector3(- 8, -2, 0));
 	AddComponent(collider);
 
 	mAnimations["walkSide"] = LoadTexturesFromFolder("JackSparrow\\WalkSide");
