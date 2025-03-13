@@ -17,6 +17,7 @@ public :
 	void Rotate(float pRotation, Vector3 pAxis);
 	void SetRotation(Quaternion pRotation);
 	void ComputeWorldTransform();
+	void ToString();
 
 	bool operator!=(Transform3D right);
 	bool operator==(Transform3D right);

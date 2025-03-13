@@ -64,6 +64,13 @@ void Transform3D::ComputeWorldTransform()
     mWorldTransform *= Matrix4Row::CreateTranslation(mPosition);
 }
 
+void Transform3D::ToString()
+{
+    printf(("Position : " + std::to_string(mPosition.x) + ", " + std::to_string(mPosition.y) + ", " + std::to_string(mPosition.z) + "\n").c_str());
+    printf(("Rotation : " + std::to_string(mRotation.x) + ", " + std::to_string(mRotation.y) + ", " + std::to_string(mRotation.z) + "\n").c_str());
+    printf(("Scale : " + std::to_string(mScale.x) + ", " + std::to_string(mScale.y) + ", " + std::to_string(mScale.z) + "\n").c_str());
+}
+
 bool Transform3D::operator!=(Transform3D right)
 {
     return mPosition != right.mPosition || mScale != right.mScale || mRotation != right.mRotation;

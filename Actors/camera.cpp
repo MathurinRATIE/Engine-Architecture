@@ -27,7 +27,6 @@ void Camera::UpdateActor()
 	Matrix4Row view = Matrix4Row::CreateLookAt(camPosition, target, up);
 
 	// Apply the view Matrix
-	Log::Info(std::to_string(camPosition.x) + ", " + std::to_string(camPosition.y) + ", " + std::to_string(camPosition.z));
 	RendererGl* renderer = static_cast<RendererGl*>(mRenderer);
 	renderer->SetViewMatrix(view);
 }

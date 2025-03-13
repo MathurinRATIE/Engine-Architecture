@@ -19,4 +19,6 @@ private:
 	Vector3 mCurrentlyAppliedMovement = Vector3::zero;
 	bool mIsJumpping = false;
 	bool mGrounded = false;
+	int mMouseDeltaX;
+	int mMouseDeltaY;
 };

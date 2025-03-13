@@ -2,7 +2,7 @@
 #include "collider3DComponent.h"
 #include "collisionManager.h"
 
-PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateOrder) : MoveComponent(pOwner, pUpdateOrder), IInputListener()
+PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateOrder) : MoveComponent(pOwner, pUpdateOrder), IInputListener()	// TODO : add an ignore collisions parameter
 {
 	InputManager::Instance().SubscribeTo(SDLK_z, this);
 	InputManager::Instance().SubscribeTo(SDLK_q, this);
@@ -10,7 +10,6 @@ PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateO
 	InputManager::Instance().SubscribeTo(SDLK_d, this);
 	InputManager::Instance().SubscribeTo(SDLK_SPACE, this);
 	InputManager::Instance().SubscribeTo(SDLK_LSHIFT, this);
-	InputManager::Instance().SubscribeTo(SDL_WINDOW_MOUSE_CAPTURE, this);
 
 	mRigidBody = new RigidBody(mOwner, 20.0f, true);
 }
@@ -44,9 +43,9 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	case SDLK_z:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mMovement.x = 1;
+			mMovement.x = -1;
 		}
-		else
+		else if (mMovement.x == -1)
 		{
 			mMovement.x = 0;
 		}
@@ -56,7 +55,7 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 		{
 			mMovement.y = -1;
 		}
-		else
+		else if (mMovement.y == -1)
 		{
 			mMovement.y = 0;
 		}
@@ -64,9 +63,9 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	case SDLK_s:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mMovement.x = -1;
+			mMovement.x = 1;
 		}
-		else
+		else if (mMovement.x == 1)
 		{
 			mMovement.x = 0;
 		}
@@ -76,7 +75,7 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 		{
 			mMovement.y = 1;
 		}
-		else
+		else if (mMovement.y == 1)
 		{
 			mMovement.y = 0;
 		}
@@ -88,52 +87,42 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 			//mRigidBody->SetVelocityZ(200.0f);
 			mMovement.z = 1;
 		}
-		else
+		else if (mMovement.z == 1)
 		{
 			mMovement.z = 0;
 		}
+		break;
 	case SDLK_LSHIFT:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
 			mMovement.z = -1;
 		}
-		else
+		else if (mMovement.z == -1)
 		{
 			mMovement.z = 0;
 		}
+		break;
 	}
 }
 
 void PlayerControllerComponent::Update()
 {
+	// Translations
 	mRigidBody->Update();
 
-	//if (mOwner->GetComponentOfType<Collider3D>()->GetState() == ColliderState::CollisionGounded)
-	//{
-		if (mMovement != mCurrentlyAppliedMovement)
-		{
-			mRigidBody->SetVelocityX(mMovement.x * 5.0f);
-			mRigidBody->SetVelocityY(mMovement.y * 5.0f);
-			mRigidBody->SetVelocityZ(mMovement.z * 5.0f);	// TODO : It is alway negative
+	if (mMovement != mCurrentlyAppliedMovement)
+	{
+		mRigidBody->SetVelocityX(mMovement.x * 5.0f);
+		mRigidBody->SetVelocityY(mMovement.y * 5.0f);
+		mRigidBody->SetVelocityZ(mMovement.z * 5.0f);
 
-			mCurrentlyAppliedMovement = mMovement;
-		}
-		//mGrounded = true;
-
-		/*if (!mIsJumpping)
-		{
-			mRigidBody->SetVelocityZ(0.0f);
-		}*/
-	//}
-	//else
-	//{
-		//mGrounded = false;
-	//}
+		mCurrentlyAppliedMovement = mMovement;
+	}
 
 	Vector3* velocity = mRigidBody->GetVelocity();
-	Vector3 movement = (mOwner->GetTransform()->Forward() * velocity->x
-					  + mOwner->GetTransform()->Right() * velocity->y
-					  + mOwner->GetTransform()->Up() * velocity->z) * Time::deltaTime;
+	Vector3 movement = (Vector3::Cross(Vector3::unitZ, mOwner->GetTransform()->Right()) * velocity->x
+					  + Vector3::Cross(Vector3::unitZ, mOwner->GetTransform()->Forward()) * velocity->y
+					  + Vector3::unitZ * velocity->z) * Time::deltaTime;
 
 	Vector3 position = mOwner->GetTransform()->GetPosition() + movement;	// Apply movement
 	mOwner->GetTransform()->SetPosition(position);
@@ -158,4 +147,12 @@ void PlayerControllerComponent::Update()
 			}
 		}
 	}
+
+	// Rotations		// TODO : Blocked
+	SDL_GetRelativeMouseState(&mMouseDeltaX, &mMouseDeltaY);
+
+	mOwner->GetTransform()->Rotate(mMouseDeltaX * Time::deltaTime, Vector3::unitZ);
+	mOwner->GetTransform()->Rotate(mMouseDeltaY * Time::deltaTime, Vector3::Cross(Vector3::unitZ, mOwner->GetTransform()->Forward()));
+
+	//mOwner->GetTransform()->ToString();
 }

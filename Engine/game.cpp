@@ -17,6 +17,7 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScenes, IRenderer::RendererT
     }
 
     mWindow = new Window(800, 800);
+    SDL_SetRelativeMouseMode(SDL_TRUE);
     
     switch (pType)
     {
@@ -80,6 +81,11 @@ void Game::CheckInputs()
         while (SDL_PollEvent(&event))
         {
             InputManager::Instance().HandleInputs(event);
+
+            if (event.type == SDL_QUIT)
+            {
+                mIsRunning = false;
+            }
         }
     }
 }
