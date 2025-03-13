@@ -5,7 +5,7 @@
 
 MeshComponent::MeshComponent(Actor* pOwner) : Component(pOwner)
 {
-	mMesh = new Mesh();
+	mMesh = Assets::GetMeshFromName("Monkey");
 	RendererGl* renderer = static_cast<RendererGl*>(mOwner->GetScene()->GetRenderer());
 	renderer->AddMesh(this);
 }
@@ -36,7 +36,7 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 
 		mMesh->GetVertexArray()->SetActive();
 
-		glDrawElements(GL_TRIANGLES, mMesh->GetVertexArray()->GetIndicesCount(), GL_UNSIGNED_INT, nullptr);
+		glDrawArrays(GL_TRIANGLES, 0, mMesh->GetVertexArray()->GetVerticeCount());
 	}
 }
 

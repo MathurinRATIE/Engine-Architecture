@@ -2,24 +2,18 @@
 #include "texture.h"
 #include "assets.h"
 
-Mesh::Mesh()
+Mesh::Mesh(std::vector<Vertex> pVertices) : mVertices(pVertices)
 {
-    mVertexArray = new VertexArray(cubeVertices, 28, cubeIndices, 36);
-
-    mVertexShader = new Shader();
-    mFragmentShader = new Shader();
-    mVertexShader->Load("mesh.vs", ShaderType::VERTEX);
-    mFragmentShader->Load("mesh.fs", ShaderType::FRAGMENT);
-
-    mShaderProgram = new ShaderProgram();
-    mShaderProgram->Compose({ &mVertexShader, &mFragmentShader });
-
+    float* verticesArray = ToVerticeArray();
+    mVertexArray = new VertexArray(verticesArray, mVertices.size());
+    delete[] verticesArray;
+    mShaderProgram = Assets::GetShaderProgramFromName("Mesh");
     mTextures.emplace_back(&Assets::GetTextureFromName("Wall"));
 }
 
 Mesh::~Mesh()
 {
-    delete mVertexShader;
+    delete mVertexArray;
 }
 
 void Mesh::Unload()
@@ -32,12 +26,26 @@ void Mesh::AddTexture(Texture* pTexture)
     mTextures.push_back(pTexture);
 }
 
-/*void Mesh::CreateShaderProgram(std::string pVertexShaderFile, std::string pFragmentShaderFile)
+float* Mesh::ToVerticeArray()
 {
-    mVertexShader->Load(pVertexShaderFile, ShaderType::VERTEX);
-    mFragmentShader->Load(pFragmentShaderFile, ShaderType::FRAGMENT);
-    mShaderProgram->Compose({ &mVertexShader, &mFragmentShader });
-}*/
+    float* verticesArray = new float[mVertices.size() * 8];
+    int counter = 0;
+
+    for (int i = 0; i < mVertices.size(); i++)
+    {
+        verticesArray[counter] = mVertices[i].mPosition.x;
+        verticesArray[counter + 1] = mVertices[i].mPosition.y;
+        verticesArray[counter + 2] = mVertices[i].mPosition.z;
+        verticesArray[counter + 3] = mVertices[i].mNormal.x;
+        verticesArray[counter + 4] = mVertices[i].mNormal.y;
+        verticesArray[counter + 5] = mVertices[i].mNormal.z;
+        verticesArray[counter + 6] = mVertices[i].mTexCoord.x;
+        verticesArray[counter + 7] = mVertices[i].mTexCoord.y;
+        counter += 8;
+    }
+
+    return verticesArray;
+}
 
 ShaderProgram* Mesh::GetShaderProgram()
 {

@@ -9,6 +9,8 @@ void SampleSceneOpenGL::Start(IRenderer* pRenderer, Window* pWindow)
 	mWindow = pWindow;
 
 	Assets::LoadTexture(mRenderer, "Imports/Wall.png", "Wall");
+	Assets::LoadShaderProgram("mesh.vs", "mesh.fs", "Mesh");
+	Assets::LoadMesh("monkey.obj", "Monkey");
 
 	CubeActor* cubeActor = new CubeActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(0, 0, 0)));
 	AddPendingActor(cubeActor);

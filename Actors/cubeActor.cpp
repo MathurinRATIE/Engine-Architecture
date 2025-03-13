@@ -11,11 +11,11 @@ CubeActor::CubeActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::
 	renderer->AddMesh(meshComponent);
 	AddComponent(meshComponent);
 
+	/*Texture texture = Assets::GetTextureFromName("Wall");
+	SpriteComponent* sprite = new SpriteComponent(this, texture, IRenderer::Flip::None);*/
+
 	Collider3D* collider = new Collider3D(this);
 	AddComponent(collider);
-
-	PlayerControllerComponent* playerController = new PlayerControllerComponent(this);
-	AddComponent(playerController);
 }
 
 void CubeActor::UpdateActor()

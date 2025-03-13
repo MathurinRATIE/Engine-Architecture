@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "vertex.h"
 
 class Texture;
 class VertexArray;
@@ -9,23 +10,21 @@ class Shader;
 class Mesh
 {
 public:
-	Mesh();
+	Mesh(std::vector<Vertex> pVertices);
 	~Mesh();
 
 	void Unload();
 	void AddTexture(Texture* pTexture);
 
-    //void CreateShaderProgram(std::string pVertexShaderFile, std::string pFragmentShaderFile);
-
+    float* ToVerticeArray();
 	ShaderProgram* GetShaderProgram();
     VertexArray* GetVertexArray();
     Texture* GetTexture(size_t pTextureIndex);
 
 private:
 	std::vector<Texture*> mTextures;
+    std::vector<Vertex> mVertices;
 	VertexArray* mVertexArray;
-	Shader* mVertexShader;
-	Shader* mFragmentShader;
 	ShaderProgram* mShaderProgram;
 };
 

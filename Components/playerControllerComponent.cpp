@@ -2,7 +2,7 @@
 #include "collider3DComponent.h"
 #include "collisionManager.h"
 
-PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateOrder) : MoveComponent(pOwner, pUpdateOrder), IInputListener()	// TODO : add an ignore collisions parameter
+PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateOrder) : MoveComponent(pOwner, pUpdateOrder), IInputListener()	// todo : add an ignore collisions parameter
 {
 	InputManager::Instance().SubscribeTo(SDLK_z, this);
 	InputManager::Instance().SubscribeTo(SDLK_q, this);
@@ -11,7 +11,7 @@ PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateO
 	InputManager::Instance().SubscribeTo(SDLK_SPACE, this);
 	InputManager::Instance().SubscribeTo(SDLK_LSHIFT, this);
 
-	mRigidBody = new RigidBody(mOwner, 20.0f, true);
+	mRigidBody = new RigidBody(mOwner, 20.0f, false);
 }
 
 PlayerControllerComponent::~PlayerControllerComponent()
@@ -83,8 +83,6 @@ void PlayerControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	case SDLK_SPACE:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			//mIsJumpping = true;
-			//mRigidBody->SetVelocityZ(200.0f);
 			mMovement.z = 1;
 		}
 		else if (mMovement.z == 1)
@@ -148,11 +146,9 @@ void PlayerControllerComponent::Update()
 		}
 	}
 
-	// Rotations		// TODO : Blocked
+	// Rotations		// TODO : Blocked after few rotations (rumble --> lock)
 	SDL_GetRelativeMouseState(&mMouseDeltaX, &mMouseDeltaY);
 
 	mOwner->GetTransform()->Rotate(mMouseDeltaX * Time::deltaTime, Vector3::unitZ);
 	mOwner->GetTransform()->Rotate(mMouseDeltaY * Time::deltaTime, Vector3::Cross(Vector3::unitZ, mOwner->GetTransform()->Forward()));
-
-	//mOwner->GetTransform()->ToString();
 }

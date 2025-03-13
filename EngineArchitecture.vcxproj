@@ -205,6 +205,7 @@
     <Image Include="Imports\Wall.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Downloads\tiny_obj_loader.h" />
     <ClInclude Include="Actors\ballActor.h" />
     <ClInclude Include="Actors\bulletActor.h" />
     <ClInclude Include="Actors\camera.h" />
@@ -227,6 +228,8 @@
     <ClInclude Include="Engine\actorState.h" />
     <ClInclude Include="Engine\Maths\cube.h" />
     <ClInclude Include="Engine\Renderers\mesh.h" />
+    <ClInclude Include="Engine\Renderers\OpenGL\tiny_obj_loader.h" />
+    <ClInclude Include="Engine\Renderers\OpenGL\vertex.h" />
     <ClInclude Include="Engine\Renderers\rendererGl.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\shader.h" />
     <ClInclude Include="Engine\Renderers\OpenGL\shaderProgram.h" />

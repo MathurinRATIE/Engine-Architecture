@@ -11,8 +11,6 @@ RendererGl::RendererGl():mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr
     mSpriteVao = nullptr;
     mContext = nullptr;
     mSpriteShaderProgram = nullptr;
-    mVertexShader = nullptr;
-    mFragmentShader = nullptr;
     mSpriteViewProj = Matrix4Row::CreateSimpleViewProj(Window::Dimensions.x, Window::Dimensions.y);
     mView = Matrix4Row::CreateLookAt(Vector3(0, 0, 0), Vector3::unitX, Vector3::unitZ);
     mProj = Matrix4Row::CreatePerspectiveFOV(70.0f, Window::Dimensions.x, Window::Dimensions.y, 0.01f, 10000.0f);
@@ -21,8 +19,6 @@ RendererGl::RendererGl():mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr
 RendererGl::~RendererGl()
 {
     delete mSpriteVao;
-    delete mVertexShader;
-    delete mFragmentShader;
     delete mSpriteShaderProgram;
 }
 
@@ -56,18 +52,10 @@ bool RendererGl::Initialize(Window* rWindow)
     {
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
-    mSpriteVao = new VertexArray(vertices, 4, indices, 6);
+    mSpriteVao = new VertexArray(vertices, 4);
 
-    mSpriteShaderProgram = new ShaderProgram();
-
-    std::vector<Shader*> shaders;
-    mVertexShader = new Shader(0, "VertexShader", ShaderType::VERTEX);
-    mVertexShader->Load("texture.vs", ShaderType::VERTEX);
-    shaders.push_back(mVertexShader);
-    mFragmentShader = new Shader(1, "FragmentShader", ShaderType::FRAGMENT);
-    mFragmentShader->Load("texture.fs", ShaderType::FRAGMENT);
-    shaders.push_back(mFragmentShader);
-    mSpriteShaderProgram->Compose(shaders);
+    Assets::LoadShaderProgram("texture.vs", "texture.fs", "Texture");
+    mSpriteShaderProgram = Assets::GetShaderProgramFromName("Texture");
 
     return true;
 }
@@ -104,7 +92,7 @@ void RendererGl::DrawSprites()
     }
 }
 
-void RendererGl::DrawMeshes()
+void RendererGl::DrawMeshes()       // TODO : textures are not displayed
 {
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
@@ -130,7 +118,7 @@ void RendererGl::DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle
     
     mSpriteShaderProgram->setMatrix4Row("uWorldTransform", world);
     pTexture.SetActive();
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 void RendererGl::AddSprite(SpriteComponent* pSprite)

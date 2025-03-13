@@ -10,8 +10,6 @@ class RendererGl : public IRenderer
 {
 private:
 	Window* mWindow;
-	Shader* mVertexShader;
-	Shader* mFragmentShader;
 	ShaderProgram* mSpriteShaderProgram;
 	VertexArray* mSpriteVao;
 	SDL_GLContext mContext;
@@ -45,12 +43,9 @@ public:
 };
 
 constexpr float vertices[] = {
--0.5f,  0.5f, 0.0f,		0.0f, 0.0f,		// TOP		LEFT
- 0.5f,  0.5f, 0.0f,		1.0f, 0.0f,		// TOP		RIGHT
- 0.5f, -0.5f, 0.0f,		1.0f, 1.0f,		// BOTTOM	RIGHT
--0.5f, -0.5f, 0.0f,		0.0f, 1.0f };	// BOTTOM	LEFT
-
-constexpr unsigned int indices[] = {
-0, 1, 2,
-2, 3, 0
+	//POSITION                      NORMALS                     TEXCOORDS
+	-0.5f, 0.5f, 0.0f,              0.0f, 0.0f, 0.0f,           0.0f, 0.0f,     //top left
+	0.5f, 0.5f, 0.0f,               0.0f, 0.0f, 0.0f,           1.0f, 0.0f,     //top right
+	-0.5f, -0.5f, 0.0f,             0.0f, 0.0f, 0.0f,           0.0f, 1.0f,      //bottom left
+	0.5f, -0.5f, 0.0f,              0.0f, 0.0f, 0.0f,           1.0f, 1.0f,     //bottom right
 };
