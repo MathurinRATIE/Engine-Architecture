@@ -12,6 +12,7 @@ PlayerControllerComponent::PlayerControllerComponent(Actor* pOwner, int pUpdateO
 	InputManager::Instance().SubscribeTo(SDLK_LSHIFT, this);
 
 	mRigidBody = new RigidBody(mOwner, 20.0f, false);
+	mPitchLimit = 60.0f;
 }
 
 PlayerControllerComponent::~PlayerControllerComponent()
@@ -146,9 +147,17 @@ void PlayerControllerComponent::Update()
 		}
 	}
 
-	// Rotations		// TODO : Blocked after few rotations (rumble --> lock)
+	// Rotations
 	SDL_GetRelativeMouseState(&mMouseDeltaX, &mMouseDeltaY);
 
 	mOwner->GetTransform()->Rotate(mMouseDeltaX * Time::deltaTime, Vector3::unitZ);
-	mOwner->GetTransform()->Rotate(mMouseDeltaY * Time::deltaTime, Vector3::Cross(Vector3::unitZ, mOwner->GetTransform()->Forward()));
+	
+	Quaternion actualRotation = mOwner->GetTransform()->GetRotation();
+	mOwner->GetTransform()->Rotate(mMouseDeltaY * Time::deltaTime, mOwner->GetTransform()->Right());
+	/*float pitch
+
+	if ((pitch > -PITCH_LIMIT && pitch < PITCH_LIMIT)  (pitch > 180 - PITCH_LIMIT)  (pitch < -180 + PITCH_LIMIT))
+	{
+		mOwner->mTransform->mRotation = desiredRotation;
+	}*/
 }

@@ -21,4 +21,5 @@ private:
 	bool mGrounded = false;
 	int mMouseDeltaX;
 	int mMouseDeltaY;
+	float mPitchLimit;
 };

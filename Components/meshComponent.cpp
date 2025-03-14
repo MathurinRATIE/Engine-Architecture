@@ -22,8 +22,6 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 	{
 		mOwner->GetTransform()->ComputeWorldTransform();
 		Matrix4Row worldTransform = mOwner->GetTransform()->GetWorldTransform();
-		worldTransform *= worldTransform.CreateRotationX(0.5f);
-		worldTransform *= worldTransform.CreateRotationZ(1.0f);
 		mMesh->GetShaderProgram()->Use();
 		mMesh->GetShaderProgram()->setMatrix4Row("uViewProj", viewProj);
 		mMesh->GetShaderProgram()->setMatrix4Row("uWorldTransform", worldTransform);

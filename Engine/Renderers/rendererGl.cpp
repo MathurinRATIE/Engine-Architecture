@@ -92,10 +92,13 @@ void RendererGl::DrawSprites()
     }
 }
 
-void RendererGl::DrawMeshes()       // TODO : textures are not displayed
+void RendererGl::DrawMeshes()
 {
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
+
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
 
     for (MeshComponent* mesh : mMeshComponents)
     {

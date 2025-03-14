@@ -78,11 +78,7 @@ void Assets::Clear()
 Texture Assets::LoadTextureFromFile(IRenderer* pRenderer, std::string& pFileName)
 {
     Texture texture;
-    RendererSdl* renderer = static_cast<RendererSdl*>(pRenderer);
-    if (renderer)
-    {
-        texture.Load(*renderer, pFileName);
-    }
+    texture.Load(*pRenderer, pFileName);
     return texture;
 }
 
@@ -105,7 +101,7 @@ Mesh* Assets::LoadMeshFromFile(std::string& pFileName)
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
     std::string warning, errors;
-    std::string dir = "Meshes/";
+    std::string dir = "Imports/Meshes/";
 
     bool success = LoadObj(& attributes, & shapes, & materials, & warning, & errors, (dir + pFileName).c_str());
     if (!success)
@@ -113,12 +109,8 @@ Mesh* Assets::LoadMeshFromFile(std::string& pFileName)
         Log::Error(LogType::Application, "Mesh " + pFileName + " does not exist or is not .obj");
         return nullptr;
     }
-    else
-    {
-        Log::Info("Mesh " + pFileName + " successfully loaded");
-    }
     
-    std::vector<Vertex> vertices;
+    std::vector<Vertex> vertices{};
     for (int i = 0; i < shapes.size(); i++)
     {
         tinyobj::shape_t& shape = shapes[i];
@@ -126,27 +118,28 @@ Mesh* Assets::LoadMeshFromFile(std::string& pFileName)
 
         for (int j = 0; j < mesh.indices.size(); j++)
         {
-            tinyobj::index_t i = mesh.indices[j];
+            tinyobj::index_t ind = mesh.indices[j];
 
             Vector3 position = Vector3{
-                attributes.vertices[i.vertex_index * 3],
-                attributes.vertices[i.vertex_index * 3 + 1],
-                attributes.vertices[i.vertex_index * 3 + 2],
+                attributes.vertices[ind.vertex_index * 3],
+                attributes.vertices[ind.vertex_index * 3 + 1],
+                attributes.vertices[ind.vertex_index * 3 + 2],
             };
             Vector3 normal = Vector3{
-                attributes.vertices[i.normal_index * 3],
-                attributes.vertices[i.normal_index * 3 + 1],
-                attributes.vertices[i.normal_index * 3 + 2],
+                attributes.normals[ind.normal_index * 3],
+                attributes.normals[ind.normal_index * 3 + 1],
+                attributes.normals[ind.normal_index * 3 + 2],
             };
             Vector2 texCoord = Vector2{
-                attributes.vertices[i.texcoord_index * 2],
-                attributes.vertices[i.texcoord_index * 2 + 1],
+                attributes.texcoords[ind.texcoord_index * 2],
+                attributes.texcoords[ind.texcoord_index * 2 + 1],
             };
             Vertex vertice = { position, normal, texCoord };
 
             vertices.push_back(vertice);
         }
     }
+    Log::Info("Mesh " + pFileName + " successfully loaded");
 
     return new Mesh(vertices);
 }

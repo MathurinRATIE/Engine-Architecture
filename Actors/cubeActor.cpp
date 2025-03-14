@@ -11,7 +11,7 @@ CubeActor::CubeActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::
 	renderer->AddMesh(meshComponent);
 	AddComponent(meshComponent);
 
-	/*Texture texture = Assets::GetTextureFromName("Wall");
+	/*Texture texture = Assets::GetTextureFromName("Pin");
 	SpriteComponent* sprite = new SpriteComponent(this, texture, IRenderer::Flip::None);*/
 
 	Collider3D* collider = new Collider3D(this);

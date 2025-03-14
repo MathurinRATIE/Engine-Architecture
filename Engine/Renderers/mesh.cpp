@@ -8,7 +8,7 @@ Mesh::Mesh(std::vector<Vertex> pVertices) : mVertices(pVertices)
     mVertexArray = new VertexArray(verticesArray, mVertices.size());
     delete[] verticesArray;
     mShaderProgram = Assets::GetShaderProgramFromName("Mesh");
-    mTextures.emplace_back(&Assets::GetTextureFromName("Wall"));
+    mTextures.emplace_back(&Assets::GetTextureFromName("Pin"));
 }
 
 Mesh::~Mesh()
@@ -33,14 +33,14 @@ float* Mesh::ToVerticeArray()
 
     for (int i = 0; i < mVertices.size(); i++)
     {
-        verticesArray[counter] = mVertices[i].mPosition.x;
+        verticesArray[counter + 0] = mVertices[i].mPosition.x;
         verticesArray[counter + 1] = mVertices[i].mPosition.y;
         verticesArray[counter + 2] = mVertices[i].mPosition.z;
         verticesArray[counter + 3] = mVertices[i].mNormal.x;
         verticesArray[counter + 4] = mVertices[i].mNormal.y;
         verticesArray[counter + 5] = mVertices[i].mNormal.z;
-        verticesArray[counter + 6] = mVertices[i].mTexCoord.x;
-        verticesArray[counter + 7] = mVertices[i].mTexCoord.y;
+        verticesArray[counter + 6] = mVertices[i].mUV.x;
+        verticesArray[counter + 7] = mVertices[i].mUV.y;
         counter += 8;
     }
 

@@ -6,5 +6,5 @@ struct Vertex
 {
 	Vector3 mPosition;
 	Vector3 mNormal;
-	Vector2 mTexCoord;
+	Vector2 mUV;
 };
