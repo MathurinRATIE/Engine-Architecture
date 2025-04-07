@@ -1,5 +1,6 @@
 #include "sampleSceneOpenGL.h"
-#include "cubeActor.h"
+#include "meshActor.h"
+#include "meshComponent.h"
 #include "camera.h"
 #include "texture.h"
 
@@ -9,10 +10,22 @@ void SampleSceneOpenGL::Start(IRenderer* pRenderer, Window* pWindow)
 	mWindow = pWindow;
 
 	Assets::LoadTexture(mRenderer, "Imports/pin.png", "Pin");
+	Assets::LoadTexture(mRenderer, "Imports/Wall.png", "Wall");
 	Assets::LoadShaderProgram("mesh.vs", "mesh.fs", "Mesh");
-	Assets::LoadMesh("pin.obj", "Monkey");
+	Assets::LoadMesh("pin.obj", "Pin");
+	Assets::LoadMesh("Monkey.obj", "Monkey");
+	Assets::LoadMesh("Sphere.obj", "Sphere");
+	Assets::LoadMesh("cube.obj", "Cube");
 
-	CubeActor* cubeActor = new CubeActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(0, 0, 0)));
+	MeshActor* cubeActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, -2), Vector3(15, 15, 0.01)));
+	cubeActor->mMeshComponent->SetMesh(*Assets::GetMeshFromName("Cube"));
+	cubeActor->mMeshComponent->SetTextureIndex(1);
+	Assets::GetTextureFromName("Wall");
+	MeshActor* sphereActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, 0), Vector3(1, 1, 1)));
+	sphereActor->mMeshComponent->SetMesh(*Assets::GetMeshFromName("Sphere"));
+	sphereActor->mMeshComponent->SetTextureIndex(1);
+	sphereActor->GetTransform()->Rotate(Maths::ToRad(90), sphereActor->GetTransform()->Forward());
+
 	AddPendingActor(cubeActor);
 
 	Camera* camera = new Camera(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(-5, 0, 0)));

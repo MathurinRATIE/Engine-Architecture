@@ -25,6 +25,7 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 		mMesh->GetShaderProgram()->Use();
 		mMesh->GetShaderProgram()->setMatrix4Row("uViewProj", viewProj);
 		mMesh->GetShaderProgram()->setMatrix4Row("uWorldTransform", worldTransform);
+		mMesh->GetShaderProgram()->setVector2f("uTiling", Vector2(mOwner->GetTransform()->GetScale().x, mOwner->GetTransform()->GetScale().y));
 		
 		Texture* texture = mMesh->GetTexture(mTextureIndex);
 		if (texture)

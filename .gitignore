@@ -392,3 +392,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Exceptions
+!Imports/
+!Imports/Meshes/
+!Imports/Meshes/*.obj

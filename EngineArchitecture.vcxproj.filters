@@ -195,10 +195,10 @@
     <ClCompile Include="Components\meshComponent.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Actors\cubeActor.cpp">
+    <ClCompile Include="Actors\camera.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Actors\camera.cpp">
+    <ClCompile Include="Actors\meshActor.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -391,9 +391,6 @@
     <ClInclude Include="Components\meshComponent.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Actors\cubeActor.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Actors\camera.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -407,6 +404,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Renderers\OpenGL\vertex.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\meshActor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

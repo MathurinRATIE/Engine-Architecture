@@ -9,6 +9,7 @@ Mesh::Mesh(std::vector<Vertex> pVertices) : mVertices(pVertices)
     delete[] verticesArray;
     mShaderProgram = Assets::GetShaderProgramFromName("Mesh");
     mTextures.emplace_back(&Assets::GetTextureFromName("Pin"));
+    mTextures.emplace_back(&Assets::GetTextureFromName("Wall"));
 }
 
 Mesh::~Mesh()

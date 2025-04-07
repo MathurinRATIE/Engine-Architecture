@@ -100,8 +100,12 @@ bool Texture::LoadGl(RendererGl* pRenderer, const std::string& pFileName, SDL_Su
 	SDL_FreeSurface(pSurface);
 	Log::Info("Loaded GL Texture : " + mFileName);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); //u tiling
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); //v tiling
+
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	return true;
 }
