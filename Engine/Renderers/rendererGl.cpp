@@ -4,8 +4,9 @@
 #include "actor.h"
 #include "glew.h"
 #include "SDL.h"
+#include "inputManager.h"
 
-RendererGl::RendererGl():mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
+RendererGl::RendererGl(): mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
     mWindow = nullptr;
     mSpriteVao = nullptr;
@@ -14,6 +15,7 @@ RendererGl::RendererGl():mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr
     mSpriteViewProj = Matrix4Row::CreateSimpleViewProj(Window::Dimensions.x, Window::Dimensions.y);
     mView = Matrix4Row::CreateLookAt(Vector3(0, 0, 0), Vector3::unitX, Vector3::unitZ);
     mProj = Matrix4Row::CreatePerspectiveFOV(70.0f, Window::Dimensions.x, Window::Dimensions.y, 0.01f, 10000.0f);
+
 }
 
 RendererGl::~RendererGl()
@@ -68,6 +70,8 @@ void RendererGl::BeginDraw()
 
 void RendererGl::Draw()
 {
+    glPolygonMode(GL_FRONT_AND_BACK, mWireframe ? GL_LINE : GL_FILL);
+
     DrawMeshes();
     DrawSprites();
 }

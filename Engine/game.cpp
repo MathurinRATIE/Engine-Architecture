@@ -82,9 +82,22 @@ void Game::CheckInputs()
         {
             InputManager::Instance().HandleInputs(event);
 
-            if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
+            if (event.type == SDL_QUIT)
             {
                 mIsRunning = false;
+            }
+
+            if (event.type == SDL_KEYDOWN)
+            {
+                switch (event.key.keysym.sym)
+                {
+                    case SDLK_ESCAPE:
+                        mIsRunning = false;
+                        break;
+                    case SDLK_w:
+                        mRenderer->mWireframe = !mRenderer->mWireframe;
+                        break;
+                }
             }
         }
     }

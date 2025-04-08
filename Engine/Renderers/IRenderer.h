@@ -7,6 +7,7 @@ class IRenderer
 {
 public:
     std::vector<SpriteComponent*> mSprites;
+    bool mWireframe = false;
 
     enum class Flip
     {
