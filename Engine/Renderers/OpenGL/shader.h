@@ -5,6 +5,8 @@
 enum ShaderType {
 	VERTEX,
 	FRAGMENT,
+	TESSELATION_CONTROL,
+	TESSELATION_EVAL,
 };
 class Shader
 {
@@ -21,6 +23,7 @@ public:
 	~Shader();
 
 	int GetID() const { return mId; }
+	ShaderType GetType() const { return mType; }
 	void Load(std::string pFileName, ShaderType pShaderType);
 
 	std::string& GetCode();

@@ -3,6 +3,7 @@
 ShaderProgram::ShaderProgram()
 {
     mId = 0;
+    mUseTesselation = false;
 }
 void ShaderProgram::Unload()
 {
@@ -15,6 +16,11 @@ void ShaderProgram::Compose(std::vector<Shader*> shaders)
     //now attach shaders to use to the program
     for (int s = 0; s < shaders.size(); s++) {
         glAttachShader(mId, shaders[s]->GetID());
+
+        if (shaders[s]->GetType() == TESSELATION_CONTROL || shaders[s]->GetType() == TESSELATION_EVAL)
+        {
+            mUseTesselation = true;
+        }
     }
     //and link it
     glLinkProgram(mId);
@@ -24,6 +30,11 @@ void ShaderProgram::Compose(std::vector<Shader*> shaders)
 unsigned int ShaderProgram::GetID()
 {
     return mId;
+}
+
+bool ShaderProgram::UseTesselation()
+{
+    return mUseTesselation;
 }
 
 void ShaderProgram::Use()

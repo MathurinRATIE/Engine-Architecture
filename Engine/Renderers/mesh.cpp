@@ -8,8 +8,6 @@ Mesh::Mesh(std::vector<Vertex> pVertices) : mVertices(pVertices)
     mVertexArray = new VertexArray(verticesArray, mVertices.size());
     delete[] verticesArray;
     mShaderProgram = Assets::GetShaderProgramFromName("Mesh");
-    mTextures.emplace_back(&Assets::GetTextureFromName("Pin"));
-    mTextures.emplace_back(&Assets::GetTextureFromName("Wall"));
 }
 
 Mesh::~Mesh()
@@ -65,4 +63,9 @@ Texture* Mesh::GetTexture(size_t pTextureIndex)
         return mTextures[pTextureIndex];
     }
     return nullptr;
+}
+
+void Mesh::GetShaderProgram(ShaderProgram* pShaderProgram)
+{
+    mShaderProgram = pShaderProgram;
 }

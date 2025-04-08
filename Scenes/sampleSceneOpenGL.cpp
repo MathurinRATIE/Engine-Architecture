@@ -17,13 +17,9 @@ void SampleSceneOpenGL::Start(IRenderer* pRenderer, Window* pWindow)
 	Assets::LoadMesh("Sphere.obj", "Sphere");
 	Assets::LoadMesh("cube.obj", "Cube");
 
-	MeshActor* cubeActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, -2), Vector3(15, 15, 0.01)));
-	cubeActor->mMeshComponent->SetMesh(*Assets::GetMeshFromName("Cube"));
-	cubeActor->mMeshComponent->SetTextureIndex(1);
+	MeshActor* cubeActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, -2), Vector3(15, 15, 0.01)), "Cube");
 	Assets::GetTextureFromName("Wall");
-	MeshActor* sphereActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, 0), Vector3(1, 1, 1)));
-	sphereActor->mMeshComponent->SetMesh(*Assets::GetMeshFromName("Sphere"));
-	sphereActor->mMeshComponent->SetTextureIndex(1);
+	MeshActor* sphereActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, 0)), "Sphere");
 	sphereActor->GetTransform()->Rotate(Maths::ToRad(90), sphereActor->GetTransform()->Forward());
 
 	AddPendingActor(cubeActor);

@@ -35,7 +35,7 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 
 		mMesh->GetVertexArray()->SetActive();
 
-		glDrawArrays(GL_TRIANGLES, 0, mMesh->GetVertexArray()->GetVerticeCount());
+		glDrawArrays(mMesh->GetShaderProgram()->UseTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, mMesh->GetVertexArray()->GetVerticeCount());
 	}
 }
 
@@ -47,4 +47,9 @@ void MeshComponent::SetMesh(Mesh& pMesh)
 void MeshComponent::SetTextureIndex(size_t pTextureIndex)
 {
 	mTextureIndex = pTextureIndex;
+}
+
+Mesh* MeshComponent::GetMesh()
+{
+	return mMesh;
 }

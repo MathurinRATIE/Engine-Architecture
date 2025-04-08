@@ -82,7 +82,7 @@ void Game::CheckInputs()
         {
             InputManager::Instance().HandleInputs(event);
 
-            if (event.type == SDL_QUIT)
+            if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
             {
                 mIsRunning = false;
             }

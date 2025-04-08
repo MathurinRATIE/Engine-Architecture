@@ -11,6 +11,7 @@ class ShaderProgram
 {
 private:
 	unsigned int mId;
+	bool mUseTesselation;
 
 public:
 	ShaderProgram();
@@ -19,6 +20,7 @@ public:
 	void Compose(std::vector<Shader*> shaders);
 
 	unsigned int GetID();
+	bool UseTesselation();
 	void Use();
 	void setFloat(const GLchar* name, GLfloat value);
 	void setInteger(const GLchar* name, GLint value);

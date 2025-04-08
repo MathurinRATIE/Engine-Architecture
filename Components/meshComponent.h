@@ -14,6 +14,8 @@ public:
 	virtual void SetMesh(Mesh& pMesh);
 	void SetTextureIndex(size_t pTextureIndex);
 
+	virtual Mesh* GetMesh();
+
 protected:
 	Mesh* mMesh;
 	size_t mTextureIndex;
