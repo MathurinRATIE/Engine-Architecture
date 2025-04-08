@@ -16,9 +16,9 @@ Texture Assets::LoadTexture(IRenderer* pRenderer, std::string pFileName, std::st
     return mTextures[pName];
 }
 
-ShaderProgram* Assets::LoadShaderProgram(std::string pVertexShaderName, std::string pFragmentShaderName, std::string pName)
+ShaderProgram* Assets::LoadShaderProgram(std::string pName, std::string pVertexShaderName, std::string pFragmentShaderName, std::string pTesselationControlShaderName, std::string pTesselationEvaluationShaderName, std::string pGeomatryShaderName)
 {
-    mShaderPrograms[pName] = LoadShaderProgramFromShaderNames(pVertexShaderName, pFragmentShaderName);
+    mShaderPrograms[pName] = LoadShaderProgramFromShaderNames(pVertexShaderName, pFragmentShaderName, pTesselationControlShaderName, pTesselationEvaluationShaderName, pGeomatryShaderName);
     return mShaderPrograms[pName];
 }
 
@@ -82,15 +82,38 @@ Texture Assets::LoadTextureFromFile(IRenderer* pRenderer, std::string& pFileName
     return texture;
 }
 
-ShaderProgram* Assets::LoadShaderProgramFromShaderNames(std::string pVertexShaderName, std::string pFragmentShaderName)
+ShaderProgram* Assets::LoadShaderProgramFromShaderNames(std::string pVertexShaderName, std::string pFragmentShaderName, std::string pTesselationControlShaderName, std::string pTesselationEvaluationShaderName, std::string pGeomatryShaderName)
 {
     Shader vertexShader = Shader();
     Shader fragmentShader = Shader();
     vertexShader.Load(pVertexShaderName, ShaderType::VERTEX);
     fragmentShader.Load(pFragmentShaderName, ShaderType::FRAGMENT);
 
+    std::vector<Shader*> shaders = {};
+    shaders.push_back(&vertexShader);
+    shaders.push_back(&fragmentShader);
+
+    if (pTesselationControlShaderName != "")
+    {
+        Shader tesselationControlShader = Shader();
+        tesselationControlShader.Load(pTesselationControlShaderName, ShaderType::TESSELATION_CONTROL);
+        shaders.push_back(&tesselationControlShader);
+    }
+    if (pTesselationEvaluationShaderName != "")
+    {
+        Shader tesselationEvaluationShader = Shader();
+        tesselationEvaluationShader.Load(pTesselationEvaluationShaderName, ShaderType::TESSELATION_EVALUATION);
+        shaders.push_back(&tesselationEvaluationShader);
+    }
+    if (pGeomatryShaderName != "")
+    {
+        Shader geometryShader = Shader();
+        geometryShader.Load(pGeomatryShaderName, ShaderType::GEOMETRY);
+        shaders.push_back(&geometryShader);
+    }
+
     ShaderProgram* shaderProgram = new ShaderProgram();
-    shaderProgram->Compose({ &vertexShader, &fragmentShader });
+    shaderProgram->Compose(shaders);
 
     return shaderProgram;
 }

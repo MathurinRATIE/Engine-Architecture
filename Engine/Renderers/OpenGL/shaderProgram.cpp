@@ -15,12 +15,12 @@ void ShaderProgram::Compose(std::vector<Shader*> shaders)
     mId = glCreateProgram();
     //now attach shaders to use to the program
     for (int s = 0; s < shaders.size(); s++) {
-        glAttachShader(mId, shaders[s]->GetID());
-
-        if (shaders[s]->GetType() == TESSELATION_CONTROL || shaders[s]->GetType() == TESSELATION_EVAL)
+        if (shaders[s]->GetType() == ShaderType::TESSELATION_CONTROL || shaders[s]->GetType() == ShaderType::TESSELATION_EVALUATION)
         {
             mUseTesselation = true;
         }
+
+        glAttachShader(mId, shaders[s]->GetID());
     }
     //and link it
     glLinkProgram(mId);

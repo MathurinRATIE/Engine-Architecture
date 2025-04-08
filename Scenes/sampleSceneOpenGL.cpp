@@ -11,18 +11,16 @@ void SampleSceneOpenGL::Start(IRenderer* pRenderer, Window* pWindow)
 
 	Assets::LoadTexture(mRenderer, "Imports/pin.png", "Pin");
 	Assets::LoadTexture(mRenderer, "Imports/Wall.png", "Wall");
-	Assets::LoadShaderProgram("mesh.vs", "mesh.fs", "Mesh");
+	Assets::LoadShaderProgram("Mesh", "mesh.vs", "mesh.fs");
+	Assets::LoadShaderProgram("Tesselation", "tesselation.vs", "tesselation.fs", "tesselation.tcs", "tesselation.tes");
 	Assets::LoadMesh("pin.obj", "Pin");
 	Assets::LoadMesh("Monkey.obj", "Monkey");
 	Assets::LoadMesh("Sphere.obj", "Sphere");
 	Assets::LoadMesh("cube.obj", "Cube");
 
-	MeshActor* cubeActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, -2), Vector3(15, 15, 0.01)), "Cube");
-	Assets::GetTextureFromName("Wall");
-	MeshActor* sphereActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, 0)), "Sphere");
+	MeshActor* cubeActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, -2), Vector3(15, 15, 0.1f)), "Cube", "Wall", "Tesselation");
+	MeshActor* sphereActor = new MeshActor(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(10, 0, 0)), "Sphere", "Wall", "Mesh");
 	sphereActor->GetTransform()->Rotate(Maths::ToRad(90), sphereActor->GetTransform()->Forward());
-
-	AddPendingActor(cubeActor);
 
 	Camera* camera = new Camera(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(-5, 0, 0)));
 }

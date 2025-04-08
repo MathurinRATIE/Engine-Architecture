@@ -35,7 +35,8 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 
 		mMesh->GetVertexArray()->SetActive();
 
-		glDrawArrays(mMesh->GetShaderProgram()->UseTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, mMesh->GetVertexArray()->GetVerticeCount());
+		bool useTesselation = mMesh->GetShaderProgram()->UseTesselation();
+		glDrawArrays(useTesselation ? GL_PATCHES : GL_TRIANGLES, 0, mMesh->GetVertexArray()->GetVerticeCount());
 	}
 }
 

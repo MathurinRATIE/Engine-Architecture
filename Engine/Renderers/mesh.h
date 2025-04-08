@@ -21,7 +21,7 @@ public:
     VertexArray* GetVertexArray();
     Texture* GetTexture(size_t pTextureIndex);
 
-    void GetShaderProgram(ShaderProgram* pShaderProgram);
+    void SetShaderProgram(ShaderProgram* pShaderProgram);
 
 private:
 	std::vector<Texture*> mTextures;

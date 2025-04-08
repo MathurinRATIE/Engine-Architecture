@@ -56,7 +56,7 @@ bool RendererGl::Initialize(Window* rWindow)
     }
     mSpriteVao = new VertexArray(vertices, 4);
 
-    Assets::LoadShaderProgram("texture.vs", "texture.fs", "Texture");
+    Assets::LoadShaderProgram("Texture", "texture.vs", "texture.fs");
     mSpriteShaderProgram = Assets::GetShaderProgramFromName("Texture");
 
     return true;

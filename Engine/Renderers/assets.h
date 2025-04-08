@@ -17,7 +17,7 @@ public :
 	static std::map<std::string, Mesh*> mMeshes;
 
 	static Texture LoadTexture(IRenderer* pRenderer, std::string pFileName, std::string pName);
-	static ShaderProgram* LoadShaderProgram(std::string pVertexShaderName, std::string pFragmentShaderName, std::string pName);
+	static ShaderProgram* LoadShaderProgram(std::string pName, std::string pVertexShaderName, std::string pFragmentShaderName, std::string pTesselationControlShaderName = "", std::string pTesselationEvaluationShaderName = "", std::string pGeomatryShaderName = "");
 	static Mesh* LoadMesh(std::string pFileName, std::string pName);
 	static Texture& GetTextureFromName(std::string pName);
 	static ShaderProgram* GetShaderProgramFromName(std::string pName);
@@ -27,6 +27,6 @@ public :
 private :
 	Assets() = default;
 	static Texture LoadTextureFromFile(IRenderer* pRenderer, std::string& pFileName);
-	static ShaderProgram* LoadShaderProgramFromShaderNames(std::string pVertexShaderName, std::string pFragmentShaderName);
+	static ShaderProgram* LoadShaderProgramFromShaderNames(std::string pVertexShaderName, std::string pFragmentShaderName, std::string pTesselationControlShaderName = "", std::string pTesselationEvaluationShaderName = "", std::string pGeomatryShaderName = "");
 	static Mesh* LoadMeshFromFile(std::string& pFileName);
 };

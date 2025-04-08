@@ -272,6 +272,10 @@
     <None Include="Shaders\mesh.vs" />
     <None Include="Shaders\shaderBase.fs" />
     <None Include="Shaders\shaderBase.vs" />
+    <None Include="Shaders\tesselation.fs" />
+    <None Include="Shaders\tesselation.tcs" />
+    <None Include="Shaders\tesselation.tes" />
+    <None Include="Shaders\tesselation.vs" />
     <None Include="Shaders\texture.fs" />
     <None Include="Shaders\texture.vs" />
     <None Include="Shaders\transform.fs" />

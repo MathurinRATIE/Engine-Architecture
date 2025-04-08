@@ -419,5 +419,9 @@
     <None Include="Shaders\transform.vs" />
     <None Include="Shaders\mesh.fs" />
     <None Include="Shaders\mesh.vs" />
+    <None Include="Shaders\tesselation.fs" />
+    <None Include="Shaders\tesselation.tcs" />
+    <None Include="Shaders\tesselation.tes" />
+    <None Include="Shaders\tesselation.vs" />
   </ItemGroup>
 </Project>
