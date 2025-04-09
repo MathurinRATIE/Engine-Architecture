@@ -201,6 +201,9 @@
     <ClCompile Include="Actors\meshActor.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\AdvancedOpenglScene.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Imports\pokeball.png">
@@ -409,6 +412,9 @@
     <ClInclude Include="Actors\meshActor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\AdvancedOpenglScene.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\shaderBase.vs" />
@@ -423,5 +429,9 @@
     <None Include="Shaders\tesselation.tcs" />
     <None Include="Shaders\tesselation.tes" />
     <None Include="Shaders\tesselation.vs" />
+    <None Include="Shaders\terrain.fs" />
+    <None Include="Shaders\terrain.tcs" />
+    <None Include="Shaders\terrain.tes" />
+    <None Include="Shaders\terrain.vs" />
   </ItemGroup>
 </Project>

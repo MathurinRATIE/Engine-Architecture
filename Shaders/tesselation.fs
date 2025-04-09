@@ -1,7 +1,7 @@
-#version 450
+#version 330
 
 in TESE_OUT{
-   vec2 texCoord;
+    vec2 texCoord;
 
 } frag_in;
 
@@ -11,5 +11,5 @@ uniform sampler2D uTexture;
 
 void main()
 {
-   FragColor = texture(uTexture, frag_in.texCoord);
+    FragColor = texture(uTexture, frag_in.texCoord);
 }

@@ -46,6 +46,18 @@ void Shader::Load(std::string pFileName, ShaderType pShaderType)
         mId = glCreateShader(GL_FRAGMENT_SHADER);
         break;
     }
+    case TESSELATION_CONTROL: {
+        mId = glCreateShader(GL_TESS_CONTROL_SHADER);
+        break;
+    }
+    case TESSELATION_EVALUATION: {
+        mId = glCreateShader(GL_TESS_EVALUATION_SHADER);
+        break;
+    }
+    case GEOMETRY: {
+        mId = glCreateShader(GL_GEOMETRY_SHADER);
+        break;
+    }
     default:
     {
         Log::Error(LogType::Render, "This shader type has not yet been implemented.");
