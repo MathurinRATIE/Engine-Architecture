@@ -8,8 +8,10 @@ MeshActor::MeshActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::
 {
 	MeshComponent* meshComponent = new MeshComponent(this);
 	meshComponent->SetMesh(*Assets::GetMeshFromName(pMeshName));
-	meshComponent->GetMesh()->AddTexture(&Assets::GetTextureFromName(pTextureName));
-	meshComponent->SetTextureIndex(0);
+	Texture* texture = &Assets::GetTextureFromName(pTextureName);
+	meshComponent->GetMesh()->AddTexture(texture);
+	int index = meshComponent->GetTextureIndex(pTextureName);
+	meshComponent->SetTextureIndex(index);
 	meshComponent->GetMesh()->SetShaderProgram(Assets::GetShaderProgramFromName(pShaderProgramName));
 
 	RendererGl* renderer = static_cast<RendererGl*>(pRenderer);

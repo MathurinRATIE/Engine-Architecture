@@ -16,8 +16,8 @@ void AdvancedOpenglScene::Start(IRenderer* pRenderer, Window* pWindow)
 	mRenderer = pRenderer;
 	mWindow = pWindow;
 
-	Assets::LoadTexture(mRenderer, "Imports/pin.png", "Pin");
-	Assets::LoadTexture(mRenderer, "Imports/Wall.png", "Wall");
+	Assets::LoadTexture(mRenderer, "pin.png", "Pin");
+	Assets::LoadTexture(mRenderer, "Wall.png", "Wall");
 	Assets::LoadShaderProgram("Mesh", "mesh.vs", "mesh.fs");
 	Assets::LoadShaderProgram("Tesselation", "tesselation.vs", "tesselation.fs", "tesselation.tcs", "tesselation.tes");
 	Assets::LoadMesh("pin.obj", "Pin");

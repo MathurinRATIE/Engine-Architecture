@@ -15,6 +15,7 @@ public:
 	void SetTextureIndex(size_t pTextureIndex);
 
 	virtual Mesh* GetMesh();
+	size_t GetTextureIndex(std::string pTextureName);
 
 protected:
 	Mesh* mMesh;

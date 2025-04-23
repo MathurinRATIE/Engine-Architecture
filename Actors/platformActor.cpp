@@ -13,7 +13,7 @@ PlatformActor::PlatformActor(Scene* pScene, Window* pWindow, IRenderer* pRendere
     RendererSdl* renderer = static_cast<RendererSdl*>(pRenderer);
     if (renderer)
     {
-        platformTexture->Load(*renderer, "Imports/Platform.png");
+        platformTexture->Load(*renderer, "Platform.png");
     }
     SpriteComponent* sprite = new SpriteComponent(this, *platformTexture, IRenderer::Flip::None);
     SetSprite(sprite);

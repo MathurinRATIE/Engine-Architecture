@@ -15,7 +15,7 @@ PlayerActor::PlayerActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, s
 	RendererSdl* renderer = static_cast<RendererSdl*>(mRenderer);
 	if (renderer)
 	{
-		spaceShipTexture->Load(*renderer, "Imports/SpaceShip.png");
+		spaceShipTexture->Load(*renderer, "SpaceShip.png");
 	}
 	SpriteComponent* sprite = new SpriteComponent(this, *spaceShipTexture, IRenderer::Flip::None);
 	SetSprite(sprite);

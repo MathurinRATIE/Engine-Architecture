@@ -15,7 +15,7 @@ InvaderActor::InvaderActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer,
 	RendererSdl* renderer = static_cast<RendererSdl*>(mRenderer);
 	if (renderer)
 	{
-		invaderTexture->Load(*renderer, "Imports/Invader.png");
+		invaderTexture->Load(*renderer, "Invader.png");
 	}
 	SpriteComponent* sprite = new SpriteComponent(this, *invaderTexture, IRenderer::Flip::None);
 	SetSprite(sprite);

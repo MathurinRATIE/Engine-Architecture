@@ -18,7 +18,7 @@ BulletActor::BulletActor(Scene* pScene, Window* pWindow, IRenderer* pRenderer, s
     RendererSdl* renderer = static_cast<RendererSdl*>(mRenderer);
     if (renderer)
     {
-        bulletTexture->Load(*renderer, "Imports/Bullet.png");
+        bulletTexture->Load(*renderer, "Bullet.png");
     }
     SpriteComponent* sprite = new SpriteComponent(this, *bulletTexture, IRenderer::Flip::None);
     SetSprite(sprite);

@@ -190,6 +190,7 @@
     <ClCompile Include="Engine\Inputs\inputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\AdvancedOpenglScene.cpp" />
+    <ClCompile Include="Scenes\bowlingScene.cpp" />
     <ClCompile Include="Scenes\platformer.cpp" />
     <ClCompile Include="Scenes\mainScene.cpp" />
     <ClCompile Include="Scenes\pong.cpp" />
@@ -263,6 +264,7 @@
     <ClInclude Include="Engine\Inputs\inputEvent.h" />
     <ClInclude Include="Engine\Inputs\inputManager.h" />
     <ClInclude Include="Scenes\AdvancedOpenglScene.h" />
+    <ClInclude Include="Scenes\bowlingScene.h" />
     <ClInclude Include="Scenes\mainScene.h" />
     <ClInclude Include="Scenes\platformer.h" />
     <ClInclude Include="Scenes\pong.h" />

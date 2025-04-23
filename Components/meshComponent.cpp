@@ -5,7 +5,7 @@
 
 MeshComponent::MeshComponent(Actor* pOwner) : Component(pOwner)
 {
-	mMesh = Assets::GetMeshFromName("Monkey");
+	mMesh = Assets::GetMeshFromName("Cube");
 	RendererGl* renderer = static_cast<RendererGl*>(mOwner->GetScene()->GetRenderer());
 	renderer->AddMesh(this);
 }
@@ -25,7 +25,17 @@ void MeshComponent::Draw(Matrix4Row viewProj)
 		mMesh->GetShaderProgram()->Use();
 		mMesh->GetShaderProgram()->setMatrix4Row("uViewProj", viewProj);
 		mMesh->GetShaderProgram()->setMatrix4Row("uWorldTransform", worldTransform);
-		mMesh->GetShaderProgram()->setVector2f("uTiling", Vector2(mOwner->GetTransform()->GetScale().x, mOwner->GetTransform()->GetScale().y));
+
+		int tiling = mOwner->GetTransform()->GetScale().x;
+		if (tiling < mOwner->GetTransform()->GetScale().y)
+		{
+			tiling = mOwner->GetTransform()->GetScale().y;
+		}
+		if (tiling < mOwner->GetTransform()->GetScale().z)
+		{
+			tiling = mOwner->GetTransform()->GetScale().z;
+		}
+		mMesh->GetShaderProgram()->setVector2f("uTiling", Vector2(tiling, tiling));
 		
 		Texture* texture = mMesh->GetTexture(mTextureIndex);
 		if (texture)
@@ -53,4 +63,21 @@ void MeshComponent::SetTextureIndex(size_t pTextureIndex)
 Mesh* MeshComponent::GetMesh()
 {
 	return mMesh;
+}
+
+size_t MeshComponent::GetTextureIndex(std::string pTextureName)
+{
+	int i = 0;
+	for (Texture* texture : mMesh->GetTextures())
+	{
+		if (texture->GetFileName() == Assets::GetTextureFromName(pTextureName).GetFileName())
+		{
+			return i;
+		}
+
+		i++;
+	}
+
+	Log::Error(LogType::Application, "Texture is not fount in the mesh : " + pTextureName);
+	return -1;
 }

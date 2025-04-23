@@ -11,7 +11,8 @@ Texture::~Texture()
 bool Texture::Load(IRenderer& pRenderer, const std::string& pFileName)
 {
 	mFileName = pFileName;
-	SDL_Surface* surface = IMG_Load(mFileName.c_str());
+	std::string path = "Imports/Textures/" + mFileName;
+	SDL_Surface* surface = IMG_Load(path.c_str());
 	
 	if (!surface)
 	{
@@ -65,6 +66,11 @@ int Texture::GetHeight()
 SDL_Texture* Texture::GetSdlTexture()
 {
 	return mSDLTexture;
+}
+
+std::string Texture::GetFileName()
+{
+	return mFileName;
 }
 
 bool Texture::LoadSdl(RendererSdl* pRenderer, const std::string& pFileName, SDL_Surface* pSurface)

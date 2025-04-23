@@ -65,6 +65,11 @@ Texture* Mesh::GetTexture(size_t pTextureIndex)
     return nullptr;
 }
 
+std::vector<Texture*> Mesh::GetTextures()
+{
+    return mTextures;
+}
+
 void Mesh::SetShaderProgram(ShaderProgram* pShaderProgram)
 {
     mShaderProgram = pShaderProgram;

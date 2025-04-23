@@ -8,6 +8,7 @@
 #include "platformer.h"
 #include "sampleSceneOpenGL.h"
 #include "AdvancedOpenglScene.h"
+#include "bowlingScene.h"
 
 using namespace std;
 
@@ -27,11 +28,14 @@ int main(int argc, char* argv[])
 	/*Game* platformer = new Game("Platformer", {new Platformer()}, IRenderer::RendererType::SDL);
 	platformer->Initialize();*/
 
-	Game* sampleSceneOpenGL = new Game("OpenGL", {new SampleSceneOpenGL()}, IRenderer::RendererType::OPENGL);
-	sampleSceneOpenGL->Initialize();
+	/*Game* sampleSceneOpenGL = new Game("OpenGL", {new SampleSceneOpenGL()}, IRenderer::RendererType::OPENGL);
+	sampleSceneOpenGL->Initialize();*/
 
 	/*Game* marieScene = new Game("Scene Marie", { new AdvancedOpenglScene() }, IRenderer::RendererType::OPENGL);
 	marieScene->Initialize();*/
+
+	Game* bowling = new Game("Bowling", { new BowlingScene() }, IRenderer::RendererType::OPENGL);
+	bowling->Initialize();
 
 	return 0;
 }
