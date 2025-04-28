@@ -53,13 +53,13 @@ void Transform3D::SetRotation(Quaternion pRotation)
 
 void Transform3D::ComputeWorldTransform()
 {
-    if (!mNeedsUpdate)
+    /*if (!mNeedsUpdate)
     {
         return;
     }
-    mNeedsUpdate = false;
+    mNeedsUpdate = false;*/
 
-    mWorldTransform = Matrix4Row::CreateScale(mScale);
+    mWorldTransform = Matrix4Row::CreateScale(mScale * 0.5f);
     mWorldTransform *= Matrix4Row::CreateFromQuaternion(mRotation);
     mWorldTransform *= Matrix4Row::CreateTranslation(mPosition);
 }

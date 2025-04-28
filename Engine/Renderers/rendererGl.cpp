@@ -5,6 +5,8 @@
 #include "glew.h"
 #include "SDL.h"
 #include "inputManager.h"
+#include "meshActor.h"
+#include "engineTime.h"
 
 RendererGl::RendererGl(): mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
@@ -126,6 +128,33 @@ void RendererGl::DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle
     mSpriteShaderProgram->setMatrix4Row("uWorldTransform", world);
     pTexture.SetActive();
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+void RendererGl::DrawCollision(Actor* pOwner)
+{
+    MeshActor* meshActor = static_cast<MeshActor*>(pOwner);        // TODO : not working
+
+    if (meshActor->mMeshComponent != nullptr && Time::deltaTime > 1)
+    {
+        if (meshActor->mMeshComponent->GetMesh())
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+            ShaderProgram* shaderProgram = meshActor->mMeshComponent->GetMesh()->GetShaderProgram();
+            shaderProgram->Use();
+
+            Collider3D* collider = pOwner->GetComponentOfType<Collider3D>();
+            Cube hitbox = collider->GetHitBox();
+
+            Matrix4Row scaleMatrix = Matrix4Row::CreateScale(hitbox.mDimensions.x, hitbox.mDimensions.y, hitbox.mDimensions.z);
+            Matrix4Row world = scaleMatrix * pOwner->GetTransform()->GetWorldTransform();
+            shaderProgram->setMatrix4Row("uWorldTransform", world);
+            shaderProgram->setMatrix4Row("uViewProj", mView * mProj);
+            shaderProgram->setVector2f("uTiling", Vector2(1, 1));
+
+            glDrawArrays(GL_TRIANGLES, 0, 32);
+        }
+    }
 }
 
 void RendererGl::AddSprite(SpriteComponent* pSprite)

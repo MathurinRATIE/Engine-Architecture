@@ -2,6 +2,7 @@
 #include "vertexArray.h"
 #include "shaderProgram.h"
 #include "IRenderer.h"
+#include "collider3DComponent.h"
 
 class SpriteComponent;
 class MeshComponent;
@@ -32,6 +33,7 @@ public:
 	void EndDraw() override;
 
 	void DrawSprite(Actor* pOwner, Texture pTexture, Rectangle rectangle, Vector2 origin, Flip flip = Flip::None) const override;
+	void DrawCollision(Actor* pOwner);
 	void AddSprite(SpriteComponent* pSprite) override;
 	void RemoveSprite(SpriteComponent* pSprite) override;
 	void AddMesh(MeshComponent* pMeshComponent);

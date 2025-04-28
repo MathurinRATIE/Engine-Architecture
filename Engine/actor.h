@@ -42,7 +42,7 @@ public :
 	std::vector<Component*> GetComponents();
 	SpriteComponent* GetSpriteComponent();
 	std::vector<std::string> GetAllTags();
-	bool HasTag(std::string);
+	bool HasTag(std::string pTag);
 
 	void AttachScene(Scene* pScene);
 	void AddComponent(Component* pComponent);

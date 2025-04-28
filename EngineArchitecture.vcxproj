@@ -143,20 +143,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actors\ballActor.cpp" />
+    <ClCompile Include="Actors\bowlingBall.cpp" />
     <ClCompile Include="Actors\bulletActor.cpp" />
     <ClCompile Include="Actors\camera.cpp" />
     <ClCompile Include="Actors\invaderActor.cpp" />
     <ClCompile Include="Actors\meshActor.cpp" />
     <ClCompile Include="Actors\paddleActor.cpp" />
+    <ClCompile Include="Actors\pin.cpp" />
     <ClCompile Include="Actors\platformActor.cpp" />
     <ClCompile Include="Actors\platformerPlayerActor.cpp" />
     <ClCompile Include="Actors\playerActor.cpp" />
     <ClCompile Include="Actors\wallActor.cpp" />
     <ClCompile Include="Components\animatedSpriteComponent.cpp" />
+    <ClCompile Include="Components\bowlingBallControllerComponent.cpp" />
     <ClCompile Include="Components\collider3DComponent.cpp" />
     <ClCompile Include="Components\meshComponent.cpp" />
     <ClCompile Include="Components\moveComponent.cpp" />
     <ClCompile Include="Components\movementsComponent.cpp" />
+    <ClCompile Include="Components\PinControllerComponent.cpp" />
     <ClCompile Include="Components\playerControllerComponent.cpp" />
     <ClCompile Include="Components\rigidBody.cpp" />
     <ClCompile Include="Components\spriteComponent.cpp" />
@@ -209,20 +213,24 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\Downloads\tiny_obj_loader.h" />
     <ClInclude Include="Actors\ballActor.h" />
+    <ClInclude Include="Actors\bowlingBall.h" />
     <ClInclude Include="Actors\bulletActor.h" />
     <ClInclude Include="Actors\camera.h" />
     <ClInclude Include="Actors\invaderActor.h" />
     <ClInclude Include="Actors\meshActor.h" />
     <ClInclude Include="Actors\paddleActor.h" />
+    <ClInclude Include="Actors\pin.h" />
     <ClInclude Include="Actors\platformActor.h" />
     <ClInclude Include="Actors\platformerPlayerActor.h" />
     <ClInclude Include="Actors\playerActor.h" />
     <ClInclude Include="Actors\wallActor.h" />
     <ClInclude Include="Components\animatedSpriteComponent.h" />
+    <ClInclude Include="Components\bowlingBallControllerComponent.h" />
     <ClInclude Include="Components\collider3DComponent.h" />
     <ClInclude Include="Components\meshComponent.h" />
     <ClInclude Include="Components\moveComponent.h" />
     <ClInclude Include="Components\movementsComponent.h" />
+    <ClInclude Include="Components\PinControllerComponent.h" />
     <ClInclude Include="Components\playerControllerComponent.h" />
     <ClInclude Include="Components\rigidBody.h" />
     <ClInclude Include="Components\spriteComponent.h" />

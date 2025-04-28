@@ -24,20 +24,20 @@ bool Collider3D::CheckCollisions(Collider3D* pCollider)
 	Cube otherHitBox = pCollider->GetHitBox();
 
 	// This
-	float selfXMin = selfHitBox.mPosition.x;
-	float selfXMax = selfHitBox.mPosition.x + selfHitBox.mDimensions.x;
-	float selfYMin = selfHitBox.mPosition.y;
-	float selfYMax = selfHitBox.mPosition.y + selfHitBox.mDimensions.y;
-	float selfZMin = selfHitBox.mPosition.z;
-	float selfZMax = selfHitBox.mPosition.z + selfHitBox.mDimensions.z;
+	float selfXMin = selfHitBox.mPosition.x - otherHitBox.mDimensions.x / 2;
+	float selfXMax = selfHitBox.mPosition.x + selfHitBox.mDimensions.x / 2;
+	float selfYMin = selfHitBox.mPosition.y - otherHitBox.mDimensions.y / 2;
+	float selfYMax = selfHitBox.mPosition.y + selfHitBox.mDimensions.y / 2;
+	float selfZMin = selfHitBox.mPosition.z - otherHitBox.mDimensions.z / 2;
+	float selfZMax = selfHitBox.mPosition.z + selfHitBox.mDimensions.z / 2;
 
 	// Other
-	float otherXMin = otherHitBox.mPosition.x;
-	float otherXMax = otherHitBox.mPosition.x + otherHitBox.mDimensions.x;
-	float otherYMin = otherHitBox.mPosition.y;
-	float otherYMax = otherHitBox.mPosition.y + otherHitBox.mDimensions.y;
-	float otherZMin = otherHitBox.mPosition.z;
-	float otherZMax = otherHitBox.mPosition.z + otherHitBox.mDimensions.z;
+	float otherXMin = otherHitBox.mPosition.x - otherHitBox.mDimensions.x / 2;
+	float otherXMax = otherHitBox.mPosition.x + otherHitBox.mDimensions.x / 2;
+	float otherYMin = otherHitBox.mPosition.y - otherHitBox.mDimensions.y / 2;
+	float otherYMax = otherHitBox.mPosition.y + otherHitBox.mDimensions.y / 2;
+	float otherZMin = otherHitBox.mPosition.z - otherHitBox.mDimensions.z / 2;
+	float otherZMax = otherHitBox.mPosition.z + otherHitBox.mDimensions.z / 2;
 
 	if (!((selfXMin > otherXMax ||
 		selfXMax < otherXMin) ||
