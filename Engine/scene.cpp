@@ -75,6 +75,21 @@ std::vector<Actor*> Scene::GetActors()
 	return mActors;
 }
 
+std::vector<Actor*> Scene::GetActorsFromTag(std::string pTag)
+{
+	std::vector<Actor*> actors;
+
+	for (Actor* actor : mActors)
+	{
+		if (actor->HasTag(pTag))
+		{
+			actors.push_back(actor);
+		}
+	}
+
+	return actors;
+}
+
 IRenderer* Scene::GetRenderer()
 {
 	return mRenderer;

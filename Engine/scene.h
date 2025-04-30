@@ -27,6 +27,7 @@ public :
 	void AddPendingRemoveActor(Actor* pActor);
 	void RemoveActor(Actor* pActor);
 	std::vector<Actor*> GetActors();
+	std::vector<Actor*> GetActorsFromTag(std::string pTag);
 	IRenderer* GetRenderer();
 	void Unload();
 

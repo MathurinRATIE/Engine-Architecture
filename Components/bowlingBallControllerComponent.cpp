@@ -32,25 +32,45 @@ void BowlingBallControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	case SDLK_z:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mForce += 0.01f;
+			if (mForce < 10)
+			{
+				mForce += 0.03f;
+				float added = Maths::ATan2(Maths::Abs(mDirection), mForce) - Maths::ATan2(Maths::Abs(mDirection), mForce - 0.03f);
+				mArrow->GetTransform()->Rotate(added, mArrow->GetTransform()->Right());
+			}
 		}
 		break;
 	case SDLK_q:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mDirection -= 0.01f;
+			if (mDirection > -5)
+			{
+				mDirection -= 0.03f;
+				float added = Maths::ATan2(mDirection, mForce) - Maths::ATan2(mDirection + 0.03f, mForce);
+				mArrow->GetTransform()->Rotate(added, mArrow->GetTransform()->Right());
+			}
 		}
 		break;
 	case SDLK_s:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mForce -= 0.01f;
+			if (mForce > 0.03f)
+			{
+				mForce -= 0.03f;
+				float added = Maths::ATan2(Maths::Abs(mDirection), mForce) - Maths::ATan2(Maths::Abs(mDirection), mForce + 0.03f);
+				mArrow->GetTransform()->Rotate(added, mArrow->GetTransform()->Right());
+			}
 		}
 		break;
 	case SDLK_d:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mDirection += 0.01f;
+			if (mDirection < 5)
+			{
+				mDirection += 0.03f;
+				float added = Maths::ATan2(mDirection, mForce) - Maths::ATan2(mDirection - 0.03f, mForce);
+				mArrow->GetTransform()->Rotate(added, mArrow->GetTransform()->Right());
+			}
 		}
 		break;
 	case SDLK_SPACE:
@@ -71,6 +91,19 @@ void BowlingBallControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 
 void BowlingBallControllerComponent::Update()
 {
+	if (!mArrow)
+	{
+		mArrow = mOwner->GetScene()->GetActorsFromTag("Arrow")[0];
+		mArrow->GetTransform()->Rotate(Maths::ToRad(90), mArrow->GetTransform()->Forward());
+	}
+
+	Vector3 arrowPosition = mArrow->GetTransform()->GetPosition();
+	Vector3 arrowScale = mArrow->GetTransform()->GetScale();
+	float arrowLength = Maths::Sqrt(mForce * mForce + mDirection * mDirection) / 2;
+
+	mArrow->GetTransform()->SetPosition(Vector3(2 + mForce / 4, mDirection / 4, arrowPosition.z));
+	mArrow->GetTransform()->SetScale(Vector3(arrowLength, arrowScale.y, arrowScale.z));
+
 	// Translations
 	mRigidBody->Update();
 
@@ -123,7 +156,7 @@ void BowlingBallControllerComponent::Update()
 
 			pin->GetComponentOfType<PinControllerComponent>()->SetVelocity(velocity);
 		}
-		else
+		else if (!collider->GetCollidingActor()->HasTag("Arrow"))
 		{
 			// Revert Movement
 			position = mOwner->GetTransform()->GetPosition() - movement;

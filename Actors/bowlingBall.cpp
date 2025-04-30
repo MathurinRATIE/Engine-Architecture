@@ -4,6 +4,7 @@
 #include "meshComponent.h"
 #include "assets.h"
 #include "rendererGl.h"
+#include "scene.h"
 
 BowlingBall::BowlingBall(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Component*> pComponents, ActorState pState, Transform3D pTransform) : Actor(pScene, pWindow, pRenderer, pComponents, pState, pTransform)
 {

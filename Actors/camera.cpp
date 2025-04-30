@@ -8,8 +8,8 @@ Camera::Camera(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector
 	Collider3D* collider = new Collider3D(this);
 	AddComponent(collider);
 
-	PlayerControllerComponent* playerController = new PlayerControllerComponent(this);
-	AddComponent(playerController);
+	//PlayerControllerComponent* playerController = new PlayerControllerComponent(this);
+	//AddComponent(playerController);
 }
 
 Camera::~Camera()

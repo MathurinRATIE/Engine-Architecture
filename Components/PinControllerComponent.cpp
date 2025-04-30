@@ -42,7 +42,7 @@ void PinControllerComponent::Update()
 
 			pin->GetComponentOfType<PinControllerComponent>()->SetVelocity(velocity);
 		}
-		else
+		else if (!collider->GetCollidingActor()->HasTag("Arrow"))
 		{
 			// Revert Movement
 			position = mOwner->GetTransform()->GetPosition() - movement;

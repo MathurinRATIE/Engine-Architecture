@@ -2,6 +2,7 @@
 #include "moveComponent.h"
 #include "IInputListener.h"
 #include "rigidBody.h"
+#include "bowlingBall.h"
 
 class BowlingBallControllerComponent : public MoveComponent, public IInputListener
 {
@@ -14,6 +15,7 @@ public :
 
 private:
 	RigidBody* mRigidBody;
+	Actor* mArrow;
 	float mForce = 3;
 	float mDirection = 0.1;
 	bool mIsLaunched = false;
