@@ -14,8 +14,10 @@ public :
 
 private:
 	RigidBody* mRigidBody;
-	float mForce = 1;
-	float mDirection = 0;
+	float mForce = 3;
+	float mDirection = 0.1;
 	bool mIsLaunched = false;
 	bool mShouldLaunch = false;
+	bool mShouldReset = false;
+	Vector3 mInitialPosition;
 };

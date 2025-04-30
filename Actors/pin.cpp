@@ -26,8 +26,17 @@ Pin::Pin(Scene* pScene, Window* pWindow, IRenderer* pRenderer, std::vector<Compo
 	AddComponent(meshComponent);
 
 	AddTag("Pin");
+
+	mInitialPosition = mTransform.GetPosition();
 }
 
 Pin::~Pin()
 {
+}
+
+void Pin::Reset()
+{
+	PinControllerComponent* controller = GetComponentOfType<PinControllerComponent>();
+	controller->SetVelocity(Vector3());
+	mTransform.SetPosition(mInitialPosition);
 }

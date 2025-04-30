@@ -5,6 +5,7 @@
 #include "engineTime.h"
 #include "pin.h"
 #include "PinControllerComponent.h"
+#include "scene.h"
 
 BowlingBallControllerComponent::BowlingBallControllerComponent(Actor* pOwner, int pUpdateOrder) : MoveComponent(pOwner, pUpdateOrder), IInputListener()	// todo : add an ignore collisions parameter
 {
@@ -15,6 +16,8 @@ BowlingBallControllerComponent::BowlingBallControllerComponent(Actor* pOwner, in
 	InputManager::Instance().SubscribeTo(SDLK_SPACE, this);
 
 	mRigidBody = new RigidBody(mOwner, 0.0f, false);
+
+	mInitialPosition = mOwner->GetTransform()->GetPosition();
 }
 
 BowlingBallControllerComponent::~BowlingBallControllerComponent()
@@ -35,7 +38,7 @@ void BowlingBallControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	case SDLK_q:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mDirection += 0.01f;
+			mDirection -= 0.01f;
 		}
 		break;
 	case SDLK_s:
@@ -47,7 +50,7 @@ void BowlingBallControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 	case SDLK_d:
 		if (pEvent.type == SDL_KEYDOWN)
 		{
-			mDirection -= 0.01f;
+			mDirection += 0.01f;
 		}
 		break;
 	case SDLK_SPACE:
@@ -55,7 +58,7 @@ void BowlingBallControllerComponent::OnNotifyInput(SDL_Event& pEvent)
 		{
 			if (mIsLaunched && !mShouldLaunch)
 			{
-				mIsLaunched = false;
+				mShouldReset = true;
 			}
 			else
 			{
@@ -79,10 +82,29 @@ void BowlingBallControllerComponent::Update()
 		mIsLaunched = true;
 		mShouldLaunch = false;
 	}
+	else if (mShouldReset)
+	{
+		mRigidBody->SetVelocity(Vector3());
+		mOwner->GetTransform()->SetPosition(mInitialPosition);
+		
+		std::vector<Actor*> actors = mOwner->GetScene()->GetActors();
+		for (Actor* actor : actors)
+		{
+			if (actor->HasTag("Pin"))
+			{
+				Pin* pin = static_cast<Pin*>(actor);
+				pin->Reset();
+			}
+		}
+
+		mIsLaunched = false;
+		mShouldReset = false;
+	}
 
 	Vector3* velocity = mRigidBody->GetVelocity();
-	Vector3 movement = (Vector3::Cross(Vector3::unitZ, mOwner->GetTransform()->Right()) * velocity->x
-					  + Vector3::Cross(Vector3::unitZ, mOwner->GetTransform()->Forward()) * velocity->y) * Time::deltaTime;
+	mRigidBody->SetVelocity(*velocity * 0.9999);
+
+	Vector3 movement = Vector3(velocity->x, velocity->y, 0) * Time::deltaTime;
 
 	Vector3 position = mOwner->GetTransform()->GetPosition() + movement;	// Apply movement
 	mOwner->GetTransform()->SetPosition(position);
@@ -95,11 +117,17 @@ void BowlingBallControllerComponent::Update()
 			Pin* pin = static_cast<Pin*>(collider->GetCollidingActor());
 
 			float force = mRigidBody->GetVelocity()->Length();
-			Vector3 direction = mOwner->GetTransform()->GetPosition() - pin->GetTransform()->GetPosition();
+			Vector3 direction = pin->GetTransform()->GetPosition() - mOwner->GetTransform()->GetPosition();
 			direction.Normalize();
-			Vector3 velocity = direction * force * 0.5;
+			Vector3 velocity = direction * force * 2;
 
-			pin->GetComponentOfType<PinControllerComponent>()->AddVelocity(velocity);
+			pin->GetComponentOfType<PinControllerComponent>()->SetVelocity(velocity);
+		}
+		else
+		{
+			// Revert Movement
+			position = mOwner->GetTransform()->GetPosition() - movement;
+			mOwner->GetTransform()->SetPosition(position);
 		}
 	}
 }

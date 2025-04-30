@@ -33,11 +33,11 @@ void BowlingScene::Start(IRenderer* pRenderer, Window* pWindow)
 	Pin* pin3 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(18, 0.5f, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
 	Pin* pin4 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(18, 1.5f, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
 	Pin* pin5 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(17, -1, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
-	Pin* pin6 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(16, 0, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
-	Pin* pin7 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(16, 1, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
-	Pin* pin8 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(15, -0.5f, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
-	Pin* pin9 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(15, 0.5f, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
-	Pin* pin10 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(14, 0, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
+	Pin* pin6 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(17, 0, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
+	Pin* pin7 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(17, 1, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
+	Pin* pin8 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(16, -0.5f, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
+	Pin* pin9 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(16, 0.5f, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
+	Pin* pin10 = new Pin(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(15, 0, 0.2f), Vector3(.3f, .3f, .3f), Quaternion(Maths::ToRad(40), 0, 0, 1)));
 
 	BowlingBall* bowlingBall = new BowlingBall(this, pWindow, pRenderer, {}, ActorState::Active, Transform3D(Vector3(2, 0, .2f), Vector3(.8f, .8f, .8f)));
 	bowlingBall->GetTransform()->Rotate(Maths::ToRad(180), bowlingBall->GetTransform()->Up());

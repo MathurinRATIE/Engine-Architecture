@@ -10,7 +10,7 @@ public :
 	~PinControllerComponent();
 
 	void Update() override;
-	void AddVelocity(Vector3 pVelocity);
+	void SetVelocity(Vector3 pVelocity);
 
 private:
 	RigidBody* mRigidBody;
